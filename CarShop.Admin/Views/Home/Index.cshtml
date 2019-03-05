@@ -1,31 +1,172 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+                /**/
+
+                ViewBag.Title = "Home Page";
 }
-
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
-
+<!-- ============================================================== -->
+<!-- pageheader  -->
+<!-- ============================================================== -->
 <div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="page-header">
+            <h2 class="pageheader-title">Yönetim Paneli</h2>
+            <p class="pageheader-text">Nulla euismod urna eros, sit amet scelerisque torton lectus vel mauris facilisis faucibus at enim quis massa lobortis rutrum.</p>
+            <div class="page-breadcrumb">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        
+                    </ol>
+                </nav>
+            </div>
+        </div>
     </div>
 </div>
+<!-- ============================================================== -->
+<!-- end pageheader  -->
+<!-- ============================================================== -->
+<div class="ecommerce-widget">
+    <div class="row">
+
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="text-muted">Kullanıcı Sayısı</h5>
+                    <div class="metric-value d-inline-block">
+                        <h1 class="mb-1">@ViewBag.UserCount</h1>
+                    </div>
+                    <div class="metric-label d-inline-block float-right text-success font-weight-bold">
+                        <span><i class="fa fa-fw fa-arrow-up"></i></span><span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="text-muted">Kategori Sayısı</h5>
+
+                    <div class="metric-value d-inline-block">
+                        <h1 class="mb-1">@ViewBag.CategoryCount</h1>
+                    </div>
+                    <div class="metric-label d-inline-block float-right text-secondary font-weight-bold">
+                        <span>
+
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="text-muted">Ürün Sayısı</h5>
+                    <div class="metric-value d-inline-block">
+                        <h1 class="mb-1">@ViewBag.ProductCount</h1>
+                    </div>
+                    <div class="metric-label d-inline-block float-right text-primary font-weight-bold">
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div id="sparkline-revenue"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- recent orders  -->
+        <!-- ============================================================== -->
+        @*<div class="col-xl-9 col-lg-12 col-md-6 col-sm-12 col-12">
+            <div class="card">
+                <h5 class="card-header">Son Yazılar</h5>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="bg-light">
+                                <tr class="border-0">
+                                    <th class="border-0">Başlık</th>
+                                    <th class="border-0">Açıklama</th>
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in ViewBag.Posts)
+                                {
+                                    <tr>
+                                        <td>
+                                            <strong>@item.Title</strong>
+                                        </td>
+                                        @if (item.Description != null)
+                                        {
+                                            <td>
+                                                <strong>@Html.Raw(item.Description)</strong>
+                                            </td>
+                                        }
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+        <!-- ============================================================== -->
+        <!-- end recent orders  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- customer acquistion  -->
+        <!-- ============================================================== -->
+        @*<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+            <div class="card">
+                <h5 class="card-header">Kategoriler</h5>
+                <div class="card-body">
+                    <table>
+
+                        @foreach (var item in ViewBag.Categories)
+                        {
+                            <tr>
+                                <td>
+                                    <strong>@item.Name</strong>
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>*@
+        <!-- ============================================================== -->
+        <!-- end customer acquistion  -->
+        <!-- ============================================================== -->
+    </div>
+</div>
+
+@section sparklineRevenueScripts{
+    <script>
+        $("#sparkline-revenue").sparkline(@ViewBag.UserCount,@ViewBag.ProductCount,@ViewBag.CategoryCount], {
+            type: 'line',
+            width: '99.5%',
+            height: '100',
+            lineColor: '#25d5f2',
+            fillColor: '#dffaff',
+            lineWidth: 2,
+            spotColor: undefined,
+            minSpotColor: undefined,
+            maxSpotColor: undefined,
+            highlightSpotColor: undefined,
+            highlightLineColor: undefined,
+            resize: true
+        });
+    </script>
+}
