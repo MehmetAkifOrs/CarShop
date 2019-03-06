@@ -2,6 +2,8 @@
 using CarShop.Service;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -26,20 +28,41 @@ namespace CarShop.Admin.Controllers
         public ActionResult Create()
         {
             var product = new Product();
-            ViewBag.Categories = new SelectList(categoryService.GetAll(), "Id", "Name", product.CategoryId);
+            ViewBag.CategoryId = new SelectList(categoryService.GetAll(), "Id", "Name", product.CategoryId);
             return View(product);
         }
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Create(Product product)
+        public ActionResult Create(Product product, HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {
-                productService.Insert(product);
-                return RedirectToAction("Index");
+                if (upload != null && upload.ContentLength > 0)
+                {
+                    string fileName = Path.GetFileName(upload.FileName);
+                    string extension = Path.GetExtension(fileName).ToLower();
+                    if (extension == ".jpg" || extension == ".jpeg" || extension == ".png" || extension == ".gif")
+                    {
+                        string path = Path.Combine(ConfigurationManager.AppSettings["uploadPath"], fileName);
+                        upload.SaveAs(path);
+                        product.Photo = fileName;
+                        productService.Insert(product);
+                        return RedirectToAction("index");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("Photo", "Dosya uzantısı .jpg, .jpeg, .png ya da .gif olmalıdır.");
+                    }
+                }
+                else
+                {
+                    productService.Insert(product);
+                    return RedirectToAction("index");
+                }
+
             }
-            ViewBag.Categories = new SelectList(categoryService.GetAll(), "Id", "Name", product.CategoryId);
+            ViewBag.CategoryId = new SelectList(categoryService.GetAll(), "Id", "Name", product.CategoryId);
             return View(product);
         }
 
@@ -50,26 +73,50 @@ namespace CarShop.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Categories = new SelectList(categoryService.GetAll(), "Id", "Name", product.CategoryId);
+            ViewBag.CategoryId = new SelectList(categoryService.GetAll(), "Id", "Name", product.CategoryId);
             return View(product);
 
         }
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Edit(Product product)
+        public ActionResult Edit(Product product, HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {
-                var model = productService.Find(product.Id);
-                model.Name = product.Name;
-                model.Description = product.Description;                
-                //model.GithubLink = project.GithubLink;
-                //model.Year = project.Year;
-                model.Photo = product.Photo;
-                model.Stock = product.Stock;
-                model.CategoryId = product.CategoryId;
-                productService.Update(model);
-                return RedirectToAction("Index");
+                if (upload != null && upload.ContentLength > 0)
+                {
+                    string fileName = Path.GetFileName(upload.FileName);
+                    string extension = Path.GetExtension(fileName).ToLower();
+                    if (extension == ".jpg" || extension == ".jpeg" || extension == ".png" || extension == ".gif")
+                    {
+                        string path = Path.Combine(ConfigurationManager.AppSettings["uploadPath"], fileName);
+                        upload.SaveAs(path);
+                        product.Photo = fileName;
+                        productService.Update(product);
+                        return RedirectToAction("index");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("Photo", "Dosya uzantısı .jpg, .jpeg, .png ya da .gif olmalıdır.");
+
+                    }
+                }
+                else
+                {
+                    // resim seçilip yüklenmese bile diğer bilgileri güncelle
+                    productService.Update(product);
+                    return RedirectToAction("index");
+                }
+                //var model = productService.Find(product.Id);
+                //model.Name = product.Name;
+                //model.Description = product.Description;                
+                ////model.GithubLink = project.GithubLink;
+                ////model.Year = project.Year;
+                //model.Photo = product.Photo;
+                //model.Stock = product.Stock;
+                //model.CategoryId = product.CategoryId;
+                //productService.Update(model);
+                //return RedirectToAction("Index");
 
 
             }
@@ -83,7 +130,14 @@ namespace CarShop.Admin.Controllers
         }
         public ActionResult Details(Guid id)
         {
-            return View(productService.Find(id));
+            var product = productService.Find(id);
+            if (product == null)
+            {
+                return HttpNotFound();
+
+            }
+
+            return View(product);
         }
     }
 }

@@ -42,12 +42,10 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
-
-
             <td>
-                <a href="@Url.Action("Düzenle", new { id = item.Id})" class="btn btn-primary btn-xs">Düzenle</a>
-                <a href="@Url.Action("Detay", new { id = item.Id})" class="btn btn-success btn-xs">Detaylar</a>
-                <a href="@Url.Action("Sil", new { id = item.Id})" class="btn btn-danger btn-xs">Sil</a>
+                <a href="@Url.Action("Edit", new { id = item.Id})" class="btn btn-primary btn-xs">Düzenle</a>
+                <a href="@Url.Action("Details", new { id = item.Id})" class="btn btn-success btn-xs">Detaylar</a>
+                <a href="@Url.Action("Delete", new { id = item.Id})" class="btn btn-danger btn-xs">Sil</a>
             </td>
         </tr>
     }
