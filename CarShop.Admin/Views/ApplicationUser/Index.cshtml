@@ -4,7 +4,22 @@
     ViewBag.Title = "Kullanıcılar";
 }
 
-<h2>Kullanıcılar</h2>
+<!-- ============================================================== -->
+<!-- pageheader  -->
+<!-- ============================================================== -->
+<h2 class="pageheader-title">Kullanıcılar</h2>
+<div class="page-breadcrumb">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb"></ol>
+    </nav>
+</div>
+<!-- ============================================================== -->
+<!-- end pageheader  -->
+<!-- ============================================================== -->
+<p>
+    <button type="button" class="btn btn-success"> @Html.ActionLink("Yeni Kullanıcı Ekle", "Create") </button>
+
+</p>  
 
 @if (TempData["CurrentUser"] != null)
 {
@@ -23,9 +38,7 @@
     </script>
 }
 
-<p>
-    <a href="@Url.Action("Register", "Account")" class="btn btn-primary btn-xs">Yeni Kullanıcı Ekle</a>
-</p>
+
 <table class="table">
     <tr>
         <th>
