@@ -107,6 +107,7 @@ namespace CarShop.Admin.Controllers
                     productService.Update(product);
                     return RedirectToAction("index");
                 }
+                //
                 //var model = productService.Find(product.Id);
                 //model.Name = product.Name;
                 //model.Description = product.Description;                
