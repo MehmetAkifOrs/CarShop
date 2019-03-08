@@ -9,7 +9,7 @@ using System.Web.Mvc;
 namespace CarShop.Admin.Controllers
 {
     [Authorize]
-    public class HomeController : Controller
+    public class HomeController : ControllerBase
     {
         private readonly ICategoryService categoryService;
         private readonly IProductService productService;

@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="/assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="/assets/vendor/charts/c3charts/c3.css">
     <link rel="stylesheet" href="/assets/vendor/fonts/flag-icon-css/flag-icon.min.css">
+    <link href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" />
     <title>@ViewBag.Title - CarShop</title>
 </head>
 <body>
@@ -33,22 +34,22 @@
                 </button>
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
-                        @using (Html.BeginForm("Index", "Search", FormMethod.Get, new { @style = "display: inherit" }))
-                        {
-                            <li class="nav-item">
-                                <div id="custom-search" class="top-search-bar">
-                                    @Html.TextBox("name", null, new { @class = "form-control", placeholder = "Arama.." })
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <div id="custom-search" class="top-search-bar">
-                                    <button class="btn-info btn-sm" type="submit">Ara</button>
-                                </div>
-                            </li>
-                        }
+                        @*@using (Html.BeginForm("Index", "Search", FormMethod.Get, new { @style = "display: inherit" }))
+                            {
+                                <li class="nav-item">
+                                    <div id="custom-search" class="top-search-bar">
+                                        @Html.TextBox("name", null, new { @class = "form-control", placeholder = "Arama.." })
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <div id="custom-search" class="top-search-bar">
+                                        <button class="btn-info btn-sm" type="submit">Ara</button>
+                                    </div>
+                                </li>
+                            }*@
                         @*<li class="nav-item dropdown notification" style="margin-top: 15px;">
                             <a class="nav-link nav-icons" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-fw fa-bell"></i> <span class="indicator"></span></a>*@
-                            @*<ul class="dropdown-menu dropdown-menu-right notification-dropdown">
+                        @*<ul class="dropdown-menu dropdown-menu-right notification-dropdown">
                                 <li>
                                     <div class="notification-title"> Bildirimler</div>
                                     <div class="notification-list">
@@ -80,19 +81,19 @@
                         <li class="nav-item dropdown nav-user">
                             <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="/assets/images/avatar-1.jpg" alt="" class="user-avatar-md rounded-circle" style="    margin-top: 5px;"></a>
                             <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
-                                <div class="nav-user-info">
+                                @*<div class="nav-user-info">
 
-                                    @if (@ViewBag.CurrentUser != null)
-                                    {
-                                        <h5 class="mb-0 text-white nav-user-name">@ViewBag.CurrentUser</h5>
+                                        @if (@ViewBag.CurrentUser != null)
+                                        {
+                                            <h5 class="mb-0 text-white nav-user-name">@ViewBag.CurrentUser</h5>
 
-                                    }
-                                    else
-                                    {
-                                        <span class="status"></span><span class="ml-2">Lütfen tam isminizi giriniz.</span>
-                                    }
+                                        }
+                                        else
+                                        {
+                                            <span class="status"></span><span class="ml-2">Lütfen tam isminizi giriniz.</span>
+                                        }
 
-                                </div>
+                                    </div>*@
                                 <a class="dropdown-item" href="@Url.Action("Index","Manage")"><i class="fas fa-user mr-2"></i>Hesabım</a>
                                 <a class="dropdown-item" href="javascript:document.getElementById('logoutForm').submit()"><i class="fas fa-power-off mr-2"></i>Çıkış</a>
                             </div>
@@ -142,10 +143,10 @@
                                 <a class="nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "ApplicationUser"?"active":"")" href="@Url.Action("Index","ApplicationUser")"><i class="fa fa-fw fa-user-circle"></i>Kullanıcılar</a>
 
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "Feedback"?"active":"")" href="@Url.Action("Index","Feedback")"><i class="fa fa-fw fa-rocket"></i>Bildirimler</a>
+                            @*<li class="nav-item">
+                                    <a class="nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "Feedback"?"active":"")" href="@Url.Action("Index","Feedback")"><i class="fa fa-fw fa-rocket"></i>Bildirimler</a>
 
-                            </li>
+                                </li>*@
                         </ul>
                     </div>
                 </nav>
@@ -214,6 +215,19 @@
     <script src="/assets/vendor/charts/c3charts/d3-5.4.0.min.js"></script>
     <script src="/assets/vendor/charts/c3charts/C3chartjs.js"></script>
     <script src="/assets/libs/js/dashboard-ecommerce.js"></script>
+
+    <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Turkish.json"
+                }
+            });
+        });
+    </script>
+
+
     @RenderSection("scripts", required: false)
     @RenderSection("sparklineRevenueScripts", required: false)
 </body>

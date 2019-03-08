@@ -11,7 +11,7 @@ using CarShop.Admin.Models;
 namespace CarShop.Admin.Controllers
 {
     [Authorize]
-    public class ManageController : Controller
+    public class ManageController : ControllerBase
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;

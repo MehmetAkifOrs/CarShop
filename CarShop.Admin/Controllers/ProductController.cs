@@ -10,12 +10,12 @@ using System.Web.Mvc;
 
 namespace CarShop.Admin.Controllers
 {
-    public class ProductController : Controller
+    public class ProductController : ControllerBase
     {
         // GET: Project
         private readonly ICategoryService categoryService;
         private readonly IProductService productService;
-        public ProductController(IProductService productService, ICategoryService categoryService)
+        public ProductController(IProductService productService, ICategoryService categoryService) :base()
         {
             this.productService = productService;
             this.categoryService = categoryService;
@@ -28,7 +28,7 @@ namespace CarShop.Admin.Controllers
         public ActionResult Create()
         {
             var product = new Product();
-            ViewBag.CategoryId = new SelectList(categoryService.GetAll(), "Id", "Name", product.CategoryId);
+            ViewBag.CategoryId = new SelectList(categoryService.GetAll(), "Id", "Name");
             return View(product);
         }
 
@@ -65,17 +65,30 @@ namespace CarShop.Admin.Controllers
             ViewBag.CategoryId = new SelectList(categoryService.GetAll(), "Id", "Name", product.CategoryId);
             return View(product);
         }
+       
+                //
+                //var model = productService.Find(product.Id);
+                //model.Name = product.Name;
+                //model.Description = product.Description;                
+                ////model.GithubLink = project.GithubLink;
+                ////model.Year = project.Year;
+                //model.Photo = product.Photo;
+                //model.Stock = product.Stock;
+                //model.CategoryId = product.CategoryId;
+                //productService.Update(model);
+                //return RedirectToAction("Index");
+         
 
         public ActionResult Edit(Guid id)
         {
-            var product = productService.Find(id);
-            if (product == null)
+            var post = productService.Find(id);
+            if (post == null)
             {
                 return HttpNotFound();
-            }
-            ViewBag.CategoryId = new SelectList(categoryService.GetAll(), "Id", "Name", product.CategoryId);
-            return View(product);
 
+            }
+            ViewBag.CategoryId = new SelectList(categoryService.GetAll(), "Id", "Name", post.CategoryId);
+            return View(post);
         }
         [HttpPost]
         [ValidateInput(false)]
@@ -107,22 +120,11 @@ namespace CarShop.Admin.Controllers
                     productService.Update(product);
                     return RedirectToAction("index");
                 }
-                //
-                //var model = productService.Find(product.Id);
-                //model.Name = product.Name;
-                //model.Description = product.Description;                
-                ////model.GithubLink = project.GithubLink;
-                ////model.Year = project.Year;
-                //model.Photo = product.Photo;
-                //model.Stock = product.Stock;
-                //model.CategoryId = product.CategoryId;
-                //productService.Update(model);
-                //return RedirectToAction("Index");
 
 
             }
-            ViewBag.Categories = new SelectList(categoryService.GetAll(), "Id", "Name", product.CategoryId);
-            return View();
+            ViewBag.CategoryId = new SelectList(categoryService.GetAll(), "Id", "Name", product.CategoryId);
+            return View(product);
         }
         public ActionResult Delete(Guid id)
         {

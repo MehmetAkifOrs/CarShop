@@ -10,7 +10,7 @@ using System.Web.Mvc;
 namespace CarShop.Admin.Controllers
 {
     [Authorize]
-    public class ApplicationUserController : Controller
+    public class ApplicationUserController : ControllerBase
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;

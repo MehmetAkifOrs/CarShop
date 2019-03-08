@@ -17,7 +17,7 @@
 <!-- end pageheader  -->
 <!-- ============================================================== -->
 <p>
-    <button type="button" class="btn btn-success"> @Html.ActionLink("Yeni Kullanıcı Ekle", "Create") </button>
+    <button type="button" class="btn btn-success"> @Html.ActionLink("Yeni Kullanıcı Ekle", "Register","Account") </button>
 
 </p>  
 
@@ -38,26 +38,31 @@
     </script>
 }
 
+<!--jquery data Table 'ın Düzgün çalışması için, "th"lerin sayısı ile "td"lerin sayısı eşit olmalı -->
+    <table class="table" id="myTable">
+        <thead>
+            <tr>
+                <th>
+                    E-Posta
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
 
-<table class="table">
-    <tr>
-        <th>
-            E-Posta
-        </th>
-        <th></th>
-    </tr>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Edit", new { id = item.Id})" class="btn btn-primary btn-xs">Düzenle</a>
+                        <a href="@Url.Action("Delete", new { id = item.Id})" class="btn btn-danger btn-xs">Sil</a>
+                    </td>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                <a href="@Url.Action("Edit", new { id = item.Id})" class="btn btn-primary btn-xs">Düzenle</a>
-                <a href="@Url.Action("Delete", new { id = item.Id})" class="btn btn-danger btn-xs">Sil</a>
-            </td>
 
-        </tr>
-    }
-</table>
+                </tr>
+            }
+        </tbody>
+    </table>
