@@ -19,8 +19,9 @@ namespace CarShop.Web.Controllers
             this.categoryService = categoryService;
         }
         public ActionResult Index()
-        {                   
-            return View();
+        {
+            var categories = categoryService.GetAll();
+            return View(categories);
         }        
 
         public ActionResult About()
