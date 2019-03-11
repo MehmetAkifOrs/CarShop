@@ -14,50 +14,48 @@
     <link rel="stylesheet" type="text/css" href="~/plugins/OwlCarousel2-2.2.1/animate.css">
     <link rel="stylesheet" type="text/css" href="~/styles/main_styles.css">
     <link rel="stylesheet" type="text/css" href="~/styles/responsive.css">
+    <link rel="stylesheet" type="text/css" href="~/styles/contact.css">
+    <link rel="stylesheet" type="text/css" href="~/styles/contact_responsive.css">
 </head>
 <body>
 
-    <div class="super_container">
+    <!-- Header -->
 
-        <!-- Header -->
-
-        <header class="header">
-            <div class="header_container">
-                <div class="container">
-                    <div class="row">
-                        <div class="col">
-                            <div class="header_content d-flex flex-row align-items-center justify-content-start">
-                                <div class="logo"><a href="#">CarShop</a></div>
-                                <nav class="main_nav">
-                                    <ul>
-                                        <li><a href="@Url.Action("Index","Home")">Anasaysa</a></li>
-                                        <li class="hassubs">
-                                            <a href="@Url.Action("Index","Category")">Kategoriler</a>
-                                            <ul>
-                                                @foreach (var item in Model)
+    <header class="header">
+        <div class="header_container">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="header_content d-flex flex-row align-items-center justify-content-start">
+                            <div class="logo"><a href="#">CarShop</a></div>
+                            <nav class="main_nav">
+                                <ul>
+                                    <li><a href="@Url.Action("Index","Home")">Anasaysa</a></li>
+                                    <li class="hassubs">
+                                        <a href="@Url.Action("Index","Category")">Kategoriler</a>
+                                        <ul>
+                                            @*@foreach (var item in Model)
                                                 {
                                                     <li>
                                                         <a href="@Url.Action("Index", "Category",
                                                                 new { id = item.Id });">@item.Name</a>
                                                             </li>
-                                                        }
+                                                        }*@
 
-
-
-                                            </ul>
-                                        </li>
-                                        <li><a href="#">Satış</a></li>
-                                        <li><a href="#">Hakkında</a></li>
-                                        <li><a href="contact.html">İletişim</a></li>
-                                    </ul>
-                                </nav>
-                                <div class="header_extra ml-auto">
-                                    <div class="shopping_cart">
-                                        <a href="cart.html">
-                                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                                 viewBox="0 0 489 489" style="enable-background:new 0 0 489 489;" xml:space="preserve">
-                                            <g>
-                                            <path d="M440.1,422.7l-28-315.3c-0.6-7-6.5-12.3-13.4-12.3h-57.6C340.3,42.5,297.3,0,244.5,0s-95.8,42.5-96.6,95.1H90.3
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">Satış</a></li>
+                                    <li><a href="@Url.Action("About","Home")">Hakkımızda</a></li>
+                                    <li><a href="@Url.Action("Contact","Home")">İletişim</a></li>
+                                </ul>
+                            </nav>
+                            <div class="header_extra ml-auto">
+                                <div class="shopping_cart">
+                                    <a href="cart.html">
+                                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                             viewBox="0 0 489 489" style="enable-background:new 0 0 489 489;" xml:space="preserve">
+                                        <g>
+                                        <path d="M440.1,422.7l-28-315.3c-0.6-7-6.5-12.3-13.4-12.3h-57.6C340.3,42.5,297.3,0,244.5,0s-95.8,42.5-96.6,95.1H90.3
 													c-7,0-12.8,5.3-13.4,12.3l-28,315.3c0,0.4-0.1,0.8-0.1,1.2c0,35.9,32.9,65.1,73.4,65.1h244.6c40.5,0,73.4-29.2,73.4-65.1
 													C440.2,423.5,440.2,423.1,440.1,422.7z M244.5,27c37.9,0,68.8,30.4,69.6,68.1H174.9C175.7,57.4,206.6,27,244.5,27z M366.8,462
 													H122.2c-25.4,0-46-16.8-46.4-37.5l26.8-302.3h45.2v41c0,7.5,6,13.5,13.5,13.5s13.5-6,13.5-13.5v-41h139.3v41
@@ -87,24 +85,20 @@
 
 
 
-
-
-
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
 
 											</g>
 										</svg>
-                                            <div>Sepet <span>(0)</span></div>
-                                        </a>
-                                    </div>
-                                    <div class="search">
-                                        <div class="search_icon">
-                                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                                 viewBox="0 0 475.084 475.084" style="enable-background:new 0 0 475.084 475.084;"
-                                                 xml:space="preserve">
-                                            <g>
-                                            <path d="M464.524,412.846l-97.929-97.925c23.6-34.068,35.406-72.047,35.406-113.917c0-27.218-5.284-53.249-15.852-78.087
+                                        <div>Sepet <span>(0)</span></div>
+                                    </a>
+                                </div>
+                                <div class="search">
+                                    <div class="search_icon">
+                                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                             viewBox="0 0 475.084 475.084" style="enable-background:new 0 0 475.084 475.084;"
+                                             xml:space="preserve">
+                                        <g>
+                                        <path d="M464.524,412.846l-97.929-97.925c23.6-34.068,35.406-72.047,35.406-113.917c0-27.218-5.284-53.249-15.852-78.087
 												c-10.561-24.842-24.838-46.254-42.825-64.241c-17.987-17.987-39.396-32.264-64.233-42.826
 												C254.246,5.285,228.217,0.003,200.999,0.003c-27.216,0-53.247,5.282-78.085,15.847C98.072,26.412,76.66,40.689,58.673,58.676
 												c-17.989,17.987-32.264,39.403-42.827,64.241C5.282,147.758,0,173.786,0,201.004c0,27.216,5.282,53.238,15.846,78.083
@@ -162,71 +156,215 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 										</g>
 									</svg>
-                                        </div>
                                     </div>
-                                    <div class="hamburger"><i class="fa fa-bars" aria-hidden="true"></i></div>
                                 </div>
+                                <div class="hamburger"><i class="fa fa-bars" aria-hidden="true"></i></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Search Panel -->
-            <div class="search_panel trans_300">
-                <div class="container">
-                    <div class="row">
-                        <div class="col">
-                            <div class="search_panel_content d-flex flex-row align-items-center justify-content-end">
-                                <form action="#">
-                                    <input type="text" class="search_input" placeholder="Search" required="required">
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-
-        </header>
-
-
-
-
-        @RenderBody()
-        <!-- Footer -->
-
-        <div class="footer_overlay"></div>
-        <footer class="footer">
-            <div class="footer_background" style="background-image:url(/images/footer.jpg)"></div>
+        <!-- Search Panel -->
+        <div class="search_panel trans_300">
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <div class="footer_content d-flex flex-lg-row flex-column align-items-center justify-content-lg-start justify-content-center">
-                            <div class="footer_logo"><a href="#">CarShop</a></div>
-                            <div class="copyright ml-auto mr-auto">
-                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                Copyright &copy;
-                                <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                            </div>
-                            <div class="footer_social ml-lg-auto">
-                                <ul>
-                                    <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                </ul>
-                            </div>
+                        <div class="search_panel_content d-flex flex-row align-items-center justify-content-end">
+                            <form action="#">
+                                <input type="text" class="search_input" placeholder="Search" required="required">
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-        </footer>
-    </div>
+        </div>
+
+
+
+    </header>
+
+
+
+
+    @RenderBody()
+    <!-- Footer -->
+
+    <div class="footer_overlay"></div>
+    <footer class="footer">
+        <div class="footer_background" style="background-image:url(/images/footer.jpg)"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="footer_content d-flex flex-lg-row flex-column align-items-center justify-content-lg-start justify-content-center">
+                        <div class="footer_logo"><a href="#">CarShop</a></div>
+                        <div class="copyright ml-auto mr-auto">
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            Copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        </div>
+                        <div class="footer_social ml-lg-auto">
+                            <ul>
+                                <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
 
     <script src="~/js/jquery-3.2.1.min.js"></script>
     <script src="~/styles/bootstrap4/popper.js"></script>
@@ -241,5 +379,8 @@
     <script src="~/plugins/easing/easing.js"></script>
     <script src="~/plugins/parallax-js-master/parallax.min.js"></script>
     <script src="~/js/custom.js"></script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCIwF204lFZg1y4kPSIhKaHEXMLYxxuMhA"></script>
+    <script src="~/js/contact.js"></script>
 </body>
 </html>
