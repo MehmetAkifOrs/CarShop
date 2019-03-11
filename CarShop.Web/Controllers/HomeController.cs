@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CarShop.Model;
+using CarShop.Service;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +10,18 @@ namespace CarShop.Web.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+      
+        private readonly ICategoryService categoryService;
+        private readonly IProductService productService;
+        public HomeController(IProductService productService, ICategoryService categoryService) : base()
         {
-            return View();
+            this.productService = productService;
+            this.categoryService = categoryService;
         }
+        public ActionResult Index()
+        {                   
+            return View();
+        }        
 
         public ActionResult About()
         {

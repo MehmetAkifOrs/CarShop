@@ -20,7 +20,7 @@ namespace CarShop.Model
         public int Stock { get; set; }
         [Display(Name = "Fiyat")]
         public Decimal Price { get; set; }
-
+        [Display(Name = "Kategoriler")]
         public Guid? CategoryId { get; set; }
 
         public virtual Category Category { get; set; }
