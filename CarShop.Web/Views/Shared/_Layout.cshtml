@@ -34,10 +34,11 @@
                                         <li class="hassubs">
                                             <a href="@Url.Action("Index","Category")">Kategoriler</a>
                                             <ul>
-                                                @*@foreach (var item in Model)
+                                               
+                                                @foreach (var item in ViewBag.Categories)
                                                 {
-                                                    <li><a href="@Url.Action("Index", "Category", new { id = item.Id });">@item.Name</a></li>
-                                                }*@
+                                                    <li><a href="@Url.Action("Index","Category", new { id = item.Id })">@item.Name</a></li>
+                                                }
 
 
 

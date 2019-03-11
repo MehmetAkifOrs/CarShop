@@ -9,21 +9,25 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using CarShop.Web.Models;
+using CarShop.Service;
 
 namespace CarShop.Web.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : ControllerBase
     {
+        private readonly ICategoryService categoryService;
+       
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
-        public AccountController()
+        public AccountController():base(null)
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, ICategoryService categoryService) : base(categoryService)
         {
+           
             UserManager = userManager;
             SignInManager = signInManager;
         }

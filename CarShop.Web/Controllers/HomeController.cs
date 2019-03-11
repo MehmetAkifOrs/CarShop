@@ -8,19 +8,20 @@ using System.Web.Mvc;
 
 namespace CarShop.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : ControllerBase
     {
       
         private readonly ICategoryService categoryService;
         private readonly IProductService productService;
-        public HomeController(IProductService productService, ICategoryService categoryService) : base()
+        public HomeController(IProductService productService, ICategoryService categoryService) : base(categoryService)
         {
             this.productService = productService;
             this.categoryService = categoryService;
         }
         public ActionResult Index()
-        {                   
-            return View();
+        {
+            var categories = categoryService.GetAll();
+            return View(categories);
         }        
 
         public ActionResult About()
