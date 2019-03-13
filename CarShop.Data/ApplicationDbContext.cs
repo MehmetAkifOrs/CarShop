@@ -27,8 +27,7 @@ namespace CarShop.Data
         {
             base.OnModelCreating(modelBuilder);
             new ProductBuilder(modelBuilder.Entity<Product>());
-            new CategoryBuilder(modelBuilder.Entity<Category>());
-            
+            new CategoryBuilder(modelBuilder.Entity<Category>());            
         }
     }
 }

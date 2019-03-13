@@ -38,13 +38,13 @@
                                     <li class="hassubs">
                                         <a href="@Url.Action("Index","Home")">Kategoriler</a>
                                         <ul>
-                                            @*@foreach (var item in ViewBag.Categories)
+                                            @foreach (var item in ViewBag.Categories)
                                             {
                                                 <li>
                                                     <a href="@Url.Action("Index", "Category",
                                                                 new { id = item.Id })">@item.Name</a>
                                                             </li>
-                                                        }*@
+                                                        }
 
                                         </ul>
                                     </li>
@@ -127,7 +127,9 @@
             </div>
         </div>
     </header>
+
     @RenderBody()
+
     <!-- Icon Boxes -->
 
     <div class="icon_boxes">

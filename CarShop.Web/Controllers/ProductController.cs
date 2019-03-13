@@ -11,7 +11,7 @@ namespace CarShop.Web.Controllers
     {
         private readonly IProductService productService;
         private readonly ICategoryService categoryService;
-        public ProductController(IProductService productService, ICategoryService categoryService) :base(categoryService)
+        public ProductController(IProductService productService, ICategoryService categoryService) : base(categoryService)
         {
             this.productService = productService;
             this.categoryService = categoryService;
@@ -19,8 +19,11 @@ namespace CarShop.Web.Controllers
         // GET: Product
         public ActionResult Index(Guid id)
         {
-          ViewBag.Product = productService.Find(id); 
-            return View();
+            
+            var categoryId = productService.Find(id).CategoryId;
+            var category = categoryService.GetAll().Where(c => c.Id == categoryId);            
+            ViewBag.Product = productService.Find(id);            
+            return View(category);
         }
     }
 }
