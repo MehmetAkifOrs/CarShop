@@ -3,13 +3,16 @@
     ViewBag.Title = "Index";
 }
 
+<link rel="stylesheet" type="text/css" href="~/styles/categories.css">
+<link rel="stylesheet" type="text/css" href="~/styles/categories_responsive.css">
+
 <div class="home">
-    <div class="home_container">        
+    <div class="home_container">
         <div class="home_background" style="background-image:url(/images/categories.jpg)"></div>
         <div class="home_content_container">
             <div class="container">
                 <div class="row">
-                    <div class="col">                        
+                    <div class="col">
                     </div>
                 </div>
             </div>
@@ -54,7 +57,7 @@
                     {
                         <!-- Product -->
                         <div class="product">
-                            <div class="product_image"><img src="@(ViewBag.AssetsUrl)@item.Photo" alt=""></div>                         
+                            <div class="product_image"><img src="@(ViewBag.AssetsUrl)@item.Photo" alt=""></div>
                             <div class="product_content">
                                 <div class="product_title"><a href="@Url.Action("Index","Product",new { id = item.Id })">@item.Name</a></div>
                                 <div class="product_price">$@item.Price</div>

@@ -12,14 +12,10 @@
     <link rel="stylesheet" type="text/css" href="~/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
     <link rel="stylesheet" type="text/css" href="~/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
     <link rel="stylesheet" type="text/css" href="~/plugins/OwlCarousel2-2.2.1/animate.css">
-    <link rel="stylesheet" type="text/css" href="~/styles/main_styles.css">
-    <link rel="stylesheet" type="text/css" href="~/styles/responsive.css">
-    <link rel="stylesheet" type="text/css" href="~/styles/contact.css">
-    <link rel="stylesheet" type="text/css" href="~/styles/contact_responsive.css">
-    <link rel="stylesheet" type="text/css" href="~/styles/categories.css">
-    <link rel="stylesheet" type="text/css" href="~/styles/categories_responsive.css">
-    <link rel="stylesheet" type="text/css" href="~/styles/product.css">
-    <link rel="stylesheet" type="text/css" href="~/styles/product_responsive.css">
+    
+    
+   
+   
 </head>
 <body>
 
@@ -38,13 +34,13 @@
                                     <li class="hassubs">
                                         <a href="@Url.Action("Index","Home")">Kategoriler</a>
                                         <ul>
-                                            @*@foreach (var item in ViewBag.Categories)
+                                            @foreach (var item in ViewBag.Categories)
                                             {
                                                 <li>
                                                     <a href="@Url.Action("Index", "Category",
                                                                 new { id = item.Id })">@item.Name</a>
                                                             </li>
-                                                        }*@
+                                                        }
 
                                         </ul>
                                     </li>
@@ -64,6 +60,14 @@
 													C440.2,423.5,440.2,423.1,440.1,422.7z M244.5,27c37.9,0,68.8,30.4,69.6,68.1H174.9C175.7,57.4,206.6,27,244.5,27z M366.8,462
 													H122.2c-25.4,0-46-16.8-46.4-37.5l26.8-302.3h45.2v41c0,7.5,6,13.5,13.5,13.5s13.5-6,13.5-13.5v-41h139.3v41
 													c0,7.5,6,13.5,13.5,13.5s13.5-6,13.5-13.5v-41h45.2l26.9,302.3C412.8,445.2,392.1,462,366.8,462z" />
+
+
+
+
+
+
+
+
 
 
 
@@ -100,6 +104,14 @@
 
 
 
+
+
+
+
+
+
+
+
 										</g>
 									</svg>
                                     </div>
@@ -128,48 +140,7 @@
         </div>
     </header>
     @RenderBody()
-    <!-- Icon Boxes -->
 
-    <div class="icon_boxes">
-        <div class="container">
-            <div class="row icon_box_row">
-
-                <!-- Icon Box -->
-                <div class="col-lg-4 icon_box_col">
-                    <div class="icon_box">
-                        <div class="icon_box_image"><img src="/images/icon_1.svg" alt=""></div>
-                        <div class="icon_box_title">Free Shipping Worldwide</div>
-                        <div class="icon_box_text">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a ultricies metus. Sed nec molestie.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Icon Box -->
-                <div class="col-lg-4 icon_box_col">
-                    <div class="icon_box">
-                        <div class="icon_box_image"><img src="/images/icon_2.svg" alt=""></div>
-                        <div class="icon_box_title">Free Returns</div>
-                        <div class="icon_box_text">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a ultricies metus. Sed nec molestie.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Icon Box -->
-                <div class="col-lg-4 icon_box_col">
-                    <div class="icon_box">
-                        <div class="icon_box_image"><img src="/images/icon_3.svg" alt=""></div>
-                        <div class="icon_box_title">24h Fast Support</div>
-                        <div class="icon_box_text">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a ultricies metus. Sed nec molestie.</p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
     <!-- Footer -->
 
     <div class="footer_overlay"></div>
@@ -182,16 +153,16 @@
                         <div class="footer_logo"><a href="#">CarShop</a></div>
                         <div class="copyright ml-auto mr-auto">
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                            Copyright &copy;
-                            <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                            CarShop &copy;
+                            <script>document.write(new Date().getFullYear());</script> Tüm hakları saklıdır <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="@Url.Action("Index","Home")" target="_blank">CarShop</a>
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         </div>
                         <div class="footer_social ml-lg-auto">
                             <ul>
-                                <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                <li><a href="https://tr.pinterest.com/"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+                                <li><a href="https://www.instagram.com/?hl=tr"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                <li><a href="https://tr-tr.facebook.com/"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                <li><a href="https://twitter.com/"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -217,5 +188,7 @@
     <script src="~/js/categories.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCIwF204lFZg1y4kPSIhKaHEXMLYxxuMhA"></script>
     <script src="~/js/contact.js"></script>
+
+    <script src="js/cart.js"></script>
 </body>
 </html>
