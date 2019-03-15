@@ -56,6 +56,11 @@
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
     <Compile Include="Builders\CategoryBuilder.cs" />
+    <Compile Include="Builders\CityBuilder.cs" />
+    <Compile Include="Builders\CountryBuilder.cs" />
+    <Compile Include="Builders\DistrictBuilder.cs" />
+    <Compile Include="Builders\OrderBuilder.cs" />
+    <Compile Include="Builders\PageContentBuilder.cs" />
     <Compile Include="Builders\ProductBuilder.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="IUniteOfWork.cs" />

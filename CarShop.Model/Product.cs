@@ -16,6 +16,12 @@ namespace CarShop.Model
         public string Description { get; set; }
         [Display(Name = "Foroğraf")]
         public string Photo { get; set; }
+        [Display(Name = "Foroğraf 2")]
+        public string Photo2 { get; set; }
+        [Display(Name = "Foroğraf 3")]
+        public string Photo3 { get; set; }
+        [Display(Name = "Foroğraf 4")]
+        public string Photo4 { get; set; }
         [Display(Name = "Stok")]
         public int Stock { get; set; }
         [Display(Name = "Fiyat")]

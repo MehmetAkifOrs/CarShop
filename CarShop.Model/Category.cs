@@ -14,6 +14,10 @@ namespace CarShop.Model
         [Display(Name = "Açıklama")]
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
+        [Display(Name = "Kategori Simge Fotosu")]
+        public String IconPhoto { get; set; }
+        [Display(Name = "Kategori Sayfa Fotosu")]
+        public String PagePhoto { get; set; }
 
         public virtual ICollection<Product> Products { get; set; }
     }
