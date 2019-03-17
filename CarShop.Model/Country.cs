@@ -7,12 +7,20 @@ using System.Threading.Tasks;
 
 namespace CarShop.Model
 {
-    public class Country
+    public class Country:BaseEntity
     {
-        public Guid Id { get; set; }
+        public Country()
+        {
+            Cities = new HashSet<City>();
+            Orders = new HashSet<Order>();
+            
+        }
+       
         [Display(Name ="Ülke")]
         public String Name { get; set; }
     
         public virtual ICollection<City> Cities { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
+
     }
 }

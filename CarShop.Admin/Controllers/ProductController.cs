@@ -34,7 +34,7 @@ namespace CarShop.Admin.Controllers
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Create(Product product, HttpPostedFileBase upload)
+        public ActionResult Create(Product product, HttpPostedFileBase upload, HttpPostedFileBase upload2)
         {
             if (ModelState.IsValid)
             {
@@ -47,6 +47,7 @@ namespace CarShop.Admin.Controllers
                         string path = Path.Combine(ConfigurationManager.AppSettings["uploadPath"], fileName);
                         upload.SaveAs(path);
                         product.Photo = fileName;
+                       
                         productService.Insert(product);
                         return RedirectToAction("index");
                     }
@@ -54,7 +55,25 @@ namespace CarShop.Admin.Controllers
                     {
                         ModelState.AddModelError("Photo", "Dosya uzantısı .jpg, .jpeg, .png ya da .gif olmalıdır.");
                     }
-                }
+                }              
+                //if (upload2 != null && upload2.ContentLength > 0)
+                //{
+                //    string fileName2 = Path.GetFileName(upload2.FileName);
+                //    string extension2 = Path.GetExtension(fileName2).ToLower();
+                //    if (extension2 == ".jpg" || extension2 == ".jpeg" || extension2 == ".png" || extension2 == ".gif")
+                //    {
+                //        string path = Path.Combine(ConfigurationManager.AppSettings["uploadPath"], fileName2);
+                //        upload.SaveAs(path);
+                //        product.Photo = fileName2;
+
+                //        productService.Insert(product);
+                //        return RedirectToAction("index");
+                //    }
+                //    else
+                //    {
+                //        ModelState.AddModelError("Photo", "Dosya uzantısı .jpg, .jpeg, .png ya da .gif olmalıdır.");
+                //    }
+                //}
                 else
                 {
                     productService.Insert(product);
@@ -92,7 +111,7 @@ namespace CarShop.Admin.Controllers
         }
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Edit(Product product, HttpPostedFileBase upload)
+        public ActionResult Edit(Product product, HttpPostedFileBase upload, HttpPostedFileBase upload2)
         {
             if (ModelState.IsValid)
             {
@@ -112,6 +131,24 @@ namespace CarShop.Admin.Controllers
                     {
                         ModelState.AddModelError("Photo", "Dosya uzantısı .jpg, .jpeg, .png ya da .gif olmalıdır.");
 
+                    }
+                }
+                if (upload2 != null && upload2.ContentLength > 0)
+                {
+                    string fileName2 = Path.GetFileName(upload2.FileName);
+                    string extension2 = Path.GetExtension(fileName2).ToLower();
+                    if (extension2 == ".jpg" || extension2 == ".jpeg" || extension2 == ".png" || extension2 == ".gif")
+                    {
+                        string path = Path.Combine(ConfigurationManager.AppSettings["uploadPath"], fileName2);
+                        upload.SaveAs(path);
+                        product.Photo = fileName2;
+
+                        productService.Insert(product);
+                        return RedirectToAction("index");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("Photo", "Dosya uzantısı .jpg, .jpeg, .png ya da .gif olmalıdır.");
                     }
                 }
                 else

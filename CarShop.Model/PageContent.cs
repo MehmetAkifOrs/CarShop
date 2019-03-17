@@ -9,7 +9,7 @@ namespace CarShop.Model
 {
     public class PageContent:BaseEntity
     {
-        public Guid Id { get; set; }
+       
         [Display(Name = "Kategori Sayfa Fotoğrafı")]
         public String CategoryPagePhoto { get; set; }
         [Display(Name = "Kategori Sayfa Başlığı")]

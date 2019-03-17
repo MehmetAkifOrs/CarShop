@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CategoryService.cs" />
+    <Compile Include="CityService.cs" />
+    <Compile Include="CountryService.cs" />
     <Compile Include="DistrictService.cs" />
     <Compile Include="OrderService.cs" />
     <Compile Include="PageContentService.cs" />

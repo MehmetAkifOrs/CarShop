@@ -1,4 +1,4 @@
-﻿
+﻿@model CarShop.Model.Order
 @{
     ViewBag.Title = "Index";
 }
@@ -55,50 +55,57 @@
                             </div>
                             <div>
                                 <!-- Country -->
-                                <label for="checkout_country">Ülke</label>
-                                <select name="checkout_country" id="checkout_country" class="dropdown_item_select checkout_input" require="required">
-                                    <option></option>
-                                    <option>Lithuania</option>
-                                    <option>Sweden</option>
-                                    <option>UK</option>
-                                    <option>Italy</option>
-                                </select>
-                            </div>
-
-                            <div>
-                                <!-- City / Town -->
-                                <label for="checkout_city">Şehir</label>
-                                <select name="checkout_city" id="checkout_city" class="dropdown_item_select checkout_input" require="required">
-                                    <option></option>
-                                    <option>City</option>
-                                    <option>City</option>
-                                    <option>City</option>
-                                    <option>City</option>
-                                </select>
-                            </div>
-                            <div>
-                                <!-- Address -->
-                                <label for="checkout_address">Adres</label>
-                                <input type="text" id="checkout_address" class="checkout_input" required="required">
-                            </div>
-                            <div>
-                                <!-- Phone no -->
-                                <label for="checkout_phone">Telefon</label>
-                                <input type="phone" id="checkout_phone" class="checkout_input" required="required">
-                            </div>
-                            <div>
-                                <!-- Email -->
-                                <label for="checkout_email">E-posta</label>
-                                <input type="phone" id="checkout_email" class="checkout_input" required="required">
-                            </div>
-                            <div class="checkout_extra">
-                                <div>
-                                    <input type="checkbox" id="checkbox_terms" name="regular_checkbox" class="regular_checkbox" checked="checked">
-                                    <label for="checkbox_terms"><img src="images/check.png" alt=""></label>
-                                    <span class="checkbox_title">Ön Bilgilendirme Koşullarını Okudum ve Onaylıyorum</span>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.CountryId, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownList("CountryId", null, "Ülke seçiniz", htmlAttributes: new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
+                                    </div>
                                 </div>
 
-                            </div>
+                                <div>
+                                    <!-- City / Town -->
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.CityId, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.DropDownList("CityId", null, "Şehir seçiniz", htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.CityId, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <!-- District -->
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.DistrictId, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.DropDownList("DistrictId", null, "İlçe seçiniz", htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.DistrictId, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <!-- Address -->
+                                    <label for="checkout_address">Adres</label>
+                                    <input type="text" id="checkout_address" class="checkout_input" required="required">
+                                </div>
+                                <div>
+                                    <!-- Phone no -->
+                                    <label for="checkout_phone">Telefon</label>
+                                    <input type="phone" id="checkout_phone" class="checkout_input" required="required">
+                                </div>
+                                <div>
+                                    <!-- Email -->
+                                    <label for="checkout_email">E-posta</label>
+                                    <input type="phone" id="checkout_email" class="checkout_input" required="required">
+                                </div>
+                                <div class="checkout_extra">
+                                    <div>
+                                        <input type="checkbox" id="checkbox_terms" name="regular_checkbox" class="regular_checkbox" checked="checked">
+                                        <label for="checkbox_terms"><img src="images/check.png" alt=""></label>
+                                        <span class="checkbox_title">Ön Bilgilendirme Koşullarını Okudum ve Onaylıyorum</span>
+                                    </div>
+
+                                </div>
                         </form>
                     </div>
                 </div>
@@ -171,4 +178,70 @@
         </div>
     </div>
 </div>
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            // ülke değiştiğinde..
+            $("#CountryId").change(function () {
+                LoadCities();
+            });
+            //Şehir Değiştiğinde
+            $("#CityId").change(function () {
+                LoadDistricts();
+            });
+
+            function LoadCities() {
+                // seçili ülkenin şehirleri getir
+                $.post("@Url.Action("GetCities")", { countryId: $("#CountryId").val() },
+                    function (data) {
+                        // gelen şehirleri selecte aktar
+
+                        // önce şehir selectini temizle
+                        $("#CityId").empty();
+                        $("#CityId").append('<option value="">Şehir seçiniz</option>');
+                        // döngüyle gelen şehir datasına şehir selectine ekle
+                        $.each(data, function (index, value) {
+                            $("#CityId").append('<option value="' + value.Id + '">' + value.Name + '</option>');
+                        });
+                        LoadDistricts();
+                });
+            }
+            function LoadDistricts() {
+                $.post("@Url.Action("GetDistricts")", { cityId: $("#CityId").val() },
+                    function (data) {
+                        // önce ilçe selectini temizle
+                        $("#DistrictId").empty();
+                        $("#DistrictId").append('<option value="">İlçe seçiniz</option>');
+                        // döngüyle gelen ilçe datasına ilçe selectine ekle
+                        $.each(data, function (index, value) {
+                            $("#DistrictId").append('<option value="' + value.Id + '">' + value.Name + '</option>');
+                        });
+                });
+            }
+
+        $("#contactForm").submit(function () {
+            if ($("#contactForm").valid()) {
+                var formData = new FormData($("form")[0]);
+                $.ajax({
+                    url: "@Url.Action("Contact")",
+                    type: "POST",
+                    cache: false,
+                    dataType: "json",
+                    data: formData ? formData : formData.serialize(),
+                    processData: false,
+                    contentType: false
+                }).done(function (data) {
+                        if (data.success == true) {
+                            alert("İşlem başarılı");
+                        } else {
+                            alert(data.message);
+                        }
+                });
+            }
+        });
+        
+    });
+    </script>
+}
 

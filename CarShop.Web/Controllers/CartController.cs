@@ -1,4 +1,6 @@
-﻿using CarShop.Service;
+﻿using CarShop.Model;
+using CarShop.Service;
+using CarShop.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,9 +20,19 @@ namespace CarShop.Web.Controllers
             this.categoryService = categoryService;
         }
         // GET: Cart
+       private List<Product> products = new List<Product>();
+       public void AddToCart(Product p)
+        {
+
+            products.Add(p);
+        }
+       
         public ActionResult Index(Guid id)
         {
-            ViewBag.Product = productService.Find(id);
+           
+           var  product = productService.Find(id);
+            AddToCart(product);
+            ViewBag.Products = products;
             return View();
         }
     }

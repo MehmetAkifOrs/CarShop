@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ namespace CarShop.Model
 {
     public class Order:BaseEntity
     {
-        public Guid Id { get; set; }
+       
         [Display(Name ="Müşteri Adı")]
         public String CustomerFirstName { get; set; }
         [Display(Name = "Müşteri Soyadı")]
@@ -32,5 +33,27 @@ namespace CarShop.Model
         public String Orders { get; set; }
         [Display(Name = "Toplam Tutar")]
         public Decimal TotalPrice { get; set; }
+
+
+        [Display(Name = "Ülke")]
+        public Guid? CountryId { get; set; }
+        [Display(Name = "Ülke")]
+        [ForeignKey("CountryId")]
+        public virtual Country Country { get; set; }
+
+
+        [Display(Name = "Şehir")]
+        public Guid? CityId { get; set; }
+        [ForeignKey("CityId")]
+        [Display(Name = "Şehir")]
+        public virtual City City { get; set; }
+
+        [Display(Name = "İlçe")]
+        public Guid? DistrictId { get; set; }
+        [Display(Name = "İlçe")]
+        [ForeignKey("DistrictId")]
+        public virtual District District { get; set; }
+
+
     }
 }
