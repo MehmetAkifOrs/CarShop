@@ -15,10 +15,12 @@ namespace CarShop.Admin.Controllers
         // GET: Project
         private readonly ICategoryService categoryService;
         private readonly IProductService productService;
-        public ProductController(IProductService productService, ICategoryService categoryService) :base()
+        private readonly IPhotoService photoService;
+        public ProductController(IProductService productService, ICategoryService categoryService, IPhotoService photoService) :base()
         {
             this.productService = productService;
             this.categoryService = categoryService;
+            this.photoService = photoService;
         }
         public ActionResult Index()
         {
@@ -34,71 +36,90 @@ namespace CarShop.Admin.Controllers
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Create(Product product, HttpPostedFileBase upload, HttpPostedFileBase upload2)
+        public ActionResult Create(Product product, HttpPostedFileBase[] Uploads)
         {
             if (ModelState.IsValid)
             {
-                if (upload != null && upload.ContentLength > 0)
+                if (Uploads != null && Uploads.Length >= 1)
                 {
-                    string fileName = Path.GetFileName(upload.FileName);
-                    string extension = Path.GetExtension(fileName).ToLower();
-                    if (extension == ".jpg" || extension == ".jpeg" || extension == ".png" || extension == ".gif")
+                    product.Photos.Clear();
+                    foreach (var item in Uploads)
                     {
-                        string path = Path.Combine(ConfigurationManager.AppSettings["uploadPath"], fileName);
-                        upload.SaveAs(path);
-                        product.Photo = fileName;
-                       
-                        productService.Insert(product);
-                        return RedirectToAction("index");
+                        if (item != null && item.ContentLength > 0)
+                        {
+                            var fileName = Path.GetFileName(item.FileName);
+                            var extension = Path.GetExtension(fileName).ToLower();
+                            if (extension == ".jpg" || extension == ".jpeg" || extension == ".png" || extension == ".gif")
+                            {
+                                var path = Path.Combine(ConfigurationManager.AppSettings["uploadPath"], fileName);
+                                item.SaveAs(path);
+                                var file = new Photo();
+                                file.Id = Guid.NewGuid();
+                                file.Name = fileName;
+                                file.CreatedAt = DateTime.Now;
+                                file.CreatedBy = User.Identity.Name;
+                                file.UpdatedAt = DateTime.Now;
+                                file.UpdatedBy = User.Identity.Name;
+                                product.Photos.Add(file);
+                                //var file = new Photo();
+                                //file.Id = Guid.NewGuid();
+                                //photoService.Insert(file);
+                            }
+                        }
                     }
-                    else
-                    {
-                        ModelState.AddModelError("Photo", "Dosya uzantısı .jpg, .jpeg, .png ya da .gif olmalıdır.");
-                    }
-                }              
-                //if (upload2 != null && upload2.ContentLength > 0)
-                //{
-                //    string fileName2 = Path.GetFileName(upload2.FileName);
-                //    string extension2 = Path.GetExtension(fileName2).ToLower();
-                //    if (extension2 == ".jpg" || extension2 == ".jpeg" || extension2 == ".png" || extension2 == ".gif")
-                //    {
-                //        string path = Path.Combine(ConfigurationManager.AppSettings["uploadPath"], fileName2);
-                //        upload.SaveAs(path);
-                //        product.Photo = fileName2;
-
-                //        productService.Insert(product);
-                //        return RedirectToAction("index");
-                //    }
-                //    else
-                //    {
-                //        ModelState.AddModelError("Photo", "Dosya uzantısı .jpg, .jpeg, .png ya da .gif olmalıdır.");
-                //    }
-                //}
-                else
-                {
-                    productService.Insert(product);
-                    return RedirectToAction("index");
                 }
-
+                productService.Insert(product);
+                return RedirectToAction("Index");
             }
             ViewBag.CategoryId = new SelectList(categoryService.GetAll(), "Id", "Name", product.CategoryId);
             return View(product);
         }
-       
-                //
-                //var model = productService.Find(product.Id);
-                //model.Name = product.Name;
-                //model.Description = product.Description;                
-                ////model.GithubLink = project.GithubLink;
-                ////model.Year = project.Year;
-                //model.Photo = product.Photo;
-                //model.Stock = product.Stock;
-                //model.CategoryId = product.CategoryId;
-                //productService.Update(model);
-                //return RedirectToAction("Index");
-         
 
-        public ActionResult Edit(Guid id)
+            //    if (ModelState.IsValid)
+            //    {
+            //        if (uploads != null && uploads.ContentLength >= 0)
+            //        {
+            //            string fileName = Path.GetFileName(uploads.FileName);
+            //            string extension = Path.GetExtension(fileName).ToLower();
+            //            if (extension == ".jpg" || extension == ".jpeg" || extension == ".png" || extension == ".gif")
+            //            {
+            //                string path = Path.Combine(ConfigurationManager.AppSettings["uploadPath"], fileName);
+            //                upload.SaveAs(path);
+            //                product.Photo = fileName;
+
+            //                productService.Insert(product);
+            //                return RedirectToAction("index");
+            //            }
+            //            else
+            //            {
+            //                ModelState.AddModelError("Photo", "Dosya uzantısı .jpg, .jpeg, .png ya da .gif olmalıdır.");
+            //            }
+            //        }
+            //        else
+            //        {
+            //            productService.Insert(product);
+            //            return RedirectToAction("index");
+            //        }
+
+            //    }
+            //    ViewBag.CategoryId = new SelectList(categoryService.GetAll(), "Id", "Name", product.CategoryId);
+            //    return View(product);
+            //}
+
+            //
+            //var model = productService.Find(product.Id);
+            //model.Name = product.Name;
+            //model.Description = product.Description;                
+            ////model.GithubLink = project.GithubLink;
+            ////model.Year = project.Year;
+            //model.Photo = product.Photo;
+            //model.Stock = product.Stock;
+            //model.CategoryId = product.CategoryId;
+            //productService.Update(model);
+            //return RedirectToAction("Index");
+
+
+            public ActionResult Edit(Guid id)
         {
             var post = productService.Find(id);
             if (post == null)
@@ -111,52 +132,45 @@ namespace CarShop.Admin.Controllers
         }
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Edit(Product product, HttpPostedFileBase upload, HttpPostedFileBase upload2)
+        public ActionResult Edit(Product product, HttpPostedFileBase[] Uploads)
         {
             if (ModelState.IsValid)
             {
-                if (upload != null && upload.ContentLength > 0)
+                var model = productService.Find(product.Id);
+                if (Uploads != null && Uploads.Length >= 1)
                 {
-                    string fileName = Path.GetFileName(upload.FileName);
-                    string extension = Path.GetExtension(fileName).ToLower();
-                    if (extension == ".jpg" || extension == ".jpeg" || extension == ".png" || extension == ".gif")
+                    model.Photos.Clear();
+                    foreach (var item in Uploads)
                     {
-                        string path = Path.Combine(ConfigurationManager.AppSettings["uploadPath"], fileName);
-                        upload.SaveAs(path);
-                        product.Photo = fileName;
-                        productService.Update(product);
-                        return RedirectToAction("index");
+                        if (item != null && item.ContentLength > 0)
+                        {
+                            var fileName = Path.GetFileName(item.FileName);
+                            var extension = Path.GetExtension(fileName).ToLower();
+                            if (extension == ".jpg" || extension == ".gif" || extension == ".png" || extension == ".pdf" || extension == ".doc" || extension == ".docx")
+                            {
+                                var path = Path.Combine(ConfigurationManager.AppSettings["uploadPath"], fileName);
+                                item.SaveAs(path);
+                                var file = new Photo();
+                                file.Id = Guid.NewGuid();
+                                file.Name = fileName;
+                                file.CreatedAt = DateTime.Now;
+                                file.CreatedBy = User.Identity.Name;
+                                file.UpdatedAt = DateTime.Now;
+                                file.UpdatedBy = User.Identity.Name;                             
+                                model.Photos.Add(file);
+                            }
+                        }
                     }
-                    else
-                    {
-                        ModelState.AddModelError("Photo", "Dosya uzantısı .jpg, .jpeg, .png ya da .gif olmalıdır.");
+                }
 
-                    }
-                }
-                if (upload2 != null && upload2.ContentLength > 0)
-                {
-                    string fileName2 = Path.GetFileName(upload2.FileName);
-                    string extension2 = Path.GetExtension(fileName2).ToLower();
-                    if (extension2 == ".jpg" || extension2 == ".jpeg" || extension2 == ".png" || extension2 == ".gif")
-                    {
-                        string path = Path.Combine(ConfigurationManager.AppSettings["uploadPath"], fileName2);
-                        upload.SaveAs(path);
-                        product.Photo = fileName2;
-
-                        productService.Insert(product);
-                        return RedirectToAction("index");
-                    }
-                    else
-                    {
-                        ModelState.AddModelError("Photo", "Dosya uzantısı .jpg, .jpeg, .png ya da .gif olmalıdır.");
-                    }
-                }
-                else
-                {
-                    // resim seçilip yüklenmese bile diğer bilgileri güncelle
-                    productService.Update(product);
-                    return RedirectToAction("index");
-                }
+                model.Name = product.Name;
+                model.Description = product.Description;
+                model.CategoryId = product.CategoryId;
+                model.Price = product.Price;
+                model.Stock = product.Stock;
+                productService.Update(model);
+               
+                return RedirectToAction("Index");
 
 
             }

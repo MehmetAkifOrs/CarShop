@@ -33,46 +33,21 @@
             @Html.DisplayFor(model => model.Category.Name)
         </dd>
 
+      
         <dt>
-            @Html.DisplayNameFor(model => model.Photo)
+            <label for="Uploads">
+                Ürün Fotoğrafları
+            </label>
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.Photo)
+            <div>
+                @foreach (var item in Model.Photos)
+                {
+                    <a href="@(ViewBag.AssetsUrl)@item.Name">@item.Name</a><br />
+                }
+            </div>
         </dd>
-        <dd>
-            <img src="@(ViewBag.AssetsUrl)@Model.Photo" style="width:300px;" />
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Photo2)
-        </dt>
-
-        <@*dd>
-            @Html.DisplayFor(model => model.Photo2)
-        </dd>
-        <dd>
-            <img src="@(ViewBag.AssetsUrl)@Model.Photo2" style="width:300px;" />
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Photo3)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Photo4)
-        </dd>
-        <dd>
-            <img src="@(ViewBag.AssetsUrl)@Model.Photo4" style="width:300px;" />
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Photo4)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Photo3)
-        </dd>
-        <dd>
-            <img src="@(ViewBag.AssetsUrl)@Model.Photo3" style="width:300px;" />
-        </dd>*@
+       
         <dt>
             @Html.DisplayNameFor(model => model.Price)
         </dt>

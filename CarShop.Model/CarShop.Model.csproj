@@ -62,6 +62,7 @@
     <Compile Include="District.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="PageContent.cs" />
+    <Compile Include="Photo.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

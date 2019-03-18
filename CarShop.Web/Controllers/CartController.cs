@@ -20,20 +20,16 @@ namespace CarShop.Web.Controllers
             this.categoryService = categoryService;
         }
         // GET: Cart
-       private List<Product> products = new List<Product>();
-       public void AddToCart(Product p)
-        {
-
-            products.Add(p);
-        }
+       private List<Product> products = new List<Product>();      
        
         public ActionResult Index(Guid id)
         {
            
            var  product = productService.Find(id);
-            AddToCart(product);
-            ViewBag.Products = products;
-            return View();
+            //AddToCart(product);
+            products.Add(product);
+            
+            return View(products);
         }
     }
 }

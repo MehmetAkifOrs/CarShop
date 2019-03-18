@@ -47,6 +47,7 @@
     <Compile Include="DistrictService.cs" />
     <Compile Include="OrderService.cs" />
     <Compile Include="PageContentService.cs" />
+    <Compile Include="PhotoService.cs" />
     <Compile Include="ProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

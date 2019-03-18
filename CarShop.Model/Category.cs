@@ -9,6 +9,11 @@ namespace CarShop.Model
 {
     public class Category:BaseEntity
     {
+        public Category()
+        {
+            Products = new HashSet<Product>();
+        }
+
         [Display(Name = "Kategori Adı")]
         public String Name { get; set; }
         [Display(Name = "Açıklama")]

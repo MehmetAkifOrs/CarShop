@@ -9,25 +9,25 @@ namespace CarShop.Model
 {
     public class Product:BaseEntity
     {
+        public Product()
+        {
+            Photos = new HashSet<Photo>();
+        }
         [Display(Name = "Ürün Adı")]
         public string Name { get; set; }
         [Display(Name = "Açıklama")]
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
         [Display(Name = "Foroğraf")]
-        public string Photo { get; set; }
-        [Display(Name = "Foroğraf 2")]
-        public string Photo2 { get; set; }
-        [Display(Name = "Foroğraf 3")]
-        public string Photo3 { get; set; }
-        [Display(Name = "Foroğraf 4")]
-        public string Photo4 { get; set; }
+        public string Photo { get; set; }       
         [Display(Name = "Stok")]
         public int Stock { get; set; }
         [Display(Name = "Fiyat")]
         public Decimal Price { get; set; }
         [Display(Name = "Kategoriler")]
         public Guid? CategoryId { get; set; }
+
+        public virtual ICollection<Photo> Photos { get; set; }
 
         public virtual Category Category { get; set; }
     }

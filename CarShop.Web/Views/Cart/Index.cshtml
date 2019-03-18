@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<CarShop.Model.Product>
 @{
-//ViewBag.Title = "Index";
+ViewBag.Title = "Index";
 
 }
 
@@ -67,7 +67,7 @@
                                 </div>
                             </div>
                             <!-- Price -->
-                            <div class="cart_item_price">@ViewBag.Products TL</div>
+                            <div class="cart_item_price">@Model.FirstOrDefault().Price TL</div>
                             <!-- Quantity -->
                             <div class="cart_item_quantity">
                                 <div class="product_quantity_container">
