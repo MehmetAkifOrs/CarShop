@@ -73,50 +73,7 @@ namespace CarShop.Admin.Controllers
             }
             ViewBag.CategoryId = new SelectList(categoryService.GetAll(), "Id", "Name", product.CategoryId);
             return View(product);
-        }
-
-            //    if (ModelState.IsValid)
-            //    {
-            //        if (uploads != null && uploads.ContentLength >= 0)
-            //        {
-            //            string fileName = Path.GetFileName(uploads.FileName);
-            //            string extension = Path.GetExtension(fileName).ToLower();
-            //            if (extension == ".jpg" || extension == ".jpeg" || extension == ".png" || extension == ".gif")
-            //            {
-            //                string path = Path.Combine(ConfigurationManager.AppSettings["uploadPath"], fileName);
-            //                upload.SaveAs(path);
-            //                product.Photo = fileName;
-
-            //                productService.Insert(product);
-            //                return RedirectToAction("index");
-            //            }
-            //            else
-            //            {
-            //                ModelState.AddModelError("Photo", "Dosya uzantısı .jpg, .jpeg, .png ya da .gif olmalıdır.");
-            //            }
-            //        }
-            //        else
-            //        {
-            //            productService.Insert(product);
-            //            return RedirectToAction("index");
-            //        }
-
-            //    }
-            //    ViewBag.CategoryId = new SelectList(categoryService.GetAll(), "Id", "Name", product.CategoryId);
-            //    return View(product);
-            //}
-
-            //
-            //var model = productService.Find(product.Id);
-            //model.Name = product.Name;
-            //model.Description = product.Description;                
-            ////model.GithubLink = project.GithubLink;
-            ////model.Year = project.Year;
-            //model.Photo = product.Photo;
-            //model.Stock = product.Stock;
-            //model.CategoryId = product.CategoryId;
-            //productService.Update(model);
-            //return RedirectToAction("Index");
+        }   
 
 
             public ActionResult Edit(Guid id)

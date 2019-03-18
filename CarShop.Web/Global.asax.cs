@@ -53,6 +53,7 @@ namespace CarShop.Web
             //servisleri register et
             builder.RegisterType(typeof(ProductService)).As(typeof(IProductService)).InstancePerDependency();
             builder.RegisterType(typeof(CategoryService)).As(typeof(ICategoryService)).InstancePerDependency();
+            builder.RegisterType(typeof(PageContentService)).As(typeof(IPageContentService)).InstancePerDependency();
             builder.RegisterType<ApplicationUserManager>().AsSelf().InstancePerRequest();
             builder.RegisterType<ApplicationSignInManager>().AsSelf().InstancePerRequest();
             builder.Register(c => new UserStore<ApplicationUser>(c.Resolve<ApplicationDbContext>())).AsImplementedInterfaces().InstancePerRequest();
