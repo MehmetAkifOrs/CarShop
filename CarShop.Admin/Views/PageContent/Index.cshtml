@@ -6,7 +6,7 @@
 <!-- ============================================================== -->
 <!-- pageheader  -->
 <!-- ============================================================== -->
-<h2 class="pageheader-title">Ürünler</h2>
+<h2 class="pageheader-title">İçerikler</h2>
 <div class="page-breadcrumb">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb"></ol>
@@ -17,14 +17,15 @@
 <!-- ============================================================== -->
 
 <p>
-    <button type="button" class="btn btn-success"> @Html.ActionLink("Yeni İçerik Ekle", "Create") </button>
+    <button type="button" class="btn btn-success"> @Html.ActionLink("Kategori İçerik Ekle", "Create") </button>
 
 </p>
+
 <table class="table" id="myTable">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+               
             </th>
             <th></th>
         </tr>
@@ -35,7 +36,7 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Name)
+                   @item.CategoryPageHeader
                 </td>
                 <td>
                     <a href="@Url.Action("Edit", new { id = item.Id})" class="btn btn-primary btn-xs">Düzenle</a>

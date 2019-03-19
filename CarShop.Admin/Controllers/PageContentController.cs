@@ -1,6 +1,9 @@
-﻿using CarShop.Service;
+﻿using CarShop.Model;
+using CarShop.Service;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -23,6 +26,119 @@ namespace CarShop.Admin.Controllers
         public ActionResult Index()
         {
             var pageContent = pageContentService.GetAll();
+            return View(pageContent);
+        }
+        public ActionResult Create()
+        {
+            var pageContent = new PageContent();          
+            return View(pageContent);
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult Create(PageContent pageContent, HttpPostedFileBase Upload)
+        {
+            if (ModelState.IsValid)
+            {
+                if (Upload != null && Upload.ContentLength > 0)
+                {
+                    string fileName = Path.GetFileName(Upload.FileName);
+                    string extension = Path.GetExtension(fileName).ToLower();
+                    if (extension == ".jpg" || extension == ".jpeg" || extension == ".png" || extension == ".gif")
+                    {
+                        string path = Path.Combine(ConfigurationManager.AppSettings["uploadPath"], fileName);
+                        Upload.SaveAs(path);
+                        pageContent.CategoryPagePhoto = fileName;
+                        pageContentService.Insert(pageContent);
+                        return RedirectToAction("index");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("Photo", "Dosya uzantısı .jpg, .jpeg, .png ya da .gif olmalıdır.");
+                    }
+                }
+                else
+                {
+
+                    pageContentService.Insert(pageContent);
+                    return RedirectToAction("index");
+                }
+            }
+            return View(pageContent);
+        }
+
+
+        public ActionResult Edit(Guid id)
+        {
+            var pageContent = pageContentService.Find(id);
+            if (pageContent == null)
+            {
+                return HttpNotFound();
+
+            }
+           
+            return View(pageContent);
+        }
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult Edit(PageContent pageContent, HttpPostedFileBase Upload)
+        {
+            if (ModelState.IsValid)
+            {
+                var model = pageContentService.Find(pageContent.Id);
+
+                if (Upload != null && Upload.ContentLength > 0)
+                {
+                    string fileName = Path.GetFileName(Upload.FileName);
+                    string extension = Path.GetExtension(fileName).ToLower();
+                    if (extension == ".jpg" || extension == ".jpeg" || extension == ".png" || extension == ".gif")
+                    {
+                        string path = Path.Combine(ConfigurationManager.AppSettings["uploadPath"], fileName);
+                        Upload.SaveAs(path);
+                        pageContent.CategoryPagePhoto = fileName;
+                        pageContentService.Update(pageContent);
+                        return RedirectToAction("index");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("Photo", "Dosya uzantısı .jpg, .jpeg, .png ya da .gif olmalıdır.");
+                    }
+                }
+                else
+                {
+
+                    pageContentService.Update(pageContent);
+                    return RedirectToAction("index");
+                }
+
+                
+                model.CategoryPageHeader = pageContent.CategoryPageHeader;
+                model.CategoryPageDescription = pageContent.CategoryPageDescription;
+                model.AboutPageHeader = pageContent.AboutPageHeader;
+                model.AboutPageDescription = pageContent.AboutPageDescription;
+               
+                pageContentService.Update(model);
+                
+                return RedirectToAction("Index");
+
+
+            }           
+            return View(pageContent);
+        }
+        public ActionResult Delete(Guid id)
+        {
+            pageContentService.Delete(id);
+            return RedirectToAction("Index");
+        }
+        public ActionResult Details(Guid id)
+        {
+            var pageContent = pageContentService.Find(id);
+            if (pageContent == null)
+            {
+                return HttpNotFound();
+
+            }
+
             return View(pageContent);
         }
     }
