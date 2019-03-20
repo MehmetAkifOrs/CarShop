@@ -14,8 +14,29 @@
         <!-- Home Slider -->
         <div class="owl-carousel owl-theme home_slider">
 
+            @foreach (var item in ViewBag.PageContent)
+            {
             <!-- Slider Item -->
             <div class="owl-item home_slider_item">
+                <div class="home_slider_background" style="background-image:url(@(ViewBag.AssetsUrl)@item.CategoryPagePhoto)"></div>
+                <div class="home_slider_content_container">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="home_slider_content" data-animation-in="fadeIn" data-animation-out="animate-out fadeOut">
+                                    <div class="home_slider_title">@item.CategoryPageHeader</div>
+                                    <div class="home_slider_subtitle">@item.CategoryPageDescription</div>
+                                    <div class="button button_light home_button"><a href="#">Alışveriş'e Başla </a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+
+            <!-- Slider Item -->
+            @*<div class="owl-item home_slider_item">
                 <div class="home_slider_background" style="background-image:url(/images/home_slider_1.jpg)"></div>
                 <div class="home_slider_content_container">
                     <div class="container">
@@ -30,28 +51,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>*@
 
             <!-- Slider Item -->
-            <div class="owl-item home_slider_item">
-                <div class="home_slider_background" style="background-image:url(/images/home_slider_1.jpg)"></div>
-                <div class="home_slider_content_container">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col">
-                                <div class="home_slider_content" data-animation-in="fadeIn" data-animation-out="animate-out fadeOut">
-                                    <div class="home_slider_title">Yeni Bir İnternet Alışveriş Deneyimi</div>
-                                    <div class="home_slider_subtitle">Buraya ilgili konu ile alakalı metin gelecek.</div>
-                                    <div class="button button_light home_button"><a href="#">Alışveriş'e Başla </a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slider Item -->
-            <div class="owl-item home_slider_item">
+            @*<div class="owl-item home_slider_item">
                 <div class="home_slider_background" style="background-image:url(/images/home_slider_1.jpg)"></div>
                 <div class="home_slider_content_container">
                     <div class="container">
@@ -66,7 +69,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>*@
 
         </div>
 
@@ -79,8 +82,14 @@
                         <div class="home_slider_dots">
                             <ul id="home_slider_custom_dots" class="home_slider_custom_dots">
                                 <li class="home_slider_custom_dot active">01.</li>
-                                <li class="home_slider_custom_dot">02.</li>
-                                <li class="home_slider_custom_dot">03.</li>
+                                @for (int i = 1; i < ViewBag.SliderQuantity; i++)
+                                {
+                                    i++;
+                                    string p = "0" + i;
+                                    <li class="home_slider_custom_dot">@p.</li>
+                                }
+
+                               
                             </ul>
                         </div>
                     </div>

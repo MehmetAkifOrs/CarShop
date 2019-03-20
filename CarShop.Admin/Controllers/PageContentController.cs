@@ -71,11 +71,9 @@ namespace CarShop.Admin.Controllers
                     {
                         ModelState.AddModelError("Photo", "Dosya uzantısı .jpg, .jpeg, .png ya da .gif olmalıdır.");
                     }
-
                 }
                 else
                 {
-
                     pageContentService.Insert(pageContent);
                     return RedirectToAction("index");
                 }
@@ -90,9 +88,7 @@ namespace CarShop.Admin.Controllers
             if (pageContent == null)
             {
                 return HttpNotFound();
-
-            }
-           
+            }           
             return View(pageContent);
         }
         [HttpPost]
@@ -111,14 +107,12 @@ namespace CarShop.Admin.Controllers
                     {
                         string path = Path.Combine(ConfigurationManager.AppSettings["uploadPath"], fileName);
                         Upload.SaveAs(path);
-                        pageContent.CategoryPagePhoto = fileName;
-                       
+                        pageContent.CategoryPagePhoto = fileName;                       
                     }
                     else
                     {
                         ModelState.AddModelError("Photo", "Dosya uzantısı .jpg, .jpeg, .png ya da .gif olmalıdır.");
                     }
-
                     string fileName2 = Path.GetFileName(Upload2.FileName);
                     string extension2 = Path.GetExtension(fileName2).ToLower();
                     if (extension2 == ".jpg" || extension2 == ".jpeg" || extension2 == ".png" || extension2 == ".gif")
@@ -133,26 +127,18 @@ namespace CarShop.Admin.Controllers
                     {
                         ModelState.AddModelError("Photo", "Dosya uzantısı .jpg, .jpeg, .png ya da .gif olmalıdır.");
                     }
-
                 }
                 else
                 {
-
                     pageContentService.Update(pageContent);
                     return RedirectToAction("index");
-                }
-
-                
+                }                
                 model.CategoryPageHeader = pageContent.CategoryPageHeader;
                 model.CategoryPageDescription = pageContent.CategoryPageDescription;
                 model.AboutPageHeader = pageContent.AboutPageHeader;
-                model.AboutPageDescription = pageContent.AboutPageDescription;
-               
-                pageContentService.Update(model);
-                
+                model.AboutPageDescription = pageContent.AboutPageDescription;               
+                pageContentService.Update(model);                
                 return RedirectToAction("Index");
-
-
             }           
             return View(pageContent);
         }
@@ -167,9 +153,7 @@ namespace CarShop.Admin.Controllers
             if (pageContent == null)
             {
                 return HttpNotFound();
-
             }
-
             return View(pageContent);
         }
     }
