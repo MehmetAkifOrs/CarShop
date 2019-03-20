@@ -30,5 +30,7 @@ namespace CarShop.Model
         public virtual ICollection<Photo> Photos { get; set; }
 
         public virtual Category Category { get; set; }
+
+        public virtual ICollection<Cart> Carts { get; set; }
     }
 }

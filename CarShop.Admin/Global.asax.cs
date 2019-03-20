@@ -56,6 +56,8 @@ namespace CarShop.Admin
             builder.RegisterType(typeof(CategoryService)).As(typeof(ICategoryService)).InstancePerDependency();
             builder.RegisterType(typeof(PhotoService)).As(typeof(IPhotoService)).InstancePerDependency();
             builder.RegisterType(typeof(PageContentService)).As(typeof(IPageContentService)).InstancePerDependency();
+            builder.RegisterType(typeof(CartService)).As(typeof(ICartService)).InstancePerDependency();
+
 
             builder.RegisterType<ApplicationUserManager>().AsSelf().InstancePerRequest();
             builder.RegisterType<ApplicationSignInManager>().AsSelf().InstancePerRequest();

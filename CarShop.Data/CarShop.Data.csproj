@@ -62,12 +62,17 @@
     <Compile Include="Builders\OrderBuilder.cs" />
     <Compile Include="Builders\PageContentBuilder.cs" />
     <Compile Include="Builders\PhotoBuilder.cs" />
+    <Compile Include="Builders\CartBuilder.cs" />
     <Compile Include="Builders\ProductBuilder.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="IUniteOfWork.cs" />
     <Compile Include="Migrations\201903191208168_initialcreate.cs" />
     <Compile Include="Migrations\201903191208168_initialcreate.Designer.cs">
       <DependentUpon>201903191208168_initialcreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903201131442_addcart.cs" />
+    <Compile Include="Migrations\201903201131442_addcart.Designer.cs">
+      <DependentUpon>201903201131442_addcart.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -87,6 +92,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201903191208168_initialcreate.resx">
       <DependentUpon>201903191208168_initialcreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903201131442_addcart.resx">
+      <DependentUpon>201903201131442_addcart.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

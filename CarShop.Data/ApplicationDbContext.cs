@@ -29,6 +29,7 @@ namespace CarShop.Data
         public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<District> Districts { get; set; }
         public virtual DbSet<Photo> Photos { get; set; }
+        public virtual DbSet<Cart> Carts { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -40,6 +41,7 @@ namespace CarShop.Data
             new CityBuilder(modelBuilder.Entity<City>());
             new DistrictBuilder(modelBuilder.Entity<District>());
             new PhotoBuilder(modelBuilder.Entity<Photo>());
+            new CartBuilder(modelBuilder.Entity<Cart>());
 
         }
     }

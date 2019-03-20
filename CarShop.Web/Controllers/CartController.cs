@@ -14,22 +14,28 @@ namespace CarShop.Web.Controllers
     {
         private readonly IProductService productService;
         private readonly ICategoryService categoryService;
-        public CartController(IProductService productService, ICategoryService categoryService) : base(categoryService)
+        private readonly ICartService cartService;
+        public CartController(ICartService cartService, IProductService productService, ICategoryService categoryService) : base(categoryService)
         {
             this.productService = productService;
             this.categoryService = categoryService;
+            this.cartService = cartService;
         }
-        // GET: Cart
-       private List<Product> products = new List<Product>();      
+        // GET: Cart          
        
         public ActionResult Index(Guid id)
         {
-           
-           var  product = productService.Find(id);
-            //AddToCart(product);
-            products.Add(product);
-            
-            return View(products);
+            var cart = new Cart();
+            var product = productService.Find(id);
+
+            cart.ProductName = product.Name;
+            cart.Price = product.Price;
+            cartService.Insert(cart);
+            ViewBag.Carts = cartService.GetAll();
+
+           // var carts = cartService.GetAll();
+
+            return View();
         }
     }
 }
