@@ -10,7 +10,7 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.AboutPageHeader)
+            @Html.DisplayNameFor(model => model.CategoryPageHeader)
         </dt>
 
         <dd>
@@ -23,28 +23,39 @@
         <dd>
             @Html.DisplayFor(model => model.CategoryPageDescription)
         </dd>
-
-        @*<dd>
-            @Html.Raw(Model.Description)
-        </dd>*@
-
-        @*<dt>
-            @Html.DisplayNameFor(model => model.Category.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Category.Name)
-        </dd>*@
-
-
         <dt>
-            <label for="Uploads">
+            <label for="Upload">
                 Anasayfa Fotoğrafı
             </label>
         </dt>
         <dd>
 
             <a href="@(ViewBag.AssetsUrl)@Model.CategoryPagePhoto">@Model.CategoryPagePhoto</a><br />
+
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AboutPageHeader)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AboutPageHeader)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AboutPageDescription)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AboutPageDescription)
+        </dd>
+        <dt>
+            <label for="Upload2">
+                Hakkımızda Fotoğrafı
+            </label>
+        </dt>
+        <dd>
+
+            <a href="@(ViewBag.AssetsUrl)@Model.AboutPagePhoto">@Model.AboutPagePhoto</a><br />
 
         </dd>
 

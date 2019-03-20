@@ -97,13 +97,13 @@ namespace CarShop.Admin.Controllers
         }
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Edit(PageContent pageContent, HttpPostedFileBase Upload)
+        public ActionResult Edit(PageContent pageContent, HttpPostedFileBase Upload, HttpPostedFileBase Upload2)
         {
             if (ModelState.IsValid)
             {
                 var model = pageContentService.Find(pageContent.Id);
 
-                if (Upload != null && Upload.ContentLength > 0)
+                if (Upload != null && Upload.ContentLength > 0 && Upload2 != null && Upload2.ContentLength > 0)
                 {
                     string fileName = Path.GetFileName(Upload.FileName);
                     string extension = Path.GetExtension(fileName).ToLower();
@@ -112,6 +112,20 @@ namespace CarShop.Admin.Controllers
                         string path = Path.Combine(ConfigurationManager.AppSettings["uploadPath"], fileName);
                         Upload.SaveAs(path);
                         pageContent.CategoryPagePhoto = fileName;
+                       
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("Photo", "Dosya uzantısı .jpg, .jpeg, .png ya da .gif olmalıdır.");
+                    }
+
+                    string fileName2 = Path.GetFileName(Upload2.FileName);
+                    string extension2 = Path.GetExtension(fileName2).ToLower();
+                    if (extension2 == ".jpg" || extension2 == ".jpeg" || extension2 == ".png" || extension2 == ".gif")
+                    {
+                        string path2 = Path.Combine(ConfigurationManager.AppSettings["uploadPath"], fileName2);
+                        Upload2.SaveAs(path2);
+                        pageContent.AboutPagePhoto = fileName2;
                         pageContentService.Update(pageContent);
                         return RedirectToAction("index");
                     }
@@ -119,6 +133,7 @@ namespace CarShop.Admin.Controllers
                     {
                         ModelState.AddModelError("Photo", "Dosya uzantısı .jpg, .jpeg, .png ya da .gif olmalıdır.");
                     }
+
                 }
                 else
                 {
