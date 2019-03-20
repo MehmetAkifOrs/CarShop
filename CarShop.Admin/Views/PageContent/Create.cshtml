@@ -3,24 +3,24 @@
 @{
     /**/
 
-    ViewBag.Title = "Ürün Gir";
+    ViewBag.Title = "İçerik Ekle";
 }
 
-<h2>Ürün Gir</h2>
+<h2>İçerik Girme Paneli</h2>
 <script src="https://cdn.ckeditor.com/4.11.2/standard/ckeditor.js"></script>
 <div class="row">
     <div class="col-md-12">
 
         @using (Html.BeginForm("Create", "PageContent", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
-            @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
 
         <div class="form-horizontal">
-            <h4> Anasayfa İçerikler</h4>
+            <h4></h4>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
-                @Html.LabelFor(model => model.CategoryPageHeader, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.CategoryPageHeader,"Anasayfa Başlığı", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.CategoryPageHeader, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.CategoryPageHeader, "", new { @class = "text-danger" })
@@ -28,7 +28,7 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.CategoryPageDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.CategoryPageDescription,"Anasayfa Açıklaması", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.TextAreaFor(model => model.CategoryPageDescription, new { @class = "form-control ckeditor" })
                     @Html.ValidationMessageFor(model => model.CategoryPageDescription, "", new { @class = "text-danger" })
@@ -36,73 +36,66 @@
             </div>
             <div class="form-group">
                 <label for="Upload" class="control-label col-md-2">
-                    Proje Dosyaları
+                    Anasayfa Fotoğrafı
                 </label>
                 <div class="col-md-10">
                     <input type="file" name="Upload" />
                 </div>
             </div>
 
-            <div class="form-horizontal">
-                <h4>Hakkımızda Sayfası İçerikler</h4>
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(model => model.AboutPageHeader, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.AboutPageHeader, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.AboutPageHeader, "", new { @class = "text-danger" })
-                    </div>
+            <h4>Hakkımızda Sayfası İçerikleri</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.AboutPageHeader,"Hakkımızda Sayfa Başlığı", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.AboutPageHeader, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.AboutPageHeader, "", new { @class = "text-danger" })
                 </div>
+            </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.AboutPageDescription, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.TextAreaFor(model => model.AboutPageDescription, new { @class = "form-control ckeditor" })
-                        @Html.ValidationMessageFor(model => model.AboutPageDescription, "", new { @class = "text-danger" })
-                    </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.AboutPageDescription,"Hakkımızda Sayfa İçeriği", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.AboutPageDescription, new { @class = "form-control ckeditor" })
+                    @Html.ValidationMessageFor(model => model.AboutPageDescription, "", new { @class = "text-danger" })
                 </div>
-                <div class="form-group">
-                    <label for="Upload2" class="control-label col-md-2">
-                        Anasayfa Fotoğraf
-                    </label>
-                    <div class="col-md-10">
-                        <input type="file" name="Upload2" />
-                    </div>
+            </div>
+            <div class="form-group">
+                <label for="Upload2" class="control-label col-md-2">
+                    Hakkımızda Sayfa Fotoğrafı
+                </label>
+                <div class="col-md-10">
+                    <input type="file" name="Upload2" />
                 </div>
+            </div>
 
-
-
-
-
-
-
-                @*<div class="form-group">
+            @*<div class="form-group">
 
 
 
 
 
                 @Html.LabelFor(model => model.Photo, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.HiddenFor(model => model.Photo)
-                        @if (!string.IsNullOrEmpty(Model.Photo))
-                        {
-                            <img src="@(ViewBag.AssetsUrl)@Model.Photo" style="width:300px;" /><br />
-                        }
+                <div class="col-md-10">
+                    @Html.HiddenFor(model => model.Photo)
+                    @if (!string.IsNullOrEmpty(Model.Photo))
+                    {
+                    <img src="@(ViewBag.AssetsUrl)@Model.Photo" style="width:300px;" /><br />
+                    }
 
-                        <input type="file" multiple name="Uploads" />
+                    <input type="file" multiple name="Uploads" />
 
-                        @Html.ValidationMessageFor(model => model.Photo, "", new { @class = "text-danger" })
-                    </div>
+                    @Html.ValidationMessageFor(model => model.Photo, "", new { @class = "text-danger" })
+                </div>
             </div>*@
-                @*<div class="form-group">
+            @*<div class="form-group">
                 @Html.LabelFor(model => model.Photo2, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.HiddenFor(model => model.Photo2)
                     @if (!string.IsNullOrEmpty(Model.Photo2))
                     {
-                        <img src="@(ViewBag.AssetsUrl)@Model.Photo2" style="width:300px;" /><br />
+                    <img src="@(ViewBag.AssetsUrl)@Model.Photo2" style="width:300px;" /><br />
                     }
                     <input type="file" name="upload2" />
                     @Html.ValidationMessageFor(model => model.Photo2, "", new { @class = "text-danger" })
@@ -114,7 +107,7 @@
                     @Html.HiddenFor(model => model.Photo3)
                     @if (!string.IsNullOrEmpty(Model.Photo3))
                     {
-                        <img src="@(ViewBag.AssetsUrl)@Model.Photo3" style="width:300px;" /><br />
+                    <img src="@(ViewBag.AssetsUrl)@Model.Photo3" style="width:300px;" /><br />
                     }
                     <input type="file" name="upload" />
                     @Html.ValidationMessageFor(model => model.Photo3, "", new { @class = "text-danger" })
@@ -126,14 +119,14 @@
                     @Html.HiddenFor(model => model.Photo4)
                     @if (!string.IsNullOrEmpty(Model.Photo4))
                     {
-                        <img src="@(ViewBag.AssetsUrl)@Model.Photo4" style="width:300px;" /><br />
+                    <img src="@(ViewBag.AssetsUrl)@Model.Photo4" style="width:300px;" /><br />
                     }
                     <input type="file" name="upload" />
                     @Html.ValidationMessageFor(model => model.Photo4, "", new { @class = "text-danger" })
                 </div>
             </div>*@
 
-                @*<div class="form-group">
+            @*<div class="form-group">
                 @Html.LabelFor(model => model.Photo, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Photo, new { htmlAttributes = new { @class = "form-control" } })
@@ -143,7 +136,7 @@
 
 
 
-                @*<div class="form-group">
+            @*<div class="form-group">
                 @Html.LabelFor(model => model.Year, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Year, new { htmlAttributes = new { @class = "form-control" } })
@@ -151,7 +144,7 @@
                 </div>
             </div>*@
 
-                @*<div class="form-group">
+            @*<div class="form-group">
                 @Html.LabelFor(model => model.GithubLink, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.GithubLink, new { htmlAttributes = new { @class = "form-control" } })
@@ -159,20 +152,20 @@
                 </div>
             </div>*@
 
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Oluştur" class="btn btn-primary" />
-                    </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Oluştur" class="btn btn-primary" />
                 </div>
             </div>
-            
-
-            <div>
-                @Html.ActionLink("Geriye Dön", "Index")
-            </div>
-
-            @section Scripts {
-                @Scripts.Render("~/bundles/jqueryval")
-        }
         </div>
+        }
+
+        <div>
+            @Html.ActionLink("Geriye Dön", "Index")
+        </div>
+
+        @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+        }
+    </div>
 </div>
