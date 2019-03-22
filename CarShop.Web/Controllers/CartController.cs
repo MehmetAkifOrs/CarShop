@@ -27,12 +27,14 @@ namespace CarShop.Web.Controllers
         {
             var cart = new Cart();
             var product = productService.Find(id);
-
+            //, int adet
+            //adet = 2;
             cart.ProductName = product.Name;
             cart.Price = product.Price;
+            //cart.Piece = adet;
             cartService.Insert(cart);
             ViewBag.Carts = cartService.GetAll();
-
+            
            // var carts = cartService.GetAll();
 
             return View();
