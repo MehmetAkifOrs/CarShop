@@ -66,13 +66,9 @@
     <Compile Include="Builders\ProductBuilder.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="IUniteOfWork.cs" />
-    <Compile Include="Migrations\201903191208168_initialcreate.cs" />
-    <Compile Include="Migrations\201903191208168_initialcreate.Designer.cs">
-      <DependentUpon>201903191208168_initialcreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903201131442_addcart.cs" />
-    <Compile Include="Migrations\201903201131442_addcart.Designer.cs">
-      <DependentUpon>201903201131442_addcart.cs</DependentUpon>
+    <Compile Include="Migrations\201903210513027_Initial.cs" />
+    <Compile Include="Migrations\201903210513027_Initial.Designer.cs">
+      <DependentUpon>201903210513027_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -90,11 +86,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903191208168_initialcreate.resx">
-      <DependentUpon>201903191208168_initialcreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903201131442_addcart.resx">
-      <DependentUpon>201903201131442_addcart.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201903210513027_Initial.resx">
+      <DependentUpon>201903210513027_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

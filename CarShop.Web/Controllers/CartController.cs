@@ -26,18 +26,19 @@ namespace CarShop.Web.Controllers
         public ActionResult Index(Guid id)
         {
             var cart = new Cart();
+
             var product = productService.Find(id);
-            //, int adet
-            //adet = 2;
             cart.ProductName = product.Name;
             cart.Price = product.Price;
-            //cart.Piece = adet;
             cartService.Insert(cart);
-            ViewBag.Carts = cartService.GetAll();
-            
-           // var carts = cartService.GetAll();
-
-            return View();
+            var carts = cartService.GetAll();
+            //var carts = cartService.GetAll();
+            return View(carts);
+        }
+        public ActionResult Cart()
+        {
+            var carts = cartService.GetAll();
+            return View(carts);
         }
     }
 }
