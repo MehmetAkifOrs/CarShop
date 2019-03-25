@@ -74,7 +74,7 @@ namespace CarShop.Service
             var about = aboutRepository.Find(entity.Id);
             about.AboutPagePhoto = entity.AboutPagePhoto;
             about.AboutPageHeader = entity.AboutPageHeader;
-            about.AboutPageDescription = about.AboutPageDescription;
+            about.AboutPageDescription = entity.AboutPageDescription;
             aboutRepository.Update(about);
             unitOfWork.SaveChanges();
         }

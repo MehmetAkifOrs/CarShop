@@ -48,22 +48,22 @@
                 </div>
             </div>
         </div>
+
         <div class="row">
             <div class="col">
 
                 <div class="product_grid">
 
-                    @foreach (var item in ViewBag.Products)
+                    @foreach (var item in Model)
                     {
-                        <!-- Product -->
                         <div class="product">
-                            <div class="product_image"><img src="@(ViewBag.AssetsUrl)@item.Photo" alt=""></div>
+                            <div class="product_image"><img src="@(ViewBag.AssetsUrl)@item.Photos.FirstOrDefault().Name" alt=""></div>
                             <div class="product_content">
-                                <div class="product_title"><a href="@Url.Action("Index","Product",new { id = item.Id })">@item.Name</a></div>
-                                <div class="product_price">$@item.Price</div>
+                                <div class="product_title"><a href="@Url.Action("Index","Product", new { id = item.Id })">@item.Name</a></div>
                             </div>
                         </div>
                     }
+
                 </div>
                 <div class="product_pagination">
                     <ul>

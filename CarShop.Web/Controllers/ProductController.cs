@@ -22,8 +22,8 @@ namespace CarShop.Web.Controllers
             
             var categoryId = productService.Find(id).CategoryId;
             var category = categoryService.GetAll().Where(c => c.Id == categoryId);            
-            ViewBag.Product = productService.Find(id);            
-            return View(category);
+            var product = productService.Find(id);            
+            return View(product);
         }
     }
 }

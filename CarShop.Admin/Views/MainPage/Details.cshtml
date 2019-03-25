@@ -1,0 +1,46 @@
+﻿@model CarShop.Model.MainPage
+
+@{
+    ViewBag.Title = "Anasayfa Detaylar";
+}
+
+<h2>Detaylar</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MainPageHeader)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MainPageHeader)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MainPageDescription)
+        </dt>
+        <dd>
+            @Html.Raw(Model.MainPageDescription)
+        </dd>
+        <dt>
+            <label for="Upload">
+                Anasayfa Fotoğrafı
+            </label>
+        </dt>
+        <dd>
+
+            <a href="@(ViewBag.AssetsUrl)@Model.MainPagePhoto">@Model.MainPagePhoto</a><br />
+
+        </dd>
+
+        
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Düzenle", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Geriye Dön", "Index")
+</p>

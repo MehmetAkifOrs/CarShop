@@ -20,8 +20,8 @@ namespace CarShop.Web.Controllers
         public ActionResult Index(Guid id)
         {           
             var category = categoryService.Find(id);                   
-            ViewBag.Products = productService.GetAll().Where(i => i.CategoryId == category.Id);
-            return View();
+            var products = productService.GetAll().Where(i => i.CategoryId == category.Id);
+            return View(products);
         }
     }
 }
