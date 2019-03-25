@@ -54,7 +54,7 @@ namespace CarShop.Web
             builder.RegisterType(typeof(ProductService)).As(typeof(IProductService)).InstancePerDependency();
             builder.RegisterType(typeof(CategoryService)).As(typeof(ICategoryService)).InstancePerDependency();
             builder.RegisterType(typeof(PhotoService)).As(typeof(IPhotoService)).InstancePerDependency();
-            builder.RegisterType(typeof(PageContentService)).As(typeof(IPageContentService)).InstancePerDependency();
+            builder.RegisterType(typeof(AboutService)).As(typeof(IAboutService)).InstancePerDependency();
             builder.RegisterType(typeof(CartService)).As(typeof(ICartService)).InstancePerDependency();
             builder.RegisterType(typeof(CountryService)).As(typeof(ICountryService)).InstancePerDependency();
             builder.RegisterType(typeof(CityService)).As(typeof(ICityService)).InstancePerDependency();

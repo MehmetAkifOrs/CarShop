@@ -46,7 +46,7 @@
     <Compile Include="CountryService.cs" />
     <Compile Include="DistrictService.cs" />
     <Compile Include="OrderService.cs" />
-    <Compile Include="PageContentService.cs" />
+    <Compile Include="AboutService.cs" />
     <Compile Include="PhotoService.cs" />
     <Compile Include="CartService.cs" />
     <Compile Include="ProductService.cs" />

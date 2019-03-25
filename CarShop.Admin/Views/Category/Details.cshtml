@@ -27,6 +27,15 @@
         </dd>
 
         <dt>
+            <label for="Uploads">
+                Kategori Fotoğrafları
+            </label>
+        </dt>
+        <dd>
+            <a href="@(ViewBag.AssetsUrl)@Model.IconPhoto">@Model.IconPhoto</a><br />
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.CreatedBy)
         </dt>
 
@@ -58,9 +67,9 @@
             @Html.DisplayFor(model => model.UpdatedAt)
         </dd>
 
-       
 
-      
+
+
 
     </dl>
 </div>

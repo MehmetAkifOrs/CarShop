@@ -11,7 +11,7 @@ namespace CarShop.Model
     {
         public Category()
         {
-            Products = new HashSet<Product>();
+            Products = new HashSet<Product>();            
         }
 
         [Display(Name = "Kategori Adı")]
@@ -25,5 +25,7 @@ namespace CarShop.Model
         public String PagePhoto { get; set; }
 
         public virtual ICollection<Product> Products { get; set; }
+
+       
     }
 }

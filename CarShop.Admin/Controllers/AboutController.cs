@@ -10,122 +10,118 @@ using System.Web.Mvc;
 
 namespace CarShop.Admin.Controllers
 {
-    public class CategoryController : ControllerBase
+    public class AboutController : Controller
     {
-        // GET: Category
-        private readonly ICategoryService categoryService;
-        public CategoryController(ICategoryService categoryService) : base()
+        private readonly IAboutService aboutService;
+
+        public AboutController(IAboutService aboutService) : base()
         {
-            this.categoryService = categoryService;
+            this.aboutService = aboutService;
+
         }
 
-        // GET: Categoryler burada olacak//
+        // GET: PageContent
         public ActionResult Index()
         {
-            var category = categoryService.GetAll();
-            return View(category);
+            var about = aboutService.GetAll();
+            return View(about);
         }
         public ActionResult Create()
         {
-            var category = new Category();
-            return View(category);
+            var about = new About();
+            return View(about);
         }
+
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Create(Category category, HttpPostedFileBase upload)
+        public ActionResult Create(About about, HttpPostedFileBase Upload)
         {
             if (ModelState.IsValid)
             {
-                if (upload != null && upload.ContentLength > 0)
+                if (Upload != null && Upload.ContentLength > 0)
                 {
-                    string fileName = Path.GetFileName(upload.FileName);
+                    string fileName = Path.GetFileName(Upload.FileName);
                     string extension = Path.GetExtension(fileName).ToLower();
                     if (extension == ".jpg" || extension == ".jpeg" || extension == ".png" || extension == ".gif")
                     {
                         string path = Path.Combine(ConfigurationManager.AppSettings["uploadPath"], fileName);
-                        upload.SaveAs(path);
-                        category.IconPhoto = fileName;
-
-                        categoryService.Insert(category);
+                        Upload.SaveAs(path);
+                        about.AboutPagePhoto = fileName;
+                        aboutService.Insert(about);
                         return RedirectToAction("index");
                     }
                     else
                     {
                         ModelState.AddModelError("Photo", "Dosya uzantısı .jpg, .jpeg, .png ya da .gif olmalıdır.");
                     }
+
                 }
                 else
                 {
-
-                    categoryService.Insert(category);
+                    aboutService.Insert(about);
                     return RedirectToAction("index");
                 }
-
             }
-
-            //ViewBag.CategoryId = new SelectList(categoryService.GetAll(), "Id", "Name", postViewModel.CategoryId);
-            return View(category);
+            return View(about);
         }
+
+
         public ActionResult Edit(Guid id)
         {
-
-            var category = categoryService.Find(id);
-            if (category == null)
+            var about = aboutService.Find(id);
+            if (about == null)
             {
                 return HttpNotFound();
-
             }
-            return View(category);
+            return View(about);
         }
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Edit(Category category, HttpPostedFileBase upload)
+        public ActionResult Edit(About about, HttpPostedFileBase Upload)
         {
             if (ModelState.IsValid)
             {
-                if (upload != null && upload.ContentLength > 0)
+                if (Upload != null && Upload.ContentLength > 0)
                 {
-                    string fileName = Path.GetFileName(upload.FileName);
+                    string fileName = Path.GetFileName(Upload.FileName);
                     string extension = Path.GetExtension(fileName).ToLower();
                     if (extension == ".jpg" || extension == ".jpeg" || extension == ".png" || extension == ".gif")
                     {
                         string path = Path.Combine(ConfigurationManager.AppSettings["uploadPath"], fileName);
-                        upload.SaveAs(path);
-                        category.IconPhoto = fileName;
-                        categoryService.Update(category);
+                        Upload.SaveAs(path);
+                        about.AboutPagePhoto = fileName;
+                        aboutService.Insert(about);
                         return RedirectToAction("index");
                     }
                     else
                     {
                         ModelState.AddModelError("Photo", "Dosya uzantısı .jpg, .jpeg, .png ya da .gif olmalıdır.");
-
                     }
+
                 }
                 else
                 {
-                    // resim seçilip yüklenmese bile diğer bilgileri güncelle
-                    categoryService.Update(category);
+                    aboutService.Insert(about);
                     return RedirectToAction("index");
                 }
-
-
+                
             }
-            //ViewBag.CategoryId = new SelectList(categoryService.GetAll(), "Id", "Name", postViewModel.CategoryId);
-            return View(category);
+            return View(about);
         }
         public ActionResult Delete(Guid id)
         {
-            categoryService.Delete(id);
+            aboutService.Delete(id);
             return RedirectToAction("Index");
         }
         public ActionResult Details(Guid id)
         {
-            var category = categoryService.Find(id);
-            if (category == null)
+            var about = aboutService.Find(id);
+            if (about == null)
             {
                 return HttpNotFound();
             }
-            return View(category);
+            return View(about);
         }
+
     }
 }
