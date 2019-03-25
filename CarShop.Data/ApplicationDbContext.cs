@@ -24,6 +24,7 @@ namespace CarShop.Data
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<About> Abouts { get; set; }
+        public virtual DbSet<MainPage> MainPages { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<City> Cities { get; set; }
@@ -37,6 +38,7 @@ namespace CarShop.Data
             new ProductBuilder(modelBuilder.Entity<Product>());
             new CategoryBuilder(modelBuilder.Entity<Category>());
             new AboutBuilder(modelBuilder.Entity<About>());
+            new MainPageBuilder(modelBuilder.Entity<MainPage>());
             new OrderBuilder(modelBuilder.Entity<Order>());
             new CountryBuilder(modelBuilder.Entity<Country>());
             new CityBuilder(modelBuilder.Entity<City>());

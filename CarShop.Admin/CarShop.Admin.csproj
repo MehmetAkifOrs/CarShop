@@ -193,6 +193,7 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ControllerBase.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MainPageController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
@@ -728,6 +729,10 @@
     <Content Include="Views\About\Create.cshtml" />
     <Content Include="Views\About\Details.cshtml" />
     <Content Include="Views\About\Edit.cshtml" />
+    <Content Include="Views\MainPage\Index.cshtml" />
+    <Content Include="Views\MainPage\Create.cshtml" />
+    <Content Include="Views\MainPage\Edit.cshtml" />
+    <Content Include="Views\MainPage\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
