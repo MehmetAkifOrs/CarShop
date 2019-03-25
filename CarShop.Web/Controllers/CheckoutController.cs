@@ -48,7 +48,7 @@ namespace CarShop.Web.Controllers
         // GET: Checkout
         public ActionResult Index()
         {
-            var order = new  Order();
+            var location = new  Location();
 
             //using (var db = new ApplicationDbContext())
             //{
@@ -56,25 +56,23 @@ namespace CarShop.Web.Controllers
             var cities = cityService.GetAll();
             var districts = districtService.GetAll();
                 ViewBag.CountryId = new SelectList(countries.OrderBy(c => c.Name).ToList(), "Id", "Name");
-                ViewBag.CityId = new SelectList(cities.OrderBy(c => c.Name).Where(w => w.CountryId == order.CountryId).ToList(), "Id", "Name");
-                ViewBag.DistrictId = new SelectList(districts.OrderBy(c => c.Name).Where(w => w.CityId == order.CityId).ToList(), "Id", "Name");
+                ViewBag.CityId = new SelectList(cities.OrderBy(c => c.Name).Where(w => w.CountryId == location.CountryId).ToList(), "Id", "Name");
+                ViewBag.DistrictId = new SelectList(districts.OrderBy(c => c.Name).Where(w => w.CityId == location.CityId).ToList(), "Id", "Name");
             //}
 
-            return View(order);
+            return View(location);
         }
         [HttpPost]
-        public ActionResult Index(Order order)
+        public ActionResult Index(Location location)
         {
-
-
 
 
             try
             {
                 using (var db = new ApplicationDbContext())
                 {
-                    order.Id = Guid.NewGuid();
-                    db.Orders.Add(order);
+                    location.Id = Guid.NewGuid();
+                    db.Locations.Add(location);
                     db.SaveChanges();
                     return Json(new { success = true });
                 }

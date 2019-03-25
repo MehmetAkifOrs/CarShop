@@ -45,6 +45,7 @@
     <Compile Include="CityService.cs" />
     <Compile Include="CountryService.cs" />
     <Compile Include="DistrictService.cs" />
+    <Compile Include="LocationService.cs" />
     <Compile Include="OrderService.cs" />
     <Compile Include="AboutService.cs" />
     <Compile Include="PhotoService.cs" />

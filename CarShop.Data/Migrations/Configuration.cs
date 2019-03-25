@@ -10,7 +10,6 @@ namespace CarShop.Data.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "CarShop.Data.ApplicationDbContext";
         }
 
         protected override void Seed(CarShop.Data.ApplicationDbContext context)

@@ -32,28 +32,7 @@ namespace CarShop.Model
         [Display(Name = "Siparişler")]
         public String Orders { get; set; }
         [Display(Name = "Toplam Tutar")]
-        public Decimal TotalPrice { get; set; }
-
-
-        [Display(Name = "Ülke")]
-        public Guid? CountryId { get; set; }
-        [Display(Name = "Ülke")]
-        [ForeignKey("CountryId")]
-        public virtual Country Country { get; set; }
-
-
-        [Display(Name = "Şehir")]
-        public Guid? CityId { get; set; }
-        [ForeignKey("CityId")]
-        [Display(Name = "Şehir")]
-        public virtual City City { get; set; }
-
-        [Display(Name = "İlçe")]
-        public Guid? DistrictId { get; set; }
-        [Display(Name = "İlçe")]
-        [ForeignKey("DistrictId")]
-        public virtual District District { get; set; }
-
+        public Decimal TotalPrice { get; set; }        
 
     }
 }

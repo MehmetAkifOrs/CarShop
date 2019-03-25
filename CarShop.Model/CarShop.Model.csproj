@@ -61,6 +61,7 @@
     <Compile Include="City.cs" />
     <Compile Include="Country.cs" />
     <Compile Include="District.cs" />
+    <Compile Include="Location.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="About.cs" />
     <Compile Include="Photo.cs" />
