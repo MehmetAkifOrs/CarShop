@@ -1,7 +1,7 @@
-﻿@model IEnumerable<CarShop.Model.MainPage>
+﻿@model IEnumerable<CarShop.Model.ContactPage>
 
 @{
-    ViewBag.Title = "MainPage";
+    ViewBag.Title = "ContactPage";
 }
 <!-- ============================================================== -->
 <!-- pageheader  -->
@@ -17,7 +17,7 @@
 <!-- ============================================================== -->
 
 <p>
-    <button type="button" class="btn btn-success"> @Html.ActionLink("Anasayfa İçeriği Ekle", "Create") </button>
+    <button type="button" class="btn btn-success"> @Html.ActionLink("İletişim Sayfası İçeriği Ekle", "Create") </button>
 
 </p>
 
@@ -25,7 +25,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.MainPageHeader)
+                @Html.DisplayNameFor(model => model.ContactPageInformation)
             </th>
             <th></th>
         </tr>
@@ -36,7 +36,7 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.MainPageHeader)
+                    @Html.DisplayFor(modelItem => item.ContactPageInformation)
                 </td>
                 <td>
                     <a href="@Url.Action("Edit", new { id = item.Id})" class="btn btn-primary btn-xs">Düzenle</a>

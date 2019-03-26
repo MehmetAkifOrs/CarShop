@@ -12,8 +12,7 @@ namespace CarShop.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+        public ApplicationDbContext(): base("DefaultConnection", throwIfV1Schema: false)
         {
         }
 
@@ -25,6 +24,7 @@ namespace CarShop.Data
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<About> Abouts { get; set; }
         public virtual DbSet<MainPage> MainPages { get; set; }
+        public virtual DbSet<ContactPage> ContactPages { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<City> Cities { get; set; }
@@ -39,6 +39,7 @@ namespace CarShop.Data
             new CategoryBuilder(modelBuilder.Entity<Category>());
             new AboutBuilder(modelBuilder.Entity<About>());
             new MainPageBuilder(modelBuilder.Entity<MainPage>());
+            new ContactPageBuilder(modelBuilder.Entity<ContactPage>());
             new OrderBuilder(modelBuilder.Entity<Order>());
             new CountryBuilder(modelBuilder.Entity<Country>());
             new CityBuilder(modelBuilder.Entity<City>());

@@ -12,7 +12,7 @@ namespace CarShop.Model
        
         [Display(Name = "Anasayfa Fotoğrafı")]                
         public String MainPagePhoto { get; set; }
-        [Display(Name = "HAnasayfa Başlığı")]
+        [Display(Name = "Anasayfa Başlığı")]
         public string MainPageHeader { get; set; }
         [Display(Name = "Anasayfa Açıklaması")]
         public string MainPageDescription { get; set; }

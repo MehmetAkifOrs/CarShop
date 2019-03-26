@@ -13,34 +13,33 @@ namespace CarShop.Web.Controllers
       
         private readonly ICategoryService categoryService;
         private readonly IProductService productService;
+        private readonly IMainPageService mainpageService;
         private readonly IAboutService aboutService;
-        public HomeController(IProductService productService, ICategoryService categoryService, IAboutService aboutService) : base(categoryService)
+        private readonly IContactPageService contactpageService;
+        public HomeController(IProductService productService, ICategoryService categoryService, IMainPageService mainpageService,IAboutService aboutService,IContactPageService contactpageService) : base(categoryService)
         {
             this.productService = productService;
             this.categoryService = categoryService;
+            this.mainpageService = mainpageService;
             this.aboutService = aboutService;
+            this.contactpageService = contactpageService;
         }
         public ActionResult Index()
-        {
-            //ViewBag.PageContent = aboutService.GetAll();
-           // ViewBag.SliderQuantity = aboutService.GetAll().Where(p => p.AboutPagePhoto != null).Count();
-           // var abouts = aboutService.GetAll();
-            return View();
+        {            
+            var mainpage = mainpageService.GetAll();          
+            return View(mainpage);
         }        
 
         public ActionResult About()
         {
-            
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            var about = aboutService.GetAll();
+            return View(about);
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            var contact = contactpageService.GetAll();
+            return View(contact);
         }
     }
 }

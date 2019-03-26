@@ -3,6 +3,8 @@
 @{
                 /**/
 
+                /**/
+
                 ViewBag.Title = "Ürün Gir";
 }
 
@@ -15,137 +17,137 @@
         {
             @Html.AntiForgeryToken()
 
-        <div class="form-horizontal">
-            
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            <div class="form-horizontal">
+
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.Description, new { @class = "form-control ckeditor" })
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CategoryId, "Kategoriler", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("CategoryId", (IEnumerable<SelectListItem>)ViewBag.Categories, "Seçiniz", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Uploads" class="control-label col-md-2">
+                        Ürün Dosyaları
+                    </label>
+                    <div class="col-md-10">
+                        <input type="file" multiple name="Uploads" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    @*@Html.LabelFor(model => model.Photo, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.HiddenFor(model => model.Photo)
+                            @if (!string.IsNullOrEmpty(Model.Photo))
+                            {
+                                <img src="@(ViewBag.AssetsUrl)@Model.Photo" style="width:300px;" /><br />
+                            }
+
+                            <input type="file" multiple name="Uploads" />
+
+                            @Html.ValidationMessageFor(model => model.Photo, "", new { @class = "text-danger" })
+                        </div>*@
+                </div>
+                @*<div class="form-group">
+                        @Html.LabelFor(model => model.Photo2, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.HiddenFor(model => model.Photo2)
+                            @if (!string.IsNullOrEmpty(Model.Photo2))
+                            {
+                                <img src="@(ViewBag.AssetsUrl)@Model.Photo2" style="width:300px;" /><br />
+                            }
+                            <input type="file" name="upload2" />
+                            @Html.ValidationMessageFor(model => model.Photo2, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Photo3, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.HiddenFor(model => model.Photo3)
+                            @if (!string.IsNullOrEmpty(Model.Photo3))
+                            {
+                                <img src="@(ViewBag.AssetsUrl)@Model.Photo3" style="width:300px;" /><br />
+                            }
+                            <input type="file" name="upload" />
+                            @Html.ValidationMessageFor(model => model.Photo3, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Photo4, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.HiddenFor(model => model.Photo4)
+                            @if (!string.IsNullOrEmpty(Model.Photo4))
+                            {
+                                <img src="@(ViewBag.AssetsUrl)@Model.Photo4" style="width:300px;" /><br />
+                            }
+                            <input type="file" name="upload" />
+                            @Html.ValidationMessageFor(model => model.Photo4, "", new { @class = "text-danger" })
+                        </div>
+                    </div>*@
+
+                @*<div class="form-group">
+                        @Html.LabelFor(model => model.Photo, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Photo, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Photo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>*@
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Stock, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Stock, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Stock, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                @*<div class="form-group">
+                        @Html.LabelFor(model => model.Year, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Year, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Year, "", new { @class = "text-danger" })
+                        </div>
+                    </div>*@
+
+                @*<div class="form-group">
+                        @Html.LabelFor(model => model.GithubLink, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.GithubLink, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.GithubLink, "", new { @class = "text-danger" })
+                        </div>
+                    </div>*@
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Oluştur" class="btn btn-primary" />
+                    </div>
                 </div>
             </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.TextAreaFor(model => model.Description, new { @class = "form-control ckeditor" })
-                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.CategoryId, "Kategoriler", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("CategoryId", (IEnumerable<SelectListItem>)ViewBag.Categories, "Seçiniz", htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="Uploads" class="control-label col-md-2">
-                    Proje Dosyaları
-                </label>
-                <div class="col-md-10">
-                    <input type="file" multiple name="Uploads" />
-                </div>
-            </div>
-            <div class="form-group">
-            @*@Html.LabelFor(model => model.Photo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.HiddenFor(model => model.Photo)
-                @if (!string.IsNullOrEmpty(Model.Photo))
-                {
-                    <img src="@(ViewBag.AssetsUrl)@Model.Photo" style="width:300px;" /><br />
-                }
-
-                <input type="file" multiple name="Uploads" />
-
-                @Html.ValidationMessageFor(model => model.Photo, "", new { @class = "text-danger" })
-            </div>*@
-        </div>
-            @*<div class="form-group">
-            @Html.LabelFor(model => model.Photo2, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.HiddenFor(model => model.Photo2)
-                @if (!string.IsNullOrEmpty(Model.Photo2))
-                {
-                    <img src="@(ViewBag.AssetsUrl)@Model.Photo2" style="width:300px;" /><br />
-                }
-                <input type="file" name="upload2" />
-                @Html.ValidationMessageFor(model => model.Photo2, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Photo3, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.HiddenFor(model => model.Photo3)
-                @if (!string.IsNullOrEmpty(Model.Photo3))
-                {
-                    <img src="@(ViewBag.AssetsUrl)@Model.Photo3" style="width:300px;" /><br />
-                }
-                <input type="file" name="upload" />
-                @Html.ValidationMessageFor(model => model.Photo3, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Photo4, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.HiddenFor(model => model.Photo4)
-                @if (!string.IsNullOrEmpty(Model.Photo4))
-                {
-                    <img src="@(ViewBag.AssetsUrl)@Model.Photo4" style="width:300px;" /><br />
-                }
-                <input type="file" name="upload" />
-                @Html.ValidationMessageFor(model => model.Photo4, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-
-            @*<div class="form-group">
-            @Html.LabelFor(model => model.Photo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Photo, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Photo, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-            <div class="form-group">
-                @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(model => model.Stock, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Stock, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Stock, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-
-            @*<div class="form-group">
-            @Html.LabelFor(model => model.Year, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Year, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Year, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-
-            @*<div class="form-group">
-            @Html.LabelFor(model => model.GithubLink, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.GithubLink, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.GithubLink, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Oluştur" class="btn btn-primary" />
-                </div>
-            </div>
-        </div>
         }
 
         <div>

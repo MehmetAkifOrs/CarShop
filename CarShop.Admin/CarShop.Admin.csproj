@@ -191,6 +191,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApplicationUserController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\ContactPageController.cs" />
     <Compile Include="Controllers\ControllerBase.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MainPageController.cs" />
@@ -733,6 +734,10 @@
     <Content Include="Views\MainPage\Create.cshtml" />
     <Content Include="Views\MainPage\Edit.cshtml" />
     <Content Include="Views\MainPage\Details.cshtml" />
+    <Content Include="Views\ContactPage\Index.cshtml" />
+    <Content Include="Views\ContactPage\Create.cshtml" />
+    <Content Include="Views\ContactPage\Edit.cshtml" />
+    <Content Include="Views\ContactPage\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

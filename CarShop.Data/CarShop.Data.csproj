@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
+    <Compile Include="Builders\ContactPageBuilder.cs" />
     <Compile Include="Builders\MainPageBuilder.cs" />
     <Compile Include="Builders\CategoryBuilder.cs" />
     <Compile Include="Builders\CityBuilder.cs" />
@@ -68,17 +69,9 @@
     <Compile Include="Builders\ProductBuilder.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="IUniteOfWork.cs" />
-    <Compile Include="Migrations\201903250533558_Initial.cs" />
-    <Compile Include="Migrations\201903250533558_Initial.Designer.cs">
-      <DependentUpon>201903250533558_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903250552302_AddingLocation.cs" />
-    <Compile Include="Migrations\201903250552302_AddingLocation.Designer.cs">
-      <DependentUpon>201903250552302_AddingLocation.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903250655448_Addmainpage.cs" />
-    <Compile Include="Migrations\201903250655448_Addmainpage.Designer.cs">
-      <DependentUpon>201903250655448_Addmainpage.cs</DependentUpon>
+    <Compile Include="Migrations\201903252125471_InitialCreate.cs" />
+    <Compile Include="Migrations\201903252125471_InitialCreate.Designer.cs">
+      <DependentUpon>201903252125471_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -96,14 +89,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903250533558_Initial.resx">
-      <DependentUpon>201903250533558_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903250552302_AddingLocation.resx">
-      <DependentUpon>201903250552302_AddingLocation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903250655448_Addmainpage.resx">
-      <DependentUpon>201903250655448_Addmainpage.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201903252125471_InitialCreate.resx">
+      <DependentUpon>201903252125471_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

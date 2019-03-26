@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CarShop.Model.MainPage>
+﻿@model  IEnumerable<CarShop.Model.MainPage>
 @{
     ViewBag.Title = "Home Page";
 }
@@ -20,8 +20,8 @@
 
 
             <!-- Slider Item -->
-            @*<div class="owl-item home_slider_item">
-                    <div class="home_slider_background" style="background-image:url(/images/home_slider_1.jpg)"></div>
+            <div class="owl-item home_slider_item">
+                    <div class="home_slider_background">@Model.FirstOrDefault().MainPagePhoto</div>
                     <div class="home_slider_content_container">
                         <div class="container">
                             <div class="row">
@@ -29,13 +29,13 @@
                                     <div class="home_slider_content" data-animation-in="fadeIn" data-animation-out="animate-out fadeOut">
                                         <div class="home_slider_title">Yeni Bir İnternet Alışveriş Deneyimi</div>
                                         <div class="home_slider_subtitle">Buraya ilgili konu ile alakalı metin gelecek.</div>
-                                        <div class="button button_light home_button"><a href="#">Alışveriş'e Başla </a></div>
+                                        
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>*@
+                </div>
 
             <!-- Slider Item -->
             @*<div class="owl-item home_slider_item">

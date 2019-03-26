@@ -19,7 +19,7 @@
 <!-- ============================================================== -->
 
 <p>
-    <button type="button" class="btn btn-success"> @Html.ActionLink("Hakkımızda Yazısı Ekle", "Create") </button>
+    <button type="button" class="btn btn-success"> @Html.ActionLink("Hakkımızda İçeriği Ekle", "Create") </button>
 
 </p>
 
@@ -27,7 +27,7 @@
     <thead>
         <tr>
             <th>
-
+                @Html.DisplayNameFor(model => model.AboutPageHeader)
             </th>
             <th></th>
         </tr>

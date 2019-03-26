@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CarShop.Model.About>
+﻿@model  IEnumerable<CarShop.Model.About>
 @{
     ViewBag.Title = "About";
 }
@@ -11,7 +11,7 @@
 
 <div class="home">
     <div class="home_container">
-        <div class="home_background" style=""></div>
+        <div class="home_background">@Model.FirstOrDefault().AboutPagePhoto</div>
         <div class="home_content_container">
             <div class="container">
                 <div class="row">
@@ -40,10 +40,10 @@
 
 
                     </div>
-                    
+
                     <div class="section_subtitle">
 
-                       
+
 
                     </div>
                 </div>

@@ -3,7 +3,7 @@ namespace CarShop.Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class InitialCreate : DbMigration
     {
         public override void Up()
         {
@@ -136,6 +136,61 @@ namespace CarShop.Data.Migrations
                         Email = c.String(),
                         Orders = c.String(),
                         TotalPrice = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        CreatedBy = c.String(),
+                        CreatedAt = c.DateTime(),
+                        UpdatedBy = c.String(),
+                        UpdatedAt = c.DateTime(),
+                        Country_Id = c.Guid(),
+                        City_Id = c.Guid(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Countries", t => t.Country_Id)
+                .ForeignKey("dbo.Cities", t => t.City_Id)
+                .Index(t => t.Country_Id)
+                .Index(t => t.City_Id);
+            
+            CreateTable(
+                "dbo.Districts",
+                c => new
+                    {
+                        Id = c.Guid(nullable: false),
+                        Name = c.String(),
+                        CityId = c.Guid(),
+                        CreatedBy = c.String(),
+                        CreatedAt = c.DateTime(),
+                        UpdatedBy = c.String(),
+                        UpdatedAt = c.DateTime(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Cities", t => t.CityId)
+                .Index(t => t.CityId);
+            
+            CreateTable(
+                "dbo.ContactPages",
+                c => new
+                    {
+                        Id = c.Guid(nullable: false),
+                        ContactPagePhoto = c.String(),
+                        ContactPageInformation = c.String(),
+                        ContactPageAddress = c.String(),
+                        ContactPageMarketingPhone = c.String(),
+                        ContactPageMarketingEmail = c.String(),
+                        ContactPageShippingPhone = c.String(),
+                        ContactPageShippingEmail = c.String(),
+                        ContactPageInformationPhone = c.String(),
+                        ContactPageInformationEmail = c.String(),
+                        CreatedBy = c.String(),
+                        CreatedAt = c.DateTime(),
+                        UpdatedBy = c.String(),
+                        UpdatedAt = c.DateTime(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.Locations",
+                c => new
+                    {
+                        Id = c.Guid(nullable: false),
                         CountryId = c.Guid(),
                         CityId = c.Guid(),
                         DistrictId = c.Guid(),
@@ -153,20 +208,19 @@ namespace CarShop.Data.Migrations
                 .Index(t => t.DistrictId);
             
             CreateTable(
-                "dbo.Districts",
+                "dbo.MainPages",
                 c => new
                     {
                         Id = c.Guid(nullable: false),
-                        Name = c.String(),
-                        CityId = c.Guid(),
+                        MainPagePhoto = c.String(),
+                        MainPageHeader = c.String(),
+                        MainPageDescription = c.String(),
                         CreatedBy = c.String(),
                         CreatedAt = c.DateTime(),
                         UpdatedBy = c.String(),
                         UpdatedAt = c.DateTime(),
                     })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Cities", t => t.CityId)
-                .Index(t => t.CityId);
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.AspNetRoles",
@@ -246,11 +300,13 @@ namespace CarShop.Data.Migrations
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
-            DropForeignKey("dbo.Cities", "CountryId", "dbo.Countries");
-            DropForeignKey("dbo.Orders", "DistrictId", "dbo.Districts");
+            DropForeignKey("dbo.Locations", "DistrictId", "dbo.Districts");
+            DropForeignKey("dbo.Locations", "CountryId", "dbo.Countries");
+            DropForeignKey("dbo.Locations", "CityId", "dbo.Cities");
+            DropForeignKey("dbo.Orders", "City_Id", "dbo.Cities");
             DropForeignKey("dbo.Districts", "CityId", "dbo.Cities");
-            DropForeignKey("dbo.Orders", "CountryId", "dbo.Countries");
-            DropForeignKey("dbo.Orders", "CityId", "dbo.Cities");
+            DropForeignKey("dbo.Cities", "CountryId", "dbo.Countries");
+            DropForeignKey("dbo.Orders", "Country_Id", "dbo.Countries");
             DropForeignKey("dbo.Photos", "ProductId", "dbo.Products");
             DropForeignKey("dbo.Products", "CategoryId", "dbo.Categories");
             DropForeignKey("dbo.Carts", "Product_Id", "dbo.Products");
@@ -260,10 +316,12 @@ namespace CarShop.Data.Migrations
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
+            DropIndex("dbo.Locations", new[] { "DistrictId" });
+            DropIndex("dbo.Locations", new[] { "CityId" });
+            DropIndex("dbo.Locations", new[] { "CountryId" });
             DropIndex("dbo.Districts", new[] { "CityId" });
-            DropIndex("dbo.Orders", new[] { "DistrictId" });
-            DropIndex("dbo.Orders", new[] { "CityId" });
-            DropIndex("dbo.Orders", new[] { "CountryId" });
+            DropIndex("dbo.Orders", new[] { "City_Id" });
+            DropIndex("dbo.Orders", new[] { "Country_Id" });
             DropIndex("dbo.Cities", new[] { "CountryId" });
             DropIndex("dbo.Photos", new[] { "ProductId" });
             DropIndex("dbo.Products", new[] { "CategoryId" });
@@ -273,6 +331,9 @@ namespace CarShop.Data.Migrations
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
+            DropTable("dbo.MainPages");
+            DropTable("dbo.Locations");
+            DropTable("dbo.ContactPages");
             DropTable("dbo.Districts");
             DropTable("dbo.Orders");
             DropTable("dbo.Countries");

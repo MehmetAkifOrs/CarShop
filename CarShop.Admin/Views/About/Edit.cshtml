@@ -8,58 +8,61 @@
 
 <h2>İçerik Girme Paneli</h2>
 <script src="https://cdn.ckeditor.com/4.11.2/standard/ckeditor.js"></script>
-<div class="row">
-    <div class="col-md-12">
 
-        @using (Html.BeginForm("Edit", "About", FormMethod.Post, new { enctype = "multipart/form-data" }))
-        {
-            @Html.AntiForgeryToken()
 
-            <div class="form-horizontal">
-                               
+@using (Html.BeginForm("Edit", "About", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
 
-                <h4>Hakkımızda Sayfası İçerikleri</h4>
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(model => model.AboutPageHeader, "Hakkımızda Sayfa Başlığı", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.AboutPageHeader, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.AboutPageHeader, "", new { @class = "text-danger" })
-                    </div>
-                </div>
+<div class="form-horizontal">
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.AboutPageDescription, "Hakkımızda Sayfa İçeriği", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.TextAreaFor(model => model.AboutPageDescription, new { @class = "form-control ckeditor" })
-                        @Html.ValidationMessageFor(model => model.AboutPageDescription, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="Upload" class="control-label col-md-2">
-                        Hakkımızda Fotoğrafı
-                    </label>
-                    <div class="col-md-10">
-                        <input type="file" name="Upload" />
-                    </div>
-                </div>
-
-               
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Güncelle" class="btn btn-primary" />
-                    </div>
-                </div>
-            </div>
-        }
-
-        <div>
-            @Html.ActionLink("Geriye Dön", "Index")
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
+    <div class="form-group">
+        @Html.LabelFor(model => model.AboutPageHeader, "Hakkımızda Sayfa Başlığı", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.AboutPageHeader, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.AboutPageHeader, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        @section Scripts {
-            @Scripts.Render("~/bundles/jqueryval")
-        }
+    <div class="form-group">
+        @Html.LabelFor(model => model.AboutPageDescription, "Hakkımızda Sayfa İçeriği", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.AboutPageDescription, new { @class = "form-control ckeditor" })
+            @Html.ValidationMessageFor(model => model.AboutPageDescription, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="Uploads" class="control-label col-md-2">
+            Hakkımızda Fotoğrafı
+        </label>
+        <div class="col-md-10">
+
+            @Html.HiddenFor(model => model.AboutPagePhoto)
+            @if (!string.IsNullOrEmpty(Model.AboutPagePhoto))
+            {
+                <img src="@(ViewBag.AssetsUrl)@Model.AboutPagePhoto" style="width:300px;" /><br />
+            }
+            <input type="file" name="Upload" />
+            @Html.ValidationMessageFor(model => model.AboutPagePhoto, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Güncelle" class="btn btn-success" />
+        </div>
     </div>
 </div>
+}
+
+<div>
+    @Html.ActionLink("Geriye Dön", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

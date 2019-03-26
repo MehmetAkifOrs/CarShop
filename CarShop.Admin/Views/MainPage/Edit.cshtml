@@ -39,11 +39,18 @@
         </div>
 
         <div class="form-group">
-            <label for="Upload" class="control-label col-md-2">
+            <label for="Uploads" class="control-label col-md-2">
                 Anasayfa Fotoğrafı
             </label>
             <div class="col-md-10">
+
+                @Html.HiddenFor(model => model.MainPagePhoto)
+                @if (!string.IsNullOrEmpty(Model.MainPagePhoto))
+                {
+                    <img src="@(ViewBag.AssetsUrl)@Model.MainPagePhoto" style="width:300px;" /><br />
+                }
                 <input type="file" name="Upload" />
+                @Html.ValidationMessageFor(model => model.MainPagePhoto, "", new { @class = "text-danger" })
             </div>
         </div>
 
