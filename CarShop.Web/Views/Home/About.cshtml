@@ -11,7 +11,7 @@
 
 <div class="home">
     <div class="home_container">
-        <div class="home_background">@Model.FirstOrDefault().AboutPagePhoto</div>
+        <div class="home_background" style="background-image:url(@(ViewBag.AssetsUrl)@Model.FirstOrDefault().AboutPagePhoto)"></div>
         <div class="home_content_container">
             <div class="container">
                 <div class="row">
@@ -37,14 +37,14 @@
             <div class="col-lg-8 contact_col">
                 <div class="get_in_touch">
                     <div class="section_title">
-
+                        @Model.FirstOrDefault().AboutPageHeader
 
                     </div>
 
                     <div class="section_subtitle">
 
 
-
+                        @Model.FirstOrDefault().AboutPageDescription
                     </div>
                 </div>
             </div>
