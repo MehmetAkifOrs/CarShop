@@ -19,7 +19,8 @@ namespace CarShop.Web.Controllers
         // GET: Category       
         public ActionResult Index(Guid id)
         {           
-            var category = categoryService.Find(id);                   
+            var category = categoryService.Find(id);
+            ViewBag.CategoryPagePhoto = category.PagePhoto;
             var products = productService.GetAll().Where(i => i.CategoryId == category.Id);
             return View(products);
         }

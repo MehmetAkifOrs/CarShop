@@ -30,6 +30,7 @@ namespace CarShop.Web.Controllers
             var product = productService.Find(id);
             cart.ProductName = product.Name;
             cart.Price = product.Price;
+            cart.CartProductPhoto = product.Photos.FirstOrDefault().Name;
             cartService.Insert(cart);
             var carts = cartService.GetAll();
             //var carts = cartService.GetAll();

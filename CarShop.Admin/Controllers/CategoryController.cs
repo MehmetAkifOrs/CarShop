@@ -32,19 +32,26 @@ namespace CarShop.Admin.Controllers
         }
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Create(Category category, HttpPostedFileBase upload)
+        public ActionResult Create(Category category, HttpPostedFileBase upload, HttpPostedFileBase upload2)
         {
             if (ModelState.IsValid)
             {
-                if (upload != null && upload.ContentLength > 0)
+                if (upload != null && upload.ContentLength > 0 && upload2 != null && upload.ContentLength > 0)
                 {
                     string fileName = Path.GetFileName(upload.FileName);
                     string extension = Path.GetExtension(fileName).ToLower();
-                    if (extension == ".jpg" || extension == ".jpeg" || extension == ".png" || extension == ".gif")
+                    string fileName2 = Path.GetFileName(upload2.FileName);
+                    string extension2 = Path.GetExtension(fileName2).ToLower();
+                    if ((extension == ".jpg" || extension == ".jpeg" || extension == ".png" || extension == ".gif") &&
+                       (extension2 == ".jpg" || extension2 == ".jpeg" || extension2 == ".png" || extension2 == ".gif"))
                     {
                         string path = Path.Combine(ConfigurationManager.AppSettings["uploadPath"], fileName);
                         upload.SaveAs(path);
                         category.IconPhoto = fileName;
+
+                        string path2 = Path.Combine(ConfigurationManager.AppSettings["uploadPath"], fileName2);
+                        upload2.SaveAs(path2);
+                        category.PagePhoto = fileName2;
 
                         categoryService.Insert(category);
                         return RedirectToAction("index");
@@ -53,6 +60,8 @@ namespace CarShop.Admin.Controllers
                     {
                         ModelState.AddModelError("Photo", "Dosya uzantısı .jpg, .jpeg, .png ya da .gif olmalıdır.");
                     }
+
+
                 }
                 else
                 {
@@ -79,37 +88,46 @@ namespace CarShop.Admin.Controllers
         }
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Edit(Category category, HttpPostedFileBase upload)
+        public ActionResult Edit(Category category, HttpPostedFileBase upload, HttpPostedFileBase upload2)
         {
             if (ModelState.IsValid)
             {
-                if (upload != null && upload.ContentLength > 0)
+                if (upload != null && upload.ContentLength > 0 && upload2 != null && upload.ContentLength > 0)
                 {
                     string fileName = Path.GetFileName(upload.FileName);
                     string extension = Path.GetExtension(fileName).ToLower();
-                    if (extension == ".jpg" || extension == ".jpeg" || extension == ".png" || extension == ".gif")
+                    string fileName2 = Path.GetFileName(upload2.FileName);
+                    string extension2 = Path.GetExtension(fileName2).ToLower();
+                    if ((extension == ".jpg" || extension == ".jpeg" || extension == ".png" || extension == ".gif") &&
+                       (extension2 == ".jpg" || extension2 == ".jpeg" || extension2 == ".png" || extension2 == ".gif"))
                     {
                         string path = Path.Combine(ConfigurationManager.AppSettings["uploadPath"], fileName);
                         upload.SaveAs(path);
                         category.IconPhoto = fileName;
+
+                        string path2 = Path.Combine(ConfigurationManager.AppSettings["uploadPath"], fileName2);
+                        upload2.SaveAs(path2);
+                        category.PagePhoto = fileName2;
+
                         categoryService.Update(category);
                         return RedirectToAction("index");
                     }
                     else
                     {
                         ModelState.AddModelError("Photo", "Dosya uzantısı .jpg, .jpeg, .png ya da .gif olmalıdır.");
-
                     }
+
+
                 }
                 else
                 {
-                    // resim seçilip yüklenmese bile diğer bilgileri güncelle
+
                     categoryService.Update(category);
                     return RedirectToAction("index");
                 }
 
-
             }
+
             //ViewBag.CategoryId = new SelectList(categoryService.GetAll(), "Id", "Name", postViewModel.CategoryId);
             return View(category);
         }

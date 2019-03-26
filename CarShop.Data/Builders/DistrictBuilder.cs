@@ -13,7 +13,7 @@ namespace CarShop.Data.Builders
         public DistrictBuilder(EntityTypeConfiguration<District> entity)
         {
             entity.HasKey(e => e.Id);
-            entity.HasOptional(e => e.City).WithMany(e => e.Districts).HasForeignKey(e => e.CityId);
+            entity.HasOptional(e => e.City).WithMany(e => e.Districts).HasForeignKey(e => e.CityId).WillCascadeOnDelete(true);
         }
     }
 }

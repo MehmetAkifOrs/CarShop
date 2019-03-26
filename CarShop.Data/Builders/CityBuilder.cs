@@ -13,7 +13,7 @@ namespace CarShop.Data.Builders
         public CityBuilder(EntityTypeConfiguration<City> entity)
         {
             entity.HasKey(e => e.Id);
-            entity.HasOptional(e => e.Country).WithMany(e => e.Cities).HasForeignKey(e => e.CountryId);
+            entity.HasOptional(e => e.Country).WithMany(e => e.Cities).HasForeignKey(e => e.CountryId).WillCascadeOnDelete(true);
         }
     }
 }

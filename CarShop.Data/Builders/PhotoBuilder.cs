@@ -14,7 +14,7 @@ namespace CarShop.Data.Builders
         {
             entity.HasKey(e => e.Id);
             entity.Property(e => e.Name).IsRequired().HasMaxLength(100);
-            entity.HasOptional(e => e.Product).WithMany(c => c.Photos).HasForeignKey(p => p.ProductId);
+            entity.HasOptional(e => e.Product).WithMany(c => c.Photos).HasForeignKey(p => p.ProductId).WillCascadeOnDelete(true);
         }
     }
 }

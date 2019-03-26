@@ -16,9 +16,10 @@ namespace CarShop.Model
         public string ProductName { get; set; }                
         
         [Display(Name = "Fiyat")]
-        public Decimal Price { get; set; }      
+        public Decimal Price { get; set; }
 
-
+        [Display(Name = "Ürün Fotosu")]
+        public String CartProductPhoto { get; set; }
         // [Display(Name = "Ürünler")]
         //public Guid? ProductId { get; set; }
         //public virtual Product Product { get; set; }

@@ -74,6 +74,7 @@ namespace CarShop.Service
             category.Name = entity.Name;
             category.Description = entity.Description;
             category.IconPhoto = entity.IconPhoto;
+            category.PagePhoto = entity.PagePhoto;
             categoryRepository.Update(category);
             unitOfWork.SaveChanges();
         }
