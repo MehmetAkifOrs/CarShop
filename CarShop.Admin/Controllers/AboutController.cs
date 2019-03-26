@@ -101,7 +101,7 @@ namespace CarShop.Admin.Controllers
                 }
                 else
                 {
-                    aboutService.Insert(about);
+                    aboutService.Update(about);
                     return RedirectToAction("index");
                 }
                 
