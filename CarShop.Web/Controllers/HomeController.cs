@@ -28,6 +28,8 @@ namespace CarShop.Web.Controllers
         {            
             var mainpage = mainpageService.GetAll();          
             return View(mainpage);
+
+           
         }        
 
         public ActionResult About()

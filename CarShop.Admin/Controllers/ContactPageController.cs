@@ -90,7 +90,7 @@ namespace CarShop.Admin.Controllers
                         string path = Path.Combine(ConfigurationManager.AppSettings["uploadPath"], fileName);
                         Upload.SaveAs(path);
                         contactpage.ContactPagePhoto = fileName;
-                        contactpageService.Insert(contactpage);
+                        contactpageService.Update(contactpage);
                         return RedirectToAction("index");
                     }
                     else
