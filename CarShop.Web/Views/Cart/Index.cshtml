@@ -41,110 +41,117 @@ ViewBag.Title = "Index";
     <div class="cart_info">
         <div class="container">
 
-            @using (Html.BeginForm("Index", "Cart", FormMethod.Post, new { enctype = "multipart/form-data" }))
-            {
-                <div class="row">
-                    <div class="col">
-                        <!-- Column Titles -->
-                        <div class="cart_info_columns clearfix">
-                            <div class="cart_info_col cart_info_col_product">Ürün</div>
-                            <div class="cart_info_col cart_info_col_price">Ücret</div>
-                            <div class="cart_info_col cart_info_col_quantity">Adet</div>
-                            <div class="cart_info_col cart_info_col_total">Toplam</div>
-                        </div>
+            @*@using (Html.BeginForm("Index", "Cart", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {*@
+            <div class="row">
+                <div class="col">
+                    <!-- Column Titles -->
+                    <div class="cart_info_columns clearfix">
+                        <div class="cart_info_col cart_info_col_product">Ürün</div>
+                        <div class="cart_info_col cart_info_col_price">Ücret</div>
+                        <div class="cart_info_col cart_info_col_quantity">Adet</div>
+                        <div class="cart_info_col cart_info_col_total">Toplam</div>
                     </div>
                 </div>
+            </div>
 
 
-
+            @foreach (var item in Model)
+            {
                 <div class="row cart_items_row">
                     <div class="col">
-
-
-                        @foreach (var item in Model)
-                        {
-
-
-                            <!-- Cart Item -->
-                            <div class="cart_item d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start">
-                                <!-- Name -->
-                                <div class="cart_item_product d-flex flex-row align-items-center justify-content-start">
-                                    <div class="cart_item_image">
-                                        <div><img src="@(ViewBag.AssetsUrl)@item.CartProductPhoto" alt=""></div>
-                                    </div>
-                                    <div class="cart_item_name_container">
-                                        <div class="cart_item_name"><a href="#">@item.ProductName</a></div>
-                                    </div>
+                        <!-- Cart Item -->
+                        <div class="cart_item d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start">
+                            <!-- Name -->
+                            <div class="cart_item_product d-flex flex-row align-items-center justify-content-start">
+                                <div class="cart_item_image">
+                                    <div><img src="@(ViewBag.AssetsUrl)@item.CartProductPhoto" alt=""></div>
                                 </div>
-                                <!-- Price -->
-                                <div class="cart_item_price">@item.Price TL</div>
-                                <!-- Quantity -->
-                                <div class="cart_item_quantity">
-                                    <div class="product_quantity_container">
-                                        <div class="product_quantity clearfix">
-                                            <span>Adet</span>
-                                            <input id="quantity_input" name="piece" type="number" pattern="[1-9]*" value="1">
-                                            @*@Html.TextBox(item.ProductName, null, new { type="number"})*@
-                                            <div class="quantity_buttons">
-                                                <div id="quantity_inc_button" class="quantity_inc quantity_control"><i class="fa fa-chevron-up" aria-hidden="true"></i></div>
-                                                <div id="quantity_dec_button" class="quantity_dec quantity_control"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="cart_item_name_container">
+                                    <div class="cart_item_name"><a href="#">@item.ProductName</a></div>
                                 </div>
-                                <!-- Total -->
-
                             </div>
-                        }
+                            <!-- Price -->
+                            <div class="cart_item_price">@item.Price TL</div>
+                            <!-- Quantity -->
+                            <div class="cart_item_quantity">
+                                <div class="product_quantity_container">
+                                    <div class="product_quantity clearfix">
+                                        <span>@item.Piece Adet</span>
+
+                                        @*<input id="quantity_input" type="number" *pattern="[1-9]*" value="">*@
+                                        @*@Html.TextBox(item.ProductName, null, new { type="number"})*@
+                                        @*<div class="quantity_buttons">
+                                        <div id="quantity_inc_button" class="quantity_inc quantity_control"><i class="fa fa-chevron-up" aria-hidden="true"></i></div>
+                                        <div id="quantity_dec_button" class="quantity_dec quantity_control"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
+                                    </div>*@
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Total -->
+
+                        </div>
+
 
                     </div>
                 </div>
                 <div class="row row_cart_buttons">
                     <div class="col">
                         <div class="cart_buttons d-flex flex-lg-row flex-column align-items-start justify-content-start">
-                            <div class="button continue_shopping_button"><a href="@Url.Action("Index", "Home")">Alışverişe Devam Et</a></div>
+                            @*<div class="button continue_shopping_button"><a href="@Url.Action("Index", "Home")">Alışverişe Devam Et</a></div>*@
                             <div class="cart_buttons_right ml-lg-auto">
-                                <div class="button clear_cart_button"><a href="#">Ürünü Sil</a></div>
+                                <div class="button clear_cart_button"><a href="@Url.Action("Delete","Cart", new {id = item.Id })">Ürünü Sil</a></div>
 
                             </div>
                         </div>
                     </div>
                 </div>
 
-
-
-                <div class="row row_extra">
-                    <div class="col-lg-4">
-                    </div>
-
-                    <div class="col-lg-6 offset-lg-2">
-                        <div class="cart_total">
-                            <div class="section_title">Cart total</div>
-                            <div class="section_subtitle">Final info</div>
-                            <div class="cart_total_container">
-                                <ul>
-                                    <li class="d-flex flex-row align-items-center justify-content-start">
-                                        <div class="cart_total_title">Subtotal</div>
-                                        <div class="cart_total_value ml-auto">$790.90</div>
-                                    </li>
-                                    <li class="d-flex flex-row align-items-center justify-content-start">
-                                        <div class="cart_total_title">Shipping</div>
-                                        <div class="cart_total_value ml-auto">Free</div>
-                                    </li>
-                                    <li class="d-flex flex-row align-items-center justify-content-start">
-                                        <div class="cart_total_title">Total</div>
-                                        <div class="cart_total_value ml-auto">$790.90</div>
-                                    </li>
-                                </ul>
-                            </div>
-                            @*<div class="button checkout_button"><a href="@Url.Action("Index", "Checkout")">Ödeme Yap</a></div>*@
-                            @*<div class="button checkout_button">*@<input type="submit"  value="Ödeme Yap"/>@*</div>*@
-
-                            </div>
-                        </div>
-                </div>
             }
+            <div class="row row_cart_buttons">
+                <div class="col">
+                    <div class="cart_buttons d-flex flex-lg-row flex-column align-items-start justify-content-start">
+                        <div class="button continue_shopping_button"><a href="@Url.Action("Index", "Home")">Alışverişe Devam Et</a></div>
+                        <div class="cart_buttons_right ml-lg-auto">
+                            @*<div class="button clear_cart_button"><a href="#">Ürünü Sil</a></div>*@
+
+                        </div>
+                    </div>
+                </div>
             </div>
+
+            <div class="row row_extra">
+                <div class="col-lg-4">
+                </div>
+
+                <div class="col-lg-6 offset-lg-2">
+                    <div class="cart_total">
+                        <div class="section_title">Cart total</div>
+                        <div class="section_subtitle">Final info</div>
+                        <div class="cart_total_container">
+                            <ul>
+                                <li class="d-flex flex-row align-items-center justify-content-start">
+                                    <div class="cart_total_title">Subtotal</div>
+                                    <div class="cart_total_value ml-auto">$790.90</div>
+                                </li>
+                                <li class="d-flex flex-row align-items-center justify-content-start">
+                                    <div class="cart_total_title">Shipping</div>
+                                    <div class="cart_total_value ml-auto">Free</div>
+                                </li>
+                                <li class="d-flex flex-row align-items-center justify-content-start">
+                                    <div class="cart_total_title">Total</div>
+                                    <div class="cart_total_value ml-auto">$790.90</div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="button checkout_button"><a href="@Url.Action("Index", "Checkout")">Ödeme Yap</a></div>
+                        @*<div class="button checkout_button"><input type="submit"  value="Ödeme Yap"/>@*</div>*@
+
+                    </div>
+                </div>
+            </div>
+            @*}*@
+        </div>
     </div>
 
 

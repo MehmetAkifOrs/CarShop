@@ -12,10 +12,12 @@ namespace CarShop.Web.Controllers
     {
         private readonly IProductService productService;
         private readonly ICategoryService categoryService;
-        public ProductController(IProductService productService, ICategoryService categoryService) : base(categoryService)
+        private readonly ICartService cartService;
+        public ProductController(IProductService productService, ICategoryService categoryService, ICartService cartService) : base(categoryService)
         {
             this.productService = productService;
             this.categoryService = categoryService;
+            this.cartService = cartService;
         }
         // GET: Product
         public ActionResult Index(Guid id)
@@ -26,6 +28,22 @@ namespace CarShop.Web.Controllers
             var product = productService.Find(id);            
             return View(product);
         }
-       
+
+        [HttpPost]
+        public ActionResult Index(Guid id, int piece)
+        {
+            var cartProduct = new Cart();
+            var product = productService.Find(id);
+            cartProduct.ProductName = product.Name;
+            cartProduct.Piece = piece;
+            cartProduct.Price = product.Price;
+            cartProduct.CartProductPhoto = product.Photos.FirstOrDefault().Name;
+            cartService.Insert(cartProduct);
+           
+           
+            return RedirectToAction("Index","Cart");
+        }
+
+
     }
 }

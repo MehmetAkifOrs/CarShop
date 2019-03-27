@@ -21,33 +21,48 @@ namespace CarShop.Web.Controllers
             this.productService = productService;
             this.categoryService = categoryService;
             this.cartService = cartService;
+            this.orderService = orderService;
         }
         // GET: Cart          
-       
-        public ActionResult Index(Guid id)
-        {
-            var cart = new Cart();
 
-            var product = productService.Find(id);
-            cart.ProductName = product.Name;
-            cart.Price = product.Price;
-            cart.CartProductPhoto = product.Photos.FirstOrDefault().Name;
-            cartService.Insert(cart);
-            var carts = cartService.GetAll();
-            //var carts = cartService.GetAll();
-            return View(carts);
-        }
-        [HttpPost]
-        public ActionResult Index(Cart cart,int piece)
+        public ActionResult Index()
         {
-            var order = new Order();
-            var product = productService.Find(cart.Id);
-            order.Orders = product.Name;
-            order.piece = piece;
-            order.TotalPrice = product.Price * piece;
-            orderService.Insert(order);
-            return RedirectToAction("Index", "Checkout", order);
+            var cartProducts = cartService.GetAll();
+            //var cart = new Cart();
+            //var product = productService.Find(product);
+            //cart.Piece = piece;
+            //cart.ProductName = product.Name;
+            //cart.Price = product.Price;
+            //cart.CartProductPhoto = product.Photos.FirstOrDefault().Name;
+            //cartService.Insert(cart);
+            //var carts = cartService.GetAll();
+            //var carts = cartService.GetAll();
+            return View(cartProducts);
         }
+
+        //[HttpPost]
+        //public ActionResult Index(Product product, int piece)
+        //{
+        //    var cart = new Cart();
+
+        //    //var product = productService.Find(product);
+        //    cart.Piece = piece;
+        //    cart.ProductName = product.Name;
+        //    cart.Price = product.Price;
+        //    cart.CartProductPhoto = product.Photos.FirstOrDefault().Name;
+        //    cartService.Insert(cart);
+        //    var carts = cartService.GetAll();
+        //    //var carts = cartService.GetAll();
+        //    return View(carts);
+
+        //var order = new Order();
+        ////var product = productService.Find(cart.Id);
+        //order.Orders = product.Name;
+        //order.piece = piece;
+        //order.TotalPrice = product.Price * piece;
+        //orderService.Insert(order);
+        //return RedirectToAction("Index", "Checkout", order);
+    //}
 
 
 
@@ -55,6 +70,12 @@ namespace CarShop.Web.Controllers
         {
             var carts = cartService.GetAll();
             return View(carts);
+        }
+
+        public ActionResult Delete(Guid id)
+        {
+            cartService.Delete(id);
+            return RedirectToAction("Index","Cart");
         }
     }
 }

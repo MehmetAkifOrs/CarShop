@@ -17,8 +17,9 @@ namespace CarShop.Web.Controllers
         private readonly ICountryService countryService;
         private readonly ICityService cityService;
         private readonly IDistrictService districtService;
+        private readonly ICartService cartService;
         public CheckoutController(IProductService productService, ICategoryService categoryService, IOrderService orderService,
-          ICountryService countryService, ICityService cityService, IDistrictService districtService) : base(categoryService)
+          ICountryService countryService, ICityService cityService, IDistrictService districtService, ICartService cartService) : base(categoryService)
         {
             this.productService = productService;
             this.categoryService = categoryService;
@@ -26,6 +27,7 @@ namespace CarShop.Web.Controllers
             this.countryService = countryService;
             this.cityService = cityService;
             this.districtService = districtService;
+            this.cartService = cartService;
         }
         public ActionResult GetCities(Guid? countryId)
         {
@@ -46,12 +48,22 @@ namespace CarShop.Web.Controllers
             //}
         }
         // GET: Checkout
-        public ActionResult Index(Order order)
+        public ActionResult Index()
         {
-            ViewBag.Products = productService.Find(order.Id);
-            ViewBag.Order = order;
+            var location = new Location();
+            var order = new Order();
 
-            var location = new  Location();
+            var cartProducts = cartService.GetAll();
+            foreach (var item in cartProducts)
+            {
+                order.TotalPrice = item.Piece * item.Price;
+                order.Orders = item.ProductName;
+                order.piece = item.Piece;
+                orderService.Insert(order);
+            }
+
+            ViewBag.OrderProducts = orderService.GetAll();
+           
 
             //using (var db = new ApplicationDbContext())
             //{

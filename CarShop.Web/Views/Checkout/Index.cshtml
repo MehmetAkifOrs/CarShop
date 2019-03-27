@@ -129,17 +129,22 @@
                             <div class="order_list_title">Ürünler</div>
                             <div class="order_list_value ml-auto"></div>
                         </div>
-                        <ul class="order_list">
-                            <li class="d-flex flex-row align-items-center justify-content-start">
-                                <div class="order_list_title">@ViewBag.Products.Name</div>
-                                <div class="order_list_value ml-auto">@ViewBag.Order.Price TL  X  @ViewBag.Order.piece Adet</div>
-                            </li>
-                            
-                            <li class="d-flex flex-row align-items-center justify-content-start">
-                                <div class="order_list_title">Toplam</div>
-                                <div class="order_list_value ml-auto">@ViewBag.Order.TotalPrice</div>
-                            </li>                          
-                        </ul>
+                        @foreach (var item in ViewBag.OrderProducts)
+                        {
+
+
+                            <ul class="order_list">
+                                <li class="d-flex flex-row align-items-center justify-content-start">
+                                    <div class="order_list_title">@item.Orders</div>
+                                    <div class="order_list_value ml-auto">@item.piece Adet</div>
+                                </li>
+
+                                <li class="d-flex flex-row align-items-center justify-content-start">
+                                    <div class="order_list_title">Toplam</div>
+                                    <div class="order_list_value ml-auto">@item.TotalPrice</div>
+                                </li>
+                            </ul>
+                        }
                     </div>
 
                     <!-- Payment Options -->
