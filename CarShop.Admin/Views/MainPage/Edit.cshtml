@@ -30,7 +30,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.MainPageDescription, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.MainPageDescription, new { @class = "form-control " })
+                @Html.TextAreaFor(model => model.MainPageDescription, new { @class = "form-control", @id = "Description" })
                 @Html.ValidationMessageFor(model => model.MainPageDescription, "", new { @class = "text-danger" })
                 <script>
                     CKEDITOR.replace('Description');
