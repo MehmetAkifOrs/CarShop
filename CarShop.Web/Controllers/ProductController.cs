@@ -1,4 +1,5 @@
-﻿using CarShop.Service;
+﻿using CarShop.Model;
+using CarShop.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,5 +26,6 @@ namespace CarShop.Web.Controllers
             var product = productService.Find(id);            
             return View(product);
         }
+       
     }
 }

@@ -126,22 +126,19 @@
                     <!-- Order details -->
                     <div class="order_list_container">
                         <div class="order_list_bar d-flex flex-row align-items-center justify-content-start">
-                            <div class="order_list_title">Product</div>
-                            <div class="order_list_value ml-auto">Total</div>
+                            <div class="order_list_title">Ürünler</div>
+                            <div class="order_list_value ml-auto"></div>
                         </div>
                         <ul class="order_list">
                             <li class="d-flex flex-row align-items-center justify-content-start">
-                                <div class="order_list_title">Cocktail Yellow dress</div>
-                                <div class="order_list_value ml-auto">$59.90</div>
+                                <div class="order_list_title">@ViewBag.Products.Name</div>
+                                <div class="order_list_value ml-auto">@ViewBag.Order.Price TL  X  @ViewBag.Order.piece Adet</div>
                             </li>
+                            
                             <li class="d-flex flex-row align-items-center justify-content-start">
-                                <div class="order_list_title">Subtotal</div>
-                                <div class="order_list_value ml-auto">$59.90</div>
-                            </li>
-                            <li class="d-flex flex-row align-items-center justify-content-start">
-                                <div class="order_list_title">Total</div>
-                                <div class="order_list_value ml-auto">$59.90</div>
-                            </li>
+                                <div class="order_list_title">Toplam</div>
+                                <div class="order_list_value ml-auto">@ViewBag.Order.TotalPrice</div>
+                            </li>                          
                         </ul>
                     </div>
 

@@ -46,8 +46,11 @@ namespace CarShop.Web.Controllers
             //}
         }
         // GET: Checkout
-        public ActionResult Index()
+        public ActionResult Index(Order order)
         {
+            ViewBag.Products = productService.Find(order.Id);
+            ViewBag.Order = order;
+
             var location = new  Location();
 
             //using (var db = new ApplicationDbContext())

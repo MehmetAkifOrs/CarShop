@@ -31,8 +31,12 @@ namespace CarShop.Model
         public String Email { get; set; }
         [Display(Name = "Siparişler")]
         public String Orders { get; set; }
+
+        [Display(Name = "Adet")]
+        public int?  piece { get; set; }
+
         [Display(Name = "Toplam Tutar")]
-        public Decimal TotalPrice { get; set; }        
+        public Decimal? TotalPrice { get; set; }        
 
     }
 }

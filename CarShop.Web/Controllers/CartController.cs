@@ -15,7 +15,8 @@ namespace CarShop.Web.Controllers
         private readonly IProductService productService;
         private readonly ICategoryService categoryService;
         private readonly ICartService cartService;
-        public CartController(ICartService cartService, IProductService productService, ICategoryService categoryService) : base(categoryService)
+        private readonly IOrderService orderService;
+        public CartController(ICartService cartService, IProductService productService, ICategoryService categoryService, IOrderService orderService) : base(categoryService)
         {
             this.productService = productService;
             this.categoryService = categoryService;
@@ -36,6 +37,20 @@ namespace CarShop.Web.Controllers
             //var carts = cartService.GetAll();
             return View(carts);
         }
+        [HttpPost]
+        public ActionResult Index(Cart cart,int piece)
+        {
+            var order = new Order();
+            var product = productService.Find(cart.Id);
+            order.Orders = product.Name;
+            order.piece = piece;
+            order.TotalPrice = product.Price * piece;
+            orderService.Insert(order);
+            return RedirectToAction("Index", "Checkout", order);
+        }
+
+
+
         public ActionResult Cart()
         {
             var carts = cartService.GetAll();
