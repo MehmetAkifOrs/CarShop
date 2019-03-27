@@ -44,7 +44,7 @@
                     <div class="section_subtitle">
 
 
-                        @Model.FirstOrDefault().AboutPageDescription
+                        @Html.Raw(Model.FirstOrDefault().AboutPageDescription)
                     </div>
                 </div>
             </div>
