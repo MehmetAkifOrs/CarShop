@@ -16,7 +16,7 @@ namespace CarShop.Service
         void Delete(Guid id);
         Cart Find(Guid id);
         IEnumerable<Cart> GetAll();
-        //IEnumerable<Cart> GetAllByName(string name);
+        IEnumerable<Cart> GetAllByName(string name);
         //IEnumerable<Cart> Search(string name);
     }
     public class CartService : ICartService
@@ -34,10 +34,10 @@ namespace CarShop.Service
             return cartRepository.GetAll();
         }
 
-        //public IEnumerable<Cart> GetAllByName(string name)
-        //{
-        //    return cartRepository.GetAll(w => w.Name.Contains(name));
-        //}
+        public IEnumerable<Cart> GetAllByName(string name)
+        {
+            return cartRepository.GetAll(w => w.ProductName.Contains(name));
+        }
 
 
 

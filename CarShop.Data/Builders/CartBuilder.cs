@@ -13,8 +13,8 @@ namespace CarShop.Data.Builders
         public CartBuilder(EntityTypeConfiguration<Cart> entity)
         {
             entity.HasKey(e => e.Id);
-            entity.Property(e => e.ProductName).IsRequired().HasMaxLength(100);
-            
+            entity.Property(e => e.ProductName).IsRequired().HasMaxLength(100);       
+
         }
     }
 }

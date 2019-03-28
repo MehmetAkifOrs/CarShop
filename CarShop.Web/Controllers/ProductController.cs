@@ -32,8 +32,19 @@ namespace CarShop.Web.Controllers
         [HttpPost]
         public ActionResult Index(Guid id, int piece)
         {
+                   
+            var product = productService.Find(id);            
             var cartProduct = new Cart();
-            var product = productService.Find(id);
+            if (cartService.GetAll().Where(i => i.ProductId == id) == null)
+            {
+                cartProduct.Piece += piece;
+                cartService.Update(cartProduct);
+
+                return RedirectToAction("Index", "Cart");
+
+            }
+
+           
             cartProduct.ProductName = product.Name;
             cartProduct.Piece = piece;
             cartProduct.Price = product.Price;
