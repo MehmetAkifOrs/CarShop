@@ -22,37 +22,43 @@ namespace CarShop.Web.Controllers
         // GET: Product
         public ActionResult Index(Guid id)
         {
-            
+
             var categoryId = productService.Find(id).CategoryId;
-            var category = categoryService.GetAll().Where(c => c.Id == categoryId);            
-            var product = productService.Find(id);            
+            var category = categoryService.GetAll().Where(c => c.Id == categoryId);
+            var product = productService.Find(id);
             return View(product);
         }
 
         [HttpPost]
         public ActionResult Index(Guid id, int piece)
         {
-                   
-            var product = productService.Find(id);            
+
+            var product = productService.Find(id);
             var cartProduct = new Cart();
-            if (cartService.GetAll().Where(i => i.ProductId == id) == null)
+            cartProduct.ProductId = product.Id;
+            if (cartService.GetAll().Where(i => i.ProductId == id).FirstOrDefault() != null)
             {
-                cartProduct.Piece += piece;
-                cartService.Update(cartProduct);
+                var cartId = cartService.GetAll().Where(i => i.ProductId == id).FirstOrDefault();
+                cartId.Piece += piece;
+                cartService.Update(cartId);
 
                 return RedirectToAction("Index", "Cart");
 
             }
 
-           
+
             cartProduct.ProductName = product.Name;
             cartProduct.Piece = piece;
             cartProduct.Price = product.Price;
             cartProduct.CartProductPhoto = product.Photos.FirstOrDefault().Name;
             cartService.Insert(cartProduct);
-           
-           
-            return RedirectToAction("Index","Cart");
+
+
+            return RedirectToAction("Index", "Cart");
+
+
+
+
         }
 
 
