@@ -126,21 +126,31 @@ ViewBag.Title = "Index";
 
                 <div class="col-lg-6 offset-lg-2">
                     <div class="cart_total">
-                        <div class="section_title">Cart total</div>
-                        <div class="section_subtitle">Final info</div>
+                        <div class="section_title">Sipariş Detayları</div>                        
                         <div class="cart_total_container">
                             <ul>
+                                @{ 
+                                    decimal genelToplam = 0;
+                                }
+
+                                @foreach (var item in Model)
+                                {
+
+
                                 <li class="d-flex flex-row align-items-center justify-content-start">
-                                    <div class="cart_total_title">Subtotal</div>
-                                    <div class="cart_total_value ml-auto">$790.90</div>
+                                    <div class="cart_total_title">@item.Piece  Adet  @item.ProductName Aracı </div>
+                                     @{
+                                         
+                                         decimal total = @item.Piece * @item.Price;
+                                          genelToplam += total;
+                                     }
+                                    <div class="cart_total_value ml-auto">@total  TL</div>
                                 </li>
+                                }
+
                                 <li class="d-flex flex-row align-items-center justify-content-start">
-                                    <div class="cart_total_title">Shipping</div>
-                                    <div class="cart_total_value ml-auto">Free</div>
-                                </li>
-                                <li class="d-flex flex-row align-items-center justify-content-start">
-                                    <div class="cart_total_title">Total</div>
-                                    <div class="cart_total_value ml-auto">$790.90</div>
+                                    <div class="cart_total_title">Genel Toplam</div>
+                                    <div class="cart_total_value ml-auto">@genelToplam  TL</div>
                                 </li>
                             </ul>
                         </div>

@@ -81,7 +81,8 @@ namespace CarShop.Service
             order.Email = entity.Email;
             order.Address = entity.Address;
             order.TotalPrice = entity.TotalPrice;
-            order.Orders = entity.Orders;          
+            order.Orders = entity.Orders;
+            order.piece = entity.piece;
             orderRepository.Update(order);
             unitOfWork.SaveChanges();
         }
