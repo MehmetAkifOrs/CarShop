@@ -64,18 +64,15 @@
     <Compile Include="Builders\LocationBuilder.cs" />
     <Compile Include="Builders\OrderBuilder.cs" />
     <Compile Include="Builders\AboutBuilder.cs" />
+    <Compile Include="Builders\OrderProductsBuilder.cs" />
     <Compile Include="Builders\PhotoBuilder.cs" />
     <Compile Include="Builders\CartBuilder.cs" />
     <Compile Include="Builders\ProductBuilder.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="IUniteOfWork.cs" />
-    <Compile Include="Migrations\201903280515290_Initial.cs" />
-    <Compile Include="Migrations\201903280515290_Initial.Designer.cs">
-      <DependentUpon>201903280515290_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903280558489_addRelation.cs" />
-    <Compile Include="Migrations\201903280558489_addRelation.Designer.cs">
-      <DependentUpon>201903280558489_addRelation.cs</DependentUpon>
+    <Compile Include="Migrations\201903291124181_Initial.cs" />
+    <Compile Include="Migrations\201903291124181_Initial.Designer.cs">
+      <DependentUpon>201903291124181_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -93,11 +90,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903280515290_Initial.resx">
-      <DependentUpon>201903280515290_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903280558489_addRelation.resx">
-      <DependentUpon>201903280558489_addRelation.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201903291124181_Initial.resx">
+      <DependentUpon>201903291124181_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

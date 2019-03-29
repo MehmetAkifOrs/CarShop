@@ -32,6 +32,7 @@ namespace CarShop.Data
         public virtual DbSet<Photo> Photos { get; set; }
         public virtual DbSet<Cart> Carts { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
+        public virtual DbSet<OrderProducts> OrderProducts { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -47,6 +48,7 @@ namespace CarShop.Data
             new PhotoBuilder(modelBuilder.Entity<Photo>());
             new CartBuilder(modelBuilder.Entity<Cart>());
             new LocationBuilder(modelBuilder.Entity<Location>());
+            new OrderProductsBuilder(modelBuilder.Entity<OrderProducts>());
 
         }
     }

@@ -80,9 +80,7 @@ namespace CarShop.Service
             order.Phone = entity.Phone;
             order.Email = entity.Email;
             order.Address = entity.Address;
-            order.TotalPrice = entity.TotalPrice;
-            order.Orders = entity.Orders;
-            order.piece = entity.piece;
+            order.TotalPrice = entity.TotalPrice;           
             orderRepository.Update(order);
             unitOfWork.SaveChanges();
         }
