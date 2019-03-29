@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<CarShop.Model.Cart>
 @{
-ViewBag.Title = "Index";
+    ViewBag.Title = "Index";
 
 }
 
@@ -9,14 +9,16 @@ ViewBag.Title = "Index";
 
 
 
-<div class="super_container">   
-     
+<div class="super_container">
+
+  
+
+    
 
     <!-- Home -->
-
-    @*<div class="home">
+    <div class="home">
         <div class="home_container">
-            <div class="home_background" style="background-image:url(/images/contact.jpg)"></div>
+            <div class="home_background" style="background-image:url(/images/mainphoto.jpeg)"></div>
             <div class="home_content_container">
                 <div class="container">
                     <div class="row">
@@ -24,8 +26,8 @@ ViewBag.Title = "Index";
                             <div class="home_content">
                                 <div class="breadcrumbs">
                                     <ul>
-                                        <li><a href="index.html">Home</a></li>                                        
-                                        <li>Satış</li>
+                                        <li><a href="@Url.Action("Index","Home")"><font size="5">Anasayfa</font></a><font size="5">/Alışveriş</font></li>
+
                                     </ul>
                                 </div>
                             </div>
@@ -34,15 +36,12 @@ ViewBag.Title = "Index";
                 </div>
             </div>
         </div>
-    </div>*@
+    </div>
 
     <!-- Cart Info -->
 
     <div class="cart_info">
         <div class="container">
-
-            @*@using (Html.BeginForm("Index", "Cart", FormMethod.Post, new { enctype = "multipart/form-data" }))
-        {*@
             <div class="row">
                 <div class="col">
                     <!-- Column Titles -->
@@ -50,14 +49,12 @@ ViewBag.Title = "Index";
                         <div class="cart_info_col cart_info_col_product">Ürün</div>
                         <div class="cart_info_col cart_info_col_price">Ücret</div>
                         <div class="cart_info_col cart_info_col_quantity">Adet</div>
-                        <div class="cart_info_col cart_info_col_total">Toplam</div>
                     </div>
                 </div>
             </div>
-
-
             @foreach (var item in Model)
             {
+
                 <div class="row cart_items_row">
                     <div class="col">
                         <!-- Cart Item -->
@@ -74,20 +71,7 @@ ViewBag.Title = "Index";
                             <!-- Price -->
                             <div class="cart_item_price">@item.Price TL</div>
                             <!-- Quantity -->
-                            <div class="cart_item_quantity">
-                                <div class="product_quantity_container">
-                                    <div class="product_quantity clearfix">
-                                        <span>@item.Piece Adet</span>
-
-                                        @*<input id="quantity_input" type="number" *pattern="[1-9]*" value="">*@
-                                        @*@Html.TextBox(item.ProductName, null, new { type="number"})*@
-                                        @*<div class="quantity_buttons">
-                                        <div id="quantity_inc_button" class="quantity_inc quantity_control"><i class="fa fa-chevron-up" aria-hidden="true"></i></div>
-                                        <div id="quantity_dec_button" class="quantity_dec quantity_control"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
-                                    </div>*@
-                                    </div>
-                                </div>
-                            </div>
+                            <div class="cart_item_quantity">@item.Piece</div>
                             <!-- Total -->
 
                         </div>
@@ -119,40 +103,44 @@ ViewBag.Title = "Index";
                     </div>
                 </div>
             </div>
-
             <div class="row row_extra">
                 <div class="col-lg-4">
                 </div>
 
                 <div class="col-lg-6 offset-lg-2">
                     <div class="cart_total">
-                        <div class="section_title">Sipariş Detayları</div>                        
-                        <div class="cart_total_container">
-                            <ul>
-                                @{ 
-                                    decimal genelToplam = 0;
-                                }
 
-                                @foreach (var item in Model)
-                                {
+                        <div class="section_title">Sipariş Detayları</div>
+
+                        <div class="cart_info_columns clearfix">
+                            <div class="cart_total_container">
+                                <ul>
+                                    @{
+                                        decimal genelToplam = 0;
+                                    }
+
+                                    @foreach (var item in Model)
+                                    {
 
 
-                                <li class="d-flex flex-row align-items-center justify-content-start">
-                                    <div class="cart_total_title">@item.Piece  Adet  @item.ProductName Aracı </div>
-                                     @{
-                                         
-                                         decimal total = @item.Piece * @item.Price;
-                                          genelToplam += total;
-                                     }
-                                    <div class="cart_total_value ml-auto">@total  TL</div>
-                                </li>
-                                }
+                                        <li class="d-flex flex-row align-items-center justify-content-start">
+                                            <div class="cart_total_title">@item.Piece  Adet  @item.ProductName Aracı </div>
+                                            @{
 
-                                <li class="d-flex flex-row align-items-center justify-content-start">
-                                    <div class="cart_total_title">Genel Toplam</div>
-                                    <div class="cart_total_value ml-auto">@genelToplam  TL</div>
-                                </li>
-                            </ul>
+                                                decimal total = @item.Piece * @item.Price;
+                                                genelToplam += total;
+                                            }
+                                            <div class="cart_total_value ml-auto">@total  TL</div>
+                                        </li>
+                                    }
+
+                                    <li class="d-flex flex-row align-items-center justify-content-start">
+                                        <div class="cart_total_title">Genel Toplam</div>
+                                        <div class="cart_total_value ml-auto">@genelToplam  TL</div>
+                                    </li>
+                                </ul>
+
+                            </div>
                         </div>
                         <div class="button checkout_button"><a href="@Url.Action("Index", "Checkout")">Ödeme Yap</a></div>
                         @*<div class="button checkout_button"><input type="submit"  value="Ödeme Yap"/>@*</div>*@
@@ -160,10 +148,8 @@ ViewBag.Title = "Index";
                     </div>
                 </div>
             </div>
-            @*}*@
         </div>
     </div>
 
-
+   
 </div>
-

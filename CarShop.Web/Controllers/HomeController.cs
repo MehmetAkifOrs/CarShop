@@ -43,5 +43,7 @@ namespace CarShop.Web.Controllers
             var contact = contactpageService.GetAll();
             return View(contact);
         }
+
+        
     }
 }
