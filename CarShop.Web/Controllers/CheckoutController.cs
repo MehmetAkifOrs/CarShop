@@ -50,16 +50,34 @@ namespace CarShop.Web.Controllers
         // GET: Checkout
         public ActionResult Index()
         {
+           
             var location = new Location();
-            var order = new Order();
+           
 
             var cartProducts = cartService.GetAll();
+            
             foreach (var item in cartProducts)
             {
-                order.TotalPrice = item.Piece * item.Price;
-                order.Orders = item.ProductName;
-                order.piece = item.Piece;
-                orderService.Insert(order);
+                bool contains = false;
+
+                foreach (var orderItem in orderService.GetAll())
+                {
+                    if(orderItem.Orders == item.ProductName)
+                    {
+                       contains = true;
+                    }
+
+                }
+                var order = new Order();
+
+                if (contains == false)
+                {
+                    order.TotalPrice = item.Piece * item.Price;
+                    order.Orders = item.ProductName;
+                    order.piece = item.Piece;
+                    orderService.Insert(order);
+                }
+
             }
 
             ViewBag.OrderProducts = orderService.GetAll();
