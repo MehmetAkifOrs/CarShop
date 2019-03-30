@@ -10,6 +10,10 @@ namespace CarShop.Model
 {
     public class Order:BaseEntity
     {
+        public Order()
+        {
+            OrderProducts = new HashSet<OrderProducts>();
+        }           
        
         [Display(Name ="Müşteri Adı")]
         public String CustomerFirstName { get; set; }
@@ -28,15 +32,12 @@ namespace CarShop.Model
         public String Phone { get; set; }
         [Display(Name = "E-posta")]
         [EmailAddress]
-        public String Email { get; set; }
-        [Display(Name = "Siparişler")]
-        public String Orders { get; set; }
-
-        [Display(Name = "Adet")]
-        public int?  piece { get; set; }
+        public String Email { get; set; }       
 
         [Display(Name = "Toplam Tutar")]
-        public Decimal? TotalPrice { get; set; }        
+        public Decimal? TotalPrice { get; set; }          
+       
+        public virtual ICollection<OrderProducts> OrderProducts { get; set; }
 
     }
 }

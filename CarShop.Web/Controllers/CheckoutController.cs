@@ -18,8 +18,10 @@ namespace CarShop.Web.Controllers
         private readonly ICityService cityService;
         private readonly IDistrictService districtService;
         private readonly ICartService cartService;
+        private readonly IOrderProductsService orderProductsService;
         public CheckoutController(IProductService productService, ICategoryService categoryService, IOrderService orderService,
-          ICountryService countryService, ICityService cityService, IDistrictService districtService, ICartService cartService) : base(categoryService)
+          ICountryService countryService, ICityService cityService, IDistrictService districtService, ICartService cartService,
+          IOrderProductsService orderProductsService) : base(categoryService)
         {
             this.productService = productService;
             this.categoryService = categoryService;
@@ -52,35 +54,43 @@ namespace CarShop.Web.Controllers
         {
            
             var location = new Location();
-           
-
             var cartProducts = cartService.GetAll();
+            var orderProducts = orderProductsService.GetAll();
             
             foreach (var item in cartProducts)
             {
-                bool contains = false;
 
-                foreach (var orderItem in orderService.GetAll())
+                foreach (var orderItem in orderProducts)
                 {
-                    if(orderItem.Orders == item.ProductName)
-                    {
-                       contains = true;
-                    }
-
+                    orderItem.ProductName = item.ProductName;
+                    orderItem.Priece = item.Piece;
+                    orderItem.Quantity = item.Piece;
+                    orderItem.TotalPrice = item.Piece * item.Price;
                 }
-                var order = new Order();
 
-                if (contains == false)
-                {
-                    order.TotalPrice = item.Piece * item.Price;
-                    order.Orders = item.ProductName;
-                    order.piece = item.Piece;
-                    orderService.Insert(order);
-                }
+                //bool contains = false;
+
+                //foreach (var orderItem in orderProductsService.GetAll())
+                //{
+                //    if(orderItem.ProductName == item.ProductName)
+                //    {
+                //       contains = true;
+                //    }
+
+                //}
+                //var order = new Order();
+
+                //if (contains == false)
+                //{
+                //    order.OrderProducts.P = item.Piece * item.Price;
+                //    order.Orders = item.ProductName;
+                //    order.piece = item.Piece;
+                //    orderService.Insert(order);
+                //}
 
             }
 
-            ViewBag.OrderProducts = orderService.GetAll();
+            ViewBag.OrderProducts = orderProductsService.GetAll();
            
 
             //using (var db = new ApplicationDbContext())
