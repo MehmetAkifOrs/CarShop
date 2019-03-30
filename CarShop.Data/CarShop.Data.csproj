@@ -77,6 +77,10 @@
     <Compile Include="Migrations\201903280558489_addRelation.Designer.cs">
       <DependentUpon>201903280558489_addRelation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903290635136_addingEntities.cs" />
+    <Compile Include="Migrations\201903290635136_addingEntities.Designer.cs">
+      <DependentUpon>201903290635136_addingEntities.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -98,6 +102,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903280558489_addRelation.resx">
       <DependentUpon>201903280558489_addRelation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903290635136_addingEntities.resx">
+      <DependentUpon>201903290635136_addingEntities.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

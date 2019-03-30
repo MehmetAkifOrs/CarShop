@@ -4,10 +4,13 @@
 
 }
 
+<link rel="stylesheet" type="text/css" href="~/styles/bootstrap4/bootstrap.min.css">
+<link href="~/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="~/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="~/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+<link rel="stylesheet" type="text/css" href="~/plugins/OwlCarousel2-2.2.1/animate.css">
 <link rel="stylesheet" type="text/css" href="~/styles/product.css">
 <link rel="stylesheet" type="text/css" href="~/styles/product_responsive.css">
-
-
 
 
 
@@ -58,28 +61,20 @@
                         </div>
 
 
+
                         <!-- Product Quantity -->
-
-                        <div class="cart_item_quantity">
-                            <div class="product_quantity_container">
-                                <div class="product_quantity clearfix">
-
-                                    <span>Qty</span>
-                                    <input id="quantity_input" name="piece" type="number" pattern="[0-9]*" value="1">
-                                    <div class="quantity_buttons">
-                                        <div id="quantity_inc_button" class="quantity_inc quantity_control"><i class="fa fa-chevron-up" aria-hidden="true"></i></div>
-                                        <div id="quantity_dec_button" class="quantity_dec quantity_control"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
-                                    </div>
-
+                        <div class="product_quantity_container">
+                            <div class="product_quantity clearfix">
+                                <span>Adet</span>
+                                <input id="quantity_input" name="piece" type="text"  value="1">
+                                <div class="quantity_buttons">
+                                    <div id="quantity_inc_button" class="quantity_inc quantity_control"><i class="fa fa-chevron-up" aria-hidden="true"></i></div>
+                                    <div id="quantity_dec_button" class="quantity_dec quantity_control"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
                                 </div>
-
-                                @*<div class="button cart_button"><a href="@Url.Action("Index", "Cart", new { id = Model.Id })">Siparişlerime Ekle</a></div>*@
-
-                                @*<input type="submit" value="Siparişlerime Ekle" />*@
-                                <input type="submit" class="button cart_button" value="Siparişlerime Ekle" />
-
                             </div>
+                            <input type="submit" class="button cart_button" value="Siparişlerime Ekle" />
                         </div>
+
 
 
                     </div>
@@ -91,9 +86,11 @@
 
                 </div>
             </div>
+
         </div>
     </div>
 }
 
+<script src="~/js/jquery-3.2.1.min.js"></script>
 
-
+<script src="~/js/product.js"></script>
