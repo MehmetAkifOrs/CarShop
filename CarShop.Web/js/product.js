@@ -222,7 +222,7 @@ $(document).ready(function()
 			incButton.on('click', function()
 			{
 				originalVal = input.val();
-				endVal = parseFloat(originalVal) + 1;
+				endVal = parseFloat(originalVal)+ 1;
 				input.val(endVal);
 			});
 
@@ -231,7 +231,7 @@ $(document).ready(function()
 				originalVal = input.val();
 				if(originalVal > 0)
 				{
-					endVal = parseFloat(originalVal) - 1;
+					endVal = parseFloat(originalVal)- 1;
 					input.val(endVal);
 				}
 			});
