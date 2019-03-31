@@ -36,10 +36,10 @@ namespace CarShop.Service
         }
         public void Delete(Guid id)
         {
-            var product = orderProductsRepository.Find(id);
-            if (product != null)
+            var category = orderProductsRepository.Find(id);
+            if (category != null)
             {
-                this.Delete(product);
+                this.Delete(category);
             }
         }
         public OrderProducts Find(Guid id)
@@ -70,12 +70,12 @@ namespace CarShop.Service
 
         public void Update(OrderProducts entity)
         {
-            var OrderProduct = orderProductsRepository.Find(entity.Id);
-            OrderProduct.ProductName = entity.ProductName;
-            OrderProduct.Priece = entity.Priece;
-            OrderProduct.Quantity = entity.Quantity;
-            OrderProduct.TotalPrice = entity.TotalPrice;
-            orderProductsRepository.Update(OrderProduct);
+            var orderProducts = orderProductsRepository.Find(entity.Id);
+            orderProducts.ProductName = entity.ProductName;
+            orderProducts.Priece = entity.Priece;
+            orderProducts.Quantity = entity.Quantity;
+            orderProducts.TotalPrice = entity.TotalPrice;
+            orderProductsRepository.Update(orderProducts);
             unitOfWork.SaveChanges();
         }
     }

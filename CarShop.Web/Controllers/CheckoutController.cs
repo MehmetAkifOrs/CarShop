@@ -19,9 +19,10 @@ namespace CarShop.Web.Controllers
         private readonly IDistrictService districtService;
         private readonly ICartService cartService;
         private readonly IOrderProductsService orderProductsService;
+        private readonly ILocationService locationService;
         public CheckoutController(IProductService productService, ICategoryService categoryService, IOrderService orderService,
           ICountryService countryService, ICityService cityService, IDistrictService districtService, ICartService cartService,
-          IOrderProductsService orderProductsService) : base(categoryService)
+          IOrderProductsService orderProductsService, ILocationService locationService) : base(categoryService)
         {
             this.productService = productService;
             this.categoryService = categoryService;
@@ -30,101 +31,183 @@ namespace CarShop.Web.Controllers
             this.cityService = cityService;
             this.districtService = districtService;
             this.cartService = cartService;
+            this.orderProductsService = orderProductsService;
+            this.locationService = locationService;
         }
         public ActionResult GetCities(Guid? countryId)
         {
-            //using (var db = new ApplicationDbContext())
-            //{
+
             var db = cityService.GetAll();
-                var cities = db.Where(c => c.CountryId == countryId).OrderBy(o => o.Name).Select(x => new { x.Id, x.Name }).ToList();
-                return Json(cities);
-            //}
+            var cities = db.Where(c => c.CountryId == countryId).OrderBy(o => o.Name).Select(x => new { x.Id, x.Name }).ToList();
+            return Json(cities);
+
         }
         public ActionResult GetDistricts(Guid? cityId)
         {
-            //using (var db = new ApplicationDbContext())
-            //{
+
             var db = districtService.GetAll();
-                var districts = db.Where(c => c.CityId == cityId).OrderBy(o => o.Name).Select(x => new { x.Id, x.Name }).ToList();
-                return Json(districts);
-            //}
+            var districts = db.Where(c => c.CityId == cityId).OrderBy(o => o.Name).Select(x => new { x.Id, x.Name }).ToList();
+            return Json(districts);
+
         }
         // GET: Checkout
         public ActionResult Index()
         {
-           
+
             var location = new Location();
+            //var order = new Order();
+            //order.Id = Guid.NewGuid();
+            //orderService.Insert(order);
             var cartProducts = cartService.GetAll();
-            var orderProducts = orderProductsService.GetAll();
+          
             
+
             foreach (var item in cartProducts)
             {
-
-                foreach (var orderItem in orderProducts)
+                var orderProducts = new OrderProducts();
+                bool contains = false;
+                foreach (var testItem in orderProductsService.GetAll())
                 {
-                    orderItem.ProductName = item.ProductName;
-                    orderItem.Priece = item.Piece;
-                    orderItem.Quantity = item.Piece;
-                    orderItem.TotalPrice = item.Piece * item.Price;
+                    if(testItem.ProductName == item.ProductName)
+                    {
+                        contains = true;
+                    }
+                }
+                if (contains == false)
+                {
+                    orderProducts.ProductName = item.ProductName;
+                    orderProducts.Priece = item.Price;
+                    orderProducts.Quantity = item.Piece;
+                    orderProducts.TotalPrice = item.Price * item.Piece;
+                    //orderProducts.OrderId = order.Id;
+                    orderProductsService.Insert(orderProducts);
                 }
 
-                //bool contains = false;
 
-                //foreach (var orderItem in orderProductsService.GetAll())
+                //bool contains = false;
+                //var orderProducts = new OrderProducts();
+
+                //foreach (var orderItem in orderService.GetAll().Where(o => o.Id == order.Id))
                 //{
-                //    if(orderItem.ProductName == item.ProductName)
+                //    foreach (var orderProducts in orderItem.OrderProducts)
                 //    {
-                //       contains = true;
+                //        orderProducts.ProductName = item.ProductName;
+                //        orderProducts.Priece = item.Price;
+                //        orderProducts.Quantity = item.Piece;
+                //        orderProductsService.Insert(orderProducts);
                 //    }
 
+
+                //    //if (orderItem.OrderProducts == item.ProductName)
+
+                //    //    contains = true;
                 //}
-                //var order = new Order();
 
                 //if (contains == false)
                 //{
-                //    order.OrderProducts.P = item.Piece * item.Price;
-                //    order.Orders = item.ProductName;
-                //    order.piece = item.Piece;
-                //    orderService.Insert(order);
+                //    orderProducts.ProductName = item.ProductName;
+                //    orderProducts.Priece = item.Price;
+                //    orderProducts.Quantity = item.Piece;
+                //    orderProducts.TotalPrice = item.Piece * item.Price;
+                //    orderProducts.OrderId = order.Id;
+                //    orderProductsService.Insert(orderProducts);
                 //}
 
             }
 
             ViewBag.OrderProducts = orderProductsService.GetAll();
-           
 
-            //using (var db = new ApplicationDbContext())
-            //{
+
+
             var countries = countryService.GetAll();
             var cities = cityService.GetAll();
             var districts = districtService.GetAll();
-                ViewBag.CountryId = new SelectList(countries.OrderBy(c => c.Name).ToList(), "Id", "Name");
-                ViewBag.CityId = new SelectList(cities.OrderBy(c => c.Name).Where(w => w.CountryId == location.CountryId).ToList(), "Id", "Name");
-                ViewBag.DistrictId = new SelectList(districts.OrderBy(c => c.Name).Where(w => w.CityId == location.CityId).ToList(), "Id", "Name");
+            ViewBag.CountryId = new SelectList(countries.OrderBy(c => c.Name).ToList(), "Id", "Name");
+            ViewBag.CityId = new SelectList(cities.OrderBy(c => c.Name).Where(w => w.CountryId == location.CountryId).ToList(), "Id", "Name");
+            ViewBag.DistrictId = new SelectList(districts.OrderBy(c => c.Name).Where(w => w.CityId == location.CityId).ToList(), "Id", "Name");
+
+            //using (var db = new ApplicationDbContext())
+            //{
+            //    location.Id = Guid.NewGuid();
+            //    db.Locations.Add(location);
+            //    db.SaveChanges();
             //}
 
             return View(location);
         }
         [HttpPost]
-        public ActionResult Index(Location location)
+        public ActionResult Index(Location location, string firstName, string lastName, string adress, string phone, string email, string byBankTransfer, string atDelivery)
         {
 
 
-            try
+            var order = new Order();
+            order.Id = Guid.NewGuid();
+            //orderService.Insert(order);
+
+            order.CountryName = countryService.GetAll().Where(c => c.Id == location.CountryId).FirstOrDefault().Name;
+            order.CityName = cityService.GetAll().Where(c => c.Id == location.CityId).FirstOrDefault().Name;
+            order.DistrictName = districtService.GetAll().Where(c => c.Id == location.DistrictId).FirstOrDefault().Name;
+            order.CustomerFirstName = firstName;
+            order.CustomerLastName = lastName;
+            order.Email = email;
+            order.Phone = phone;
+            order.Address = adress;
+            orderService.Insert(order);
+            foreach (var item in orderProductsService.GetAll().Where(p => p.OrderId == null))
             {
-                using (var db = new ApplicationDbContext())
-                {
-                    location.Id = Guid.NewGuid();
-                    db.Locations.Add(location);
-                    db.SaveChanges();
-                    return Json(new { success = true });
-                }
-            }
-            catch (Exception ex)
-            {
-                return Json(new { success = false, message = ex.Message });
+                item.OrderId = order.Id;
+                orderProductsService.Update(item);
             }
 
+            var orderId = orderService.Find(order.Id);
+           
+
+
+            //try
+            //{
+            //    using (var db = new ApplicationDbContext())
+            //    {
+            //        location.Id = Guid.NewGuid();
+            //        db.Locations.Add(location);
+            //        db.SaveChanges();
+            //        return Json(new { success = true });
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    return Json(new { success = false, message = ex.Message });
+            //}
+            
+
+            if(byBankTransfer == "on")
+            {
+                return RedirectToAction("ByBankTransfer",orderId);
+            }
+            else
+            {
+                return RedirectToAction("CompleteShop");
+            }
+
+
+           
+
+        }
+        public ActionResult ByBankTransfer()
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ByBankTransfer(Guid orderId)
+        {
+
+            return View();
+        }
+
+        public ActionResult CompleteShop()
+        {
+            return View();
         }
     }
 }

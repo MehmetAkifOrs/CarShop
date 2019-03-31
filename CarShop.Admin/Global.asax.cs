@@ -64,6 +64,7 @@ namespace CarShop.Admin
             builder.RegisterType(typeof(DistrictService)).As(typeof(IDistrictService)).InstancePerDependency();
             builder.RegisterType(typeof(OrderService)).As(typeof(IOrderService)).InstancePerDependency();
             builder.RegisterType(typeof(OrderProductsService)).As(typeof(IOrderProductsService)).InstancePerDependency();
+            builder.RegisterType(typeof(LocationService)).As(typeof(ILocationService)).InstancePerDependency();
 
 
             builder.RegisterType<ApplicationUserManager>().AsSelf().InstancePerRequest();
