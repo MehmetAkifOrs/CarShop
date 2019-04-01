@@ -58,91 +58,11 @@ namespace CarShop.Web.Controllers
         // GET: Checkout
         public ActionResult Index()
         {
-
             var location = new Location();
-            //var order = new Order();
-            //order.Id = Guid.NewGuid();
-            //orderService.Insert(order);
-            var cartProducts = cartService.GetAll();
-          
-            
 
-            foreach (var item in cartProducts)
-            {
-                var orderProducts = new OrderProducts();
-               
+            ViewBag.CurrentOrders = cartService.GetAll();
 
-                //foreach (var testItem in orderProductsService.GetAll())
-                //{
-                //    if(testItem.ProductName == item.ProductName)
-                //    {
-                //        contains = true;
-                //    }
-                //}
-
-                if (orderProductsService.GetAll().FirstOrDefault() == null)
-                {
-                    orderProducts.ProductName = item.ProductName;
-                    orderProducts.Priece = item.Price;
-                    orderProducts.Quantity = item.Piece;
-                    orderProducts.TotalPrice = item.Price * item.Piece;
-                    //orderProducts.OrderId = order.Id;
-                    orderProductsService.Insert(orderProducts);
-                    contains = true;
-                }else 
-                {
-                    foreach (var currentitem in orderProductsService.GetAll())
-                    {
-                        if(currentitem.ProductName == item.ProductName)
-                        {
-                            orderProducts.ProductName = item.ProductName;
-                            orderProducts.Priece = item.Price;
-                            orderProducts.Quantity = item.Piece;
-                            orderProducts.TotalPrice = item.Price * item.Piece;
-                            //orderProducts.OrderId = order.Id;
-                            orderProductsService.Update(orderProducts);
-                        }
-
-                    }
-                   
-
-                }
-
-
-                //bool contains = false;
-                //var orderProducts = new OrderProducts();
-
-                //foreach (var orderItem in orderService.GetAll().Where(o => o.Id == order.Id))
-                //{
-                //    foreach (var orderProducts in orderItem.OrderProducts)
-                //    {
-                //        orderProducts.ProductName = item.ProductName;
-                //        orderProducts.Priece = item.Price;
-                //        orderProducts.Quantity = item.Piece;
-                //        orderProductsService.Insert(orderProducts);
-                //    }
-
-
-                //    //if (orderItem.OrderProducts == item.ProductName)
-
-                //    //    contains = true;
-                //}
-
-                //if (contains == false)
-                //{
-                //    orderProducts.ProductName = item.ProductName;
-                //    orderProducts.Priece = item.Price;
-                //    orderProducts.Quantity = item.Piece;
-                //    orderProducts.TotalPrice = item.Piece * item.Price;
-                //    orderProducts.OrderId = order.Id;
-                //    orderProductsService.Insert(orderProducts);
-                //}
-
-            }
-
-            ViewBag.OrderProducts = orderProductsService.GetAll();
-
-
+           
 
             var countries = countryService.GetAll();
             var cities = cityService.GetAll();
@@ -151,22 +71,18 @@ namespace CarShop.Web.Controllers
             ViewBag.CityId = new SelectList(cities.OrderBy(c => c.Name).Where(w => w.CountryId == location.CountryId).ToList(), "Id", "Name");
             ViewBag.DistrictId = new SelectList(districts.OrderBy(c => c.Name).Where(w => w.CityId == location.CityId).ToList(), "Id", "Name");
 
-            //using (var db = new ApplicationDbContext())
-            //{
-            //    location.Id = Guid.NewGuid();
-            //    db.Locations.Add(location);
-            //    db.SaveChanges();
-            //}
+          
 
             return View(location);
         }
         [HttpPost]
-        public ActionResult Index(Guid currentOrderId,Location location, string firstName, string lastName, string adress, string phone, string email, string byBankTransfer, string atDelivery)
+        public ActionResult Index(Location location, string firstName, string lastName, string adress, string phone, string email, string byBankTransfer, string atDelivery)
         {
 
 
             var order = new Order();
             order.Id = Guid.NewGuid();
+           
             //orderService.Insert(order);
 
             order.CountryName = countryService.GetAll().Where(c => c.Id == location.CountryId).FirstOrDefault().Name;
@@ -178,30 +94,24 @@ namespace CarShop.Web.Controllers
             order.Phone = phone;
             order.Address = adress;
             orderService.Insert(order);
+            foreach (var item in cartService.GetAll())
+            {
+                var orderProduct = new OrderProducts();
+                orderProduct.ProductName = item.ProductName;
+                orderProduct.Priece = item.Price;
+                orderProduct.Quantity = item.Piece;
+                orderProduct.OrderId = order.Id;
+                orderProductsService.Insert(orderProduct);
+            }
+           
             foreach (var item in orderProductsService.GetAll().Where(p => p.OrderId == null))
             {
                 item.OrderId = order.Id;
                 orderProductsService.Update(item);
             }
 
-            var orderId = orderService.Find(order.Id);
-           
-
-
-            //try
-            //{
-            //    using (var db = new ApplicationDbContext())
-            //    {
-            //        location.Id = Guid.NewGuid();
-            //        db.Locations.Add(location);
-            //        db.SaveChanges();
-            //        return Json(new { success = true });
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    return Json(new { success = false, message = ex.Message });
-            //}
+            var orderId = orderService.Find(order.Id);       
+                                 
             
 
             if(byBankTransfer == "on")

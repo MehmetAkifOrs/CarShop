@@ -32,8 +32,7 @@
 <!-- Checkout -->
 @using (Html.BeginForm("Index", "Checkout", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    <input type="hidden" name="currentOrderId" value="@ViewBag.CurrentOrderId" />
-
+   
     <div class="checkout">
         <div class="container">
             <div class="row">
@@ -134,14 +133,14 @@
                                 <div class="order_list_title">Ürünler</div>
                                 <div class="order_list_value ml-auto"></div>
                             </div>
-                            @foreach (var item in ViewBag.OrderProducts)
+                            @foreach (var item in ViewBag.CurrentOrders)
                             {
 
 
                                 <ul class="order_list">
                                     <li class="d-flex flex-row align-items-center justify-content-start">
-                                        <div class="order_list_title">@item.Quantity  Adet  @item.ProductName  Aracı</div>
-                                        <div class="order_list_value ml-auto">@item.TotalPrice  TL</div>
+                                        <div class="order_list_title">@item.Piece  Adet  @item.ProductName  Aracı</div>
+                                        <div class="order_list_value ml-auto">@item.Price  TL</div>
                                     </li>
 
                                     <li class="d-flex flex-row align-items-center justify-content-start">
