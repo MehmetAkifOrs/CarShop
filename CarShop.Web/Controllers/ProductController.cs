@@ -22,7 +22,6 @@ namespace CarShop.Web.Controllers
         // GET: Product
         public ActionResult Index(Guid id)
         {
-
             var categoryId = productService.Find(id).CategoryId;
             var category = categoryService.GetAll().Where(c => c.Id == categoryId);
             var product = productService.Find(id);
@@ -41,26 +40,15 @@ namespace CarShop.Web.Controllers
                 var cartId = cartService.GetAll().Where(i => i.ProductId == id).FirstOrDefault();
                 cartId.Piece += piece;
                 cartService.Update(cartId);
-
                 return RedirectToAction("Index", "Cart");
 
             }
-
-
             cartProduct.ProductName = product.Name;
             cartProduct.Piece = piece;
             cartProduct.Price = product.Price;
             cartProduct.CartProductPhoto = product.Photos.FirstOrDefault().Name;
             cartService.Insert(cartProduct);
-
-
             return RedirectToAction("Index", "Cart");
-
-
-
-
         }
-
-
     }
 }

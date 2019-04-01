@@ -32,6 +32,7 @@
 <!-- Checkout -->
 @using (Html.BeginForm("Index", "Checkout", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
+    <input type="hidden" name="currentOrderId" value="@ViewBag.CurrentOrderId" />
 
     <div class="checkout">
         <div class="container">

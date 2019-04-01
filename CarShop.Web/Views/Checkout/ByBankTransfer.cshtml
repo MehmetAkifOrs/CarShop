@@ -18,6 +18,8 @@
         <div class="checkout_form_container">
             @using (Html.BeginForm("ByBankTransfer", "Checkout", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
+
+
                 @Html.HiddenFor(model => model.Id)
 
                 <div class="row" align="left">
@@ -48,23 +50,24 @@
                     <div>
                         <!-- Address -->
                         <label for="checkout_address">Gönderen Adı Soyadı</label>
-                        <input type="text" id="checkout_address" name="adress" class="checkout_input" required="required">
+                        <input type="text" id="checkout_address" name="name" class="checkout_input" required="required">
+                    </div>
+                    <div>
+                        <!-- Email -->
+                        <label for="checkout_email">Gönderen Tc No</label>
+                        <input type="text" id="checkout_email" name="idNumner" class="checkout_input" required="required">
                     </div>
                     <div>
                         <!-- Phone no -->
                         <label for="checkout_phone">Gönderen Banka Adı</label>
-                        <input type="text" id="checkout_phone" name="phone" class="checkout_input" required="required">
+                        <input type="text" id="checkout_phone" name="bankName" class="checkout_input" required="required">
                     </div>
                     <div>
                         <!-- Email -->
                         <label for="checkout_email">Gönderen Hesap No</label>
-                        <input type="text" id="checkout_email" name="email" class="checkout_input" required="required">
+                        <input type="text" id="checkout_email" name="bankIban" class="checkout_input" required="required">
                     </div>
-                    <div>
-                        <!-- Email -->
-                        <label for="checkout_email">İşlem Referans No</label>
-                        <input type="text" id="checkout_email" name="email" class="checkout_input" required="required">
-                    </div>
+
 
                 </div>
                 <button type="submit" class="btn btn-success">Alışverişi Tamamla</button>

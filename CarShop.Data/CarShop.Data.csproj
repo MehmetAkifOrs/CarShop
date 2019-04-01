@@ -70,13 +70,13 @@
     <Compile Include="Builders\ProductBuilder.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="IUniteOfWork.cs" />
-    <Compile Include="Migrations\201903291528459_Initial.cs" />
-    <Compile Include="Migrations\201903291528459_Initial.Designer.cs">
-      <DependentUpon>201903291528459_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201904010518057_Initial.cs" />
+    <Compile Include="Migrations\201904010518057_Initial.Designer.cs">
+      <DependentUpon>201904010518057_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201903290635136_addingEntities.cs" />
-    <Compile Include="Migrations\201903290635136_addingEntities.Designer.cs">
-      <DependentUpon>201903290635136_addingEntities.cs</DependentUpon>
+    <Compile Include="Migrations\201904010828518_AddingPaymentInfo.cs" />
+    <Compile Include="Migrations\201904010828518_AddingPaymentInfo.Designer.cs">
+      <DependentUpon>201904010828518_AddingPaymentInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -94,11 +94,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903291528459_Initial.resx">
-      <DependentUpon>201903291528459_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201904010518057_Initial.resx">
+      <DependentUpon>201904010518057_Initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903290635136_addingEntities.resx">
-      <DependentUpon>201903290635136_addingEntities.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201904010828518_AddingPaymentInfo.resx">
+      <DependentUpon>201904010828518_AddingPaymentInfo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

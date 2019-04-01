@@ -20,6 +20,11 @@ namespace CarShop.Web.Controllers
         private readonly ICartService cartService;
         private readonly IOrderProductsService orderProductsService;
         private readonly ILocationService locationService;
+
+
+        bool contains = false;
+
+
         public CheckoutController(IProductService productService, ICategoryService categoryService, IOrderService orderService,
           ICountryService countryService, ICityService cityService, IDistrictService districtService, ICartService cartService,
           IOrderProductsService orderProductsService, ILocationService locationService) : base(categoryService)
@@ -65,15 +70,17 @@ namespace CarShop.Web.Controllers
             foreach (var item in cartProducts)
             {
                 var orderProducts = new OrderProducts();
-                bool contains = false;
-                foreach (var testItem in orderProductsService.GetAll())
-                {
-                    if(testItem.ProductName == item.ProductName)
-                    {
-                        contains = true;
-                    }
-                }
-                if (contains == false)
+               
+
+                //foreach (var testItem in orderProductsService.GetAll())
+                //{
+                //    if(testItem.ProductName == item.ProductName)
+                //    {
+                //        contains = true;
+                //    }
+                //}
+
+                if (orderProductsService.GetAll().FirstOrDefault() == null)
                 {
                     orderProducts.ProductName = item.ProductName;
                     orderProducts.Priece = item.Price;
@@ -81,6 +88,24 @@ namespace CarShop.Web.Controllers
                     orderProducts.TotalPrice = item.Price * item.Piece;
                     //orderProducts.OrderId = order.Id;
                     orderProductsService.Insert(orderProducts);
+                    contains = true;
+                }else 
+                {
+                    foreach (var currentitem in orderProductsService.GetAll())
+                    {
+                        if(currentitem.ProductName == item.ProductName)
+                        {
+                            orderProducts.ProductName = item.ProductName;
+                            orderProducts.Priece = item.Price;
+                            orderProducts.Quantity = item.Piece;
+                            orderProducts.TotalPrice = item.Price * item.Piece;
+                            //orderProducts.OrderId = order.Id;
+                            orderProductsService.Update(orderProducts);
+                        }
+
+                    }
+                   
+
                 }
 
 
@@ -136,7 +161,7 @@ namespace CarShop.Web.Controllers
             return View(location);
         }
         [HttpPost]
-        public ActionResult Index(Location location, string firstName, string lastName, string adress, string phone, string email, string byBankTransfer, string atDelivery)
+        public ActionResult Index(Guid currentOrderId,Location location, string firstName, string lastName, string adress, string phone, string email, string byBankTransfer, string atDelivery)
         {
 
 
@@ -192,21 +217,33 @@ namespace CarShop.Web.Controllers
            
 
         }
-        public ActionResult ByBankTransfer()
+        public ActionResult ByBankTransfer(Order orderId)
         {
 
-            return View();
+            return View(orderId);
         }
 
         [HttpPost]
-        public ActionResult ByBankTransfer(Guid orderId)
+        public ActionResult ByBankTransfer(Guid id,string name,string idNumner, string bankName, string bankIban)
         {
+            var currentOrder = orderService.Find(id);
+            currentOrder.SenderName = name;
+            currentOrder.IdNumber = idNumner;
+            currentOrder.BankName = bankName;
+            currentOrder.BankIban = bankIban;
+            orderService.Update(currentOrder);
 
-            return View();
+
+
+            return RedirectToAction("CompleteShop");
         }
 
         public ActionResult CompleteShop()
         {
+            foreach (var item in cartService.GetAll())
+            {
+                cartService.Delete(item);
+            }
             return View();
         }
     }

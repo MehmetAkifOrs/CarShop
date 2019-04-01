@@ -35,8 +35,18 @@ namespace CarShop.Model
         public String Email { get; set; }       
 
         [Display(Name = "Toplam Tutar")]
-        public Decimal? TotalPrice { get; set; }          
-       
+        public Decimal? TotalPrice { get; set; }
+        [Display(Name = "Gönderen Adı Soyadı")]
+        public String SenderName { get; set; }
+
+        [Display(Name = "Gönderen Tc No")]
+        public String IdNumber { get; set; }
+        [Display(Name = "Gönderen Banka Adı")]
+        public String BankName { get; set; }
+
+        [Display(Name = "Gönderen Iban No")]
+        public String BankIban { get; set; }
+
         public virtual ICollection<OrderProducts> OrderProducts { get; set; }
 
     }
