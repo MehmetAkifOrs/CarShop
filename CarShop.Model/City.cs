@@ -19,8 +19,11 @@ namespace CarShop.Model
         }
         
         [Display(Name = "Şehir")]
+        [Required(ErrorMessage = "Bu Alan Zorunludur !")]
+        [MaxLength(100)]
         public string Name { get; set; }
-        [Display(Name = "Ülke")]
+        [Display(Name = "Ülke")]     
+        
         public Guid? CountryId { get; set; }
         [ForeignKey("CountryId")]
         [Display(Name = "Ülke")]

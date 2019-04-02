@@ -17,6 +17,7 @@ namespace CarShop.Model
         }
        
         [Display(Name ="Ülke")]
+        [Required(ErrorMessage = "Bu Alan Zorunludur !")]
         public String Name { get; set; }
     
         public virtual ICollection<City> Cities { get; set; }

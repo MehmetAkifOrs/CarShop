@@ -16,7 +16,7 @@ namespace CarShop.Web.Controllers
         private readonly ICategoryService categoryService;
         private readonly ICartService cartService;
         private readonly IOrderService orderService;
-        public CartController(ICartService cartService, IProductService productService, ICategoryService categoryService, IOrderService orderService) : base(categoryService)
+        public CartController(ICartService cartService, IProductService productService, ICategoryService categoryService, IOrderService orderService) : base(categoryService, cartService)
         {
             this.productService = productService;
             this.categoryService = categoryService;

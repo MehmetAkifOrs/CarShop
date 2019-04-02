@@ -12,6 +12,7 @@ namespace CarShop.Model
     {
        
         [Display(Name="İlçe")]
+        [Required(ErrorMessage = "Bu Alan Zorunludur !")]
         public string Name { get; set; }
         [Display(Name = "Şehir")]
         public Guid? CityId { get; set; }

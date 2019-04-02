@@ -10,10 +10,12 @@ namespace CarShop.Web.Controllers
 {
     public class ControllerBase : Controller
     {
-        private readonly ICategoryService categoryService;       
-        public ControllerBase(ICategoryService categoryService)
+        private readonly ICategoryService categoryService;
+        private readonly ICartService cartService;
+        public ControllerBase(ICategoryService categoryService, ICartService cartService)
         {       
             this.categoryService = categoryService;
+            this.cartService = cartService;
         }
         // bu metot tüm actionlardan önce çalışır
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
@@ -24,6 +26,15 @@ namespace CarShop.Web.Controllers
         // bu metot tüm actionlardan sonra çalışır
         protected override void OnActionExecuted(ActionExecutedContext filterContext)
         {
+
+            if (cartService.GetAll().Count() > 0)
+            {
+                ViewBag.CartCount = cartService.GetAll().Count();
+            }else
+            {
+                ViewBag.CartCount = 0;
+            }
+
             if (categoryService != null)
             {
                 ViewBag.Categories = categoryService.GetAll();

@@ -13,7 +13,7 @@ namespace CarShop.Web.Controllers
         private readonly IProductService productService;
         private readonly ICategoryService categoryService;
         private readonly ICartService cartService;
-        public ProductController(IProductService productService, ICategoryService categoryService, ICartService cartService) : base(categoryService)
+        public ProductController(IProductService productService, ICategoryService categoryService, ICartService cartService) : base(categoryService, cartService)
         {
             this.productService = productService;
             this.categoryService = categoryService;

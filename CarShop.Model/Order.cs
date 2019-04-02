@@ -16,19 +16,35 @@ namespace CarShop.Model
         }           
        
         [Display(Name ="Müşteri Adı")]
+        [MaxLength(100)]
+        [Required(ErrorMessage = "Bu Alan Zorunludur !")]
         public String CustomerFirstName { get; set; }
         [Display(Name = "Müşteri Soyadı")]
+        [MaxLength(100)]
+        [Required(ErrorMessage = "Bu Alan Zorunludur !")]
         public String CustomerLastName { get; set; }
         [Display(Name = "Ülke")]
+        [MaxLength(100)]
+        [Required(ErrorMessage = "Bu Alan Zorunludur !")]
         public String CountryName { get; set; }
+        [MaxLength(100)]
+        [Required(ErrorMessage = "Bu Alan Zorunludur !")]
         [Display(Name = "Şehir")]
         public String CityName { get; set; }
         [Display(Name = "İlçe")]
+        [MaxLength(100)]
+        [Required(ErrorMessage = "Bu Alan Zorunludur !")]
         public String DistrictName { get; set; }
         [Display(Name = "Adres")]
+        [MaxLength(1000)]
+        [Required(ErrorMessage = "Bu Alan Zorunludur !")]
         public String Address { get; set; }
         [Display(Name = "Telefon")]
         [Phone]
+        [MaxLength(100)]
+        [Required(ErrorMessage = "Bu Alan Zorunludur !")]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$",
+                   ErrorMessage = "Lütfen uygun formatta giriş yapınız")]
         public String Phone { get; set; }
         [Display(Name = "E-posta")]
         [EmailAddress]

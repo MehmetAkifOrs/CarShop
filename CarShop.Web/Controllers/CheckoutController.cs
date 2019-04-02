@@ -27,7 +27,7 @@ namespace CarShop.Web.Controllers
 
         public CheckoutController(IProductService productService, ICategoryService categoryService, IOrderService orderService,
           ICountryService countryService, ICityService cityService, IDistrictService districtService, ICartService cartService,
-          IOrderProductsService orderProductsService, ILocationService locationService) : base(categoryService)
+          IOrderProductsService orderProductsService, ILocationService locationService) : base(categoryService, cartService)
         {
             this.productService = productService;
             this.categoryService = categoryService;

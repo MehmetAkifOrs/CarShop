@@ -15,13 +15,18 @@ namespace CarShop.Model
         }
 
         [Display(Name = "Kategori Adı")]
+        [MaxLength(100)]
+        [Required(ErrorMessage = "Bu Alan Zorunludur !")]
         public String Name { get; set; }
         [Display(Name = "Açıklama")]
         [DataType(DataType.MultilineText)]
+        [MaxLength(4000)]
         public string Description { get; set; }
         [Display(Name = "Kategori Simge Fotosu")]
+        [Required(ErrorMessage = "Bu Alan Zorunludur !")]
         public String IconPhoto { get; set; }
         [Display(Name = "Kategori Sayfa Fotosu")]
+        [Required(ErrorMessage = "Bu Alan Zorunludur !")]
         public String PagePhoto { get; set; }
 
         public virtual ICollection<Product> Products { get; set; }

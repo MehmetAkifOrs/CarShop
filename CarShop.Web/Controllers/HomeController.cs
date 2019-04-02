@@ -16,7 +16,8 @@ namespace CarShop.Web.Controllers
         private readonly IMainPageService mainpageService;
         private readonly IAboutService aboutService;
         private readonly IContactPageService contactpageService;
-        public HomeController(IProductService productService, ICategoryService categoryService, IMainPageService mainpageService,IAboutService aboutService,IContactPageService contactpageService) : base(categoryService)
+        private readonly ICartService cartService;
+        public HomeController(IProductService productService, ICategoryService categoryService, IMainPageService mainpageService, IAboutService aboutService,IContactPageService contactpageService,ICartService cartService) : base(categoryService, cartService)
         {
             this.productService = productService;
             this.categoryService = categoryService;

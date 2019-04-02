@@ -10,7 +10,8 @@ namespace CarShop.Model
     public class MainPage : BaseEntity
     {
        
-        [Display(Name = "Anasayfa Fotoğrafı")]                
+        [Display(Name = "Anasayfa Fotoğrafı")]
+        [Required(ErrorMessage = "Bu Alan Zorunludur !")]
         public String MainPagePhoto { get; set; }
         [Display(Name = "Anasayfa Başlığı")]
         public string MainPageHeader { get; set; }

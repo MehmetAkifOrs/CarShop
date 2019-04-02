@@ -17,11 +17,8 @@ namespace CarShop.Web.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
-        public ManageController():base(null)
-        {
-        }
-
-        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, ICategoryService categoryService) : base(categoryService)
+       
+        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, ICategoryService categoryService,ICartService cartService) : base(categoryService, cartService)
         {
             UserManager = userManager;
             SignInManager = signInManager;

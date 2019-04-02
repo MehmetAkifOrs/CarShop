@@ -11,18 +11,27 @@ namespace CarShop.Model
     public class Cart : BaseEntity
     {
         [Display(Name = "Adet")]
+        [Required(ErrorMessage = "Bu Alan Zorunludur !")]
+
         public int Piece { get; set; }
 
         [Display(Name = "Ürün Adı")]
+        [MaxLength(100)]
+        [Required(ErrorMessage = "Bu Alan Zorunludur !")]
         public string ProductName { get; set; }                
         
         [Display(Name = "Fiyat")]
+        [Column(TypeName = "decimal(18,0)",)]
+        
+  
+        [Required(ErrorMessage = "Bu Alan Zorunludur !")]
         public Decimal Price { get; set; }
 
         [Display(Name = "Ürün Fotosu")]
+        [Required(ErrorMessage = "Bu Alan Zorunludur !")]
         public String CartProductPhoto { get; set; }
 
-        [Display(Name = "Ürünler")]
+        [Display(Name = "Ürünler")]      
         public Guid? ProductId { get; set; }
         [ForeignKey("ProductId")]
         public virtual Product Product { get; set; }
