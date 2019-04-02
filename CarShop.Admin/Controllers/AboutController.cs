@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace CarShop.Admin.Controllers
 {
-    public class AboutController : Controller
+    public class AboutController : ControllerBase
     {
         private readonly IAboutService aboutService;
 

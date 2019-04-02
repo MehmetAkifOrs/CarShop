@@ -3,7 +3,7 @@ namespace CarShop.Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class InitialCreate : DbMigration
     {
         public override void Up()
         {
@@ -30,7 +30,7 @@ namespace CarShop.Data.Migrations
                         Piece = c.Int(nullable: false),
                         ProductName = c.String(nullable: false, maxLength: 100),
                         Price = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        CartProductPhoto = c.String(),
+                        CartProductPhoto = c.String(nullable: false),
                         ProductId = c.Guid(),
                         CreatedBy = c.String(),
                         CreatedAt = c.DateTime(),
@@ -67,7 +67,7 @@ namespace CarShop.Data.Migrations
                     {
                         Id = c.Guid(nullable: false),
                         Name = c.String(nullable: false, maxLength: 100),
-                        Description = c.String(),
+                        Description = c.String(maxLength: 4000),
                         IconPhoto = c.String(),
                         PagePhoto = c.String(),
                         CreatedBy = c.String(),
@@ -98,7 +98,7 @@ namespace CarShop.Data.Migrations
                 c => new
                     {
                         Id = c.Guid(nullable: false),
-                        Name = c.String(),
+                        Name = c.String(nullable: false, maxLength: 100),
                         CountryId = c.Guid(),
                         CreatedBy = c.String(),
                         CreatedAt = c.DateTime(),
@@ -114,7 +114,7 @@ namespace CarShop.Data.Migrations
                 c => new
                     {
                         Id = c.Guid(nullable: false),
-                        Name = c.String(),
+                        Name = c.String(nullable: false),
                         CreatedBy = c.String(),
                         CreatedAt = c.DateTime(),
                         UpdatedBy = c.String(),
@@ -127,15 +127,19 @@ namespace CarShop.Data.Migrations
                 c => new
                     {
                         Id = c.Guid(nullable: false),
-                        CustomerFirstName = c.String(),
-                        CustomerLastName = c.String(),
-                        CountryName = c.String(),
-                        CityName = c.String(),
-                        DistrictName = c.String(),
-                        Address = c.String(),
-                        Phone = c.String(),
+                        CustomerFirstName = c.String(maxLength: 100),
+                        CustomerLastName = c.String(maxLength: 100),
+                        CountryName = c.String(maxLength: 100),
+                        CityName = c.String(maxLength: 100),
+                        DistrictName = c.String(maxLength: 100),
+                        Address = c.String(nullable: false, maxLength: 1000),
+                        Phone = c.String(maxLength: 100),
                         Email = c.String(),
                         TotalPrice = c.Decimal(precision: 18, scale: 2),
+                        SenderName = c.String(),
+                        IdNumber = c.String(),
+                        BankName = c.String(),
+                        BankIban = c.String(),
                         CreatedBy = c.String(),
                         CreatedAt = c.DateTime(),
                         UpdatedBy = c.String(),
@@ -173,7 +177,7 @@ namespace CarShop.Data.Migrations
                 c => new
                     {
                         Id = c.Guid(nullable: false),
-                        Name = c.String(),
+                        Name = c.String(nullable: false),
                         CityId = c.Guid(),
                         CreatedBy = c.String(),
                         CreatedAt = c.DateTime(),

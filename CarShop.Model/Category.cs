@@ -23,10 +23,10 @@ namespace CarShop.Model
         [MaxLength(4000)]
         public string Description { get; set; }
         [Display(Name = "Kategori Simge Fotosu")]
-        [Required(ErrorMessage = "Bu Alan Zorunludur !")]
+       // [Required(ErrorMessage = "Bu Alan Zorunludur !")]
         public String IconPhoto { get; set; }
         [Display(Name = "Kategori Sayfa Fotosu")]
-        [Required(ErrorMessage = "Bu Alan Zorunludur !")]
+        //[Required(ErrorMessage = "Bu Alan Zorunludur !")]
         public String PagePhoto { get; set; }
 
         public virtual ICollection<Product> Products { get; set; }

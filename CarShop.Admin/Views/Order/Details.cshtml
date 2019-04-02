@@ -1,0 +1,118 @@
+﻿@model CarShop.Model.Order
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detay Sayfası</h2>
+
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerFirstName)
+            @Html.DisplayNameFor(model => model.CustomerLastName)
+
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerFirstName)
+            @Html.DisplayFor(model => model.CustomerLastName)
+
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CountryName)
+
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CountryName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CityName)
+
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CityName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DistrictName)
+
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DistrictName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+
+        </dt>
+
+        <dd>
+
+            @Html.DisplayFor(model => model.Address)
+
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderProducts)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderProducts)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BankName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BankName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BankIban)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BankIban)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SenderName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SenderName)
+        </dd>
+
+
+
+
+
+
+    </dl>
+</div>
+<p>
+
+    @Html.ActionLink("Geri Dön", "Index")
+</p>

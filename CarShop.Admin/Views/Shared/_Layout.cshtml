@@ -6,12 +6,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/assets/vendor/charts/morris-bundle/morris.css">
     <link rel="stylesheet" href="/assets/vendor/bootstrap/css/bootstrap.min.css">
     <link href="/assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
     <link rel="stylesheet" href="/assets/libs/css/style.css">
     <link rel="stylesheet" href="/assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
     <link rel="stylesheet" href="/assets/vendor/charts/chartist-bundle/chartist.css">
-    <link rel="stylesheet" href="/assets/vendor/charts/morris-bundle/morris.css">
     <link rel="stylesheet" href="/assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="/assets/vendor/charts/c3charts/c3.css">
     <link rel="stylesheet" href="/assets/vendor/fonts/flag-icon-css/flag-icon.min.css">
@@ -79,7 +79,7 @@
                         @*</li>*@
 
                         <li class="nav-item dropdown nav-user">
-                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="/assets/images/avatar-1.jpg" alt="" class="user-avatar-md rounded-circle" style="    margin-top: 5px;"></a>
+                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="/assets/images/avatar-1.jpg" alt="" class="user-avatar-md rounded-circle"</a>
                             <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
                                 @*<div class="nav-user-info">
 
@@ -126,40 +126,51 @@
                                 Menu
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "Home"?"active":"")" href="@Url.Action("Index","Home")"><i class="fa fa-fw fa-user-circle"></i>Anasayfa</a>
+                                <a class="nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "Home"?"active":"")" href="@Url.Action("Index","Home")"><i class="fa fa-home"></i>Anasayfa</a>
                             </li>
 
                             <li class="nav-item ">
-                                <a class="nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "Category"?"active":"")" href="@Url.Action("Index","Category")"><i class="fas fa-fw fa-table"></i>Kategoriler</a>
+                                <a class="nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "Category"?"active":"")" href="@Url.Action("Index","Category")"><i class="fa fa-th-list"></i>Kategoriler</a>
 
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "Product"?"active":"")" href="@Url.Action("Index","Product")"><i class="fab fa-fw fa-wpforms"></i>Ürünler</a>
-
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "PageContent"?"active":"")" href="@Url.Action("Index","About")"><i class="fab fa-fw fa-wpforms"></i>Hakkımızda</a>
+                                <a class="nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "Product"?"active":"")" href="@Url.Action("Index","Product")"><i class="fa fa-tags"></i>Ürünler</a>
 
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "MainPage"?"active":"")" href="@Url.Action("Index","MainPage")"><i class="fab fa-fw fa-wpforms"></i>AnaSayfa</a>
-
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "ContactPage"?"active":"")" href="@Url.Action("Index","ContactPage")"><i class="fab fa-fw fa-wpforms"></i>İletişim</a>
+                                <a class="nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "ApplicationUser"?"active":"")" href="@Url.Action("Index","Order")"><i class="fa fa-shopping-cart"></i>Siparişler</a>
 
                             </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "ApplicationUser"?"active":"")" href="@Url.Action("Index","ApplicationUser")"><i class="fa fa-fw fa-user-circle"></i>Kullanıcılar</a>
-
-                            </li>
                             @*<li class="nav-item">
-            <a class="nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "Feedback"?"active":"")" href="@Url.Action("Index","Feedback")"><i class="fa fa-fw fa-rocket"></i>Bildirimler</a>
+                                    <a class="nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "ApplicationUser"?"active":"")" href="@Url.Action("Index","ApplicationUser")"><i class="fa fa-envelope"></i>Geri Bildirim</a>
 
-        </li>*@
+                                </li>*@
+
+                            <li class="nav-item">
+                                <a class="nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "ApplicationUser"?"active":"")" href="@Url.Action("Index","ApplicationUser")"><i class="fa fa-user-circle"></i>Kullanıcılar</a>
+
+                            </li>
+
+                            <li class="nav-divider">
+                                Sayfa Düzenlemeleri
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "MainPage"?"active":"")" href="@Url.Action("Index","MainPage")"><i class="fa fa-pen-square"></i>AnaSayfa</a>
+
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "PageContent"?"active":"")" href="@Url.Action("Index","About")"><i class="fa fa-pen-square"></i>Hakkımızda</a>
+
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "ContactPage"?"active":"")" href="@Url.Action("Index","ContactPage")"><i class="fa fa-pen-square"></i>İletişim</a>
+
+                            </li>
+
+
                         </ul>
                     </div>
                 </nav>
@@ -208,14 +219,6 @@
     <!-- end main wrapper  -->
     <!-- ============================================================== -->
     <!-- Optional JavaScript -->
-    <!-- jquery 3.3.1 -->
-    <script src="/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
-    <!-- bootstap bundle js -->
-    <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
-    <!-- slimscroll js -->
-    <script src="/assets/vendor/slimscroll/jquery.slimscroll.js"></script>
-    <!-- main js -->
-    <script src="/assets/libs/js/main-js.js"></script>
     <!-- chart chartist js -->
     <script src="/assets/vendor/charts/chartist-bundle/chartist.min.js"></script>
     <!-- sparkline js -->
@@ -228,6 +231,15 @@
     <script src="/assets/vendor/charts/c3charts/d3-5.4.0.min.js"></script>
     <script src="/assets/vendor/charts/c3charts/C3chartjs.js"></script>
     <script src="/assets/libs/js/dashboard-ecommerce.js"></script>
+
+    <!-- jquery 3.3.1 -->
+    <script src="/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+    <!-- bootstap bundle js -->
+    <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <!-- slimscroll js -->
+    <script src="/assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+    <!-- main js -->
+    <script src="/assets/libs/js/main-js.js"></script>
 
     <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script>

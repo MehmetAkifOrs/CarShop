@@ -11,10 +11,10 @@ namespace CarShop.Model
     {
 
         [Display(Name = "İletişim Sayfası Fotoğrafı")]
-        [Required(ErrorMessage = "Bu Alan Zorunludur !")]
+       // [Required(ErrorMessage = "Bu Alan Zorunludur !")]
         public String ContactPagePhoto { get; set; }
         [Display(Name = "İletişim Bilgileri")]
-        [Required(ErrorMessage = "Bu Alan Zorunludur !")]
+        
         public string ContactPageInformation { get; set; }
         [Display(Name = "Adres")]
 

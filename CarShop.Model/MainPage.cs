@@ -11,7 +11,7 @@ namespace CarShop.Model
     {
        
         [Display(Name = "Anasayfa Fotoğrafı")]
-        [Required(ErrorMessage = "Bu Alan Zorunludur !")]
+        //[Required(ErrorMessage = "Bu Alan Zorunludur !")]
         public String MainPagePhoto { get; set; }
         [Display(Name = "Anasayfa Başlığı")]
         public string MainPageHeader { get; set; }

@@ -21,7 +21,7 @@ namespace CarShop.Model
         public string ProductName { get; set; }                
         
         [Display(Name = "Fiyat")]
-        [Column(TypeName = "decimal(18,0)",)]
+        
         
   
         [Required(ErrorMessage = "Bu Alan Zorunludur !")]
