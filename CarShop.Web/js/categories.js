@@ -199,7 +199,8 @@ $(document).ready(function()
 	            	{
 	            		var priceEle = $(itemElement).find('.product_price').text().replace( '$', '' );
 	            		return parseFloat(priceEle);
-	            	},
+                    },
+                    
 	            	name: '.product_name',
 	            	stars: function(itemElement)
 	            	{

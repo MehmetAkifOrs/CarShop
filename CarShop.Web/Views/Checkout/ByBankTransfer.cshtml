@@ -4,77 +4,103 @@
 }
 <link rel="stylesheet" type="text/css" href="~/styles/checkout.css">
 <link rel="stylesheet" type="text/css" href="~/styles/checkout_responsive.css">
-<head>
-    <style>
-        label,h3,h5 {
-            color : black;
-        }
-    </style>
-</head>
-<div class="col-lg-6">
-    <div class="billing checkout_section">
-        <div class="section_title">Address</div>
-        <div class="section_subtitle">Ödeme Bilgileri</div>
-        <div class="checkout_form_container">
-            @using (Html.BeginForm("ByBankTransfer", "Checkout", FormMethod.Post, new { enctype = "multipart/form-data" }))
-            {
 
-
-                @Html.HiddenFor(model => model.Id)
-
-                <div class="row" align="left">
-                    <div>
-                        <h3>Banka Havale/EFT İle Ödeme Yapmak İçin Gerekenler</h3>
-                        <h5>1. Aşağıda Bilgileri Verilmiş olan Banka Hesabına Gerekli Ücretin Yatırılması.</h5>
-                        <h5>2. Para Yatırma İşleminde verilen Dekontun Alınması.</h5>
-                        <h5>3. Dekont Üzerinde Yazan Bilgilerden Yararlanarak Aşağıda İstenen Bilgilerin Doldurulması.</h5>
-                        <h5>4. "Alışveri Tamamla" Butonuna basılarak Alışverişin Tamamlanması.</h5>
-
-                    </div>
-                    <div class="col-xs-12">
-                        <h3 for="checkout_name">Garanti Bankası Beşiktaş Şubesi</h3>
-                        <p></p>
-                        <label for="checkout_last_name">Şube Kodu : 123 &nbsp &nbsp &nbsp</label>
-
-                        <label for="checkout_last_name"> Hesap No : 6297120 </label>
-                        <p></p>
-                        <label for="checkout_last_name">IBAN : TR34 1234 1234 1234 1234 1234 12 </label>
-                        <p></p>
-                        <p></p>
-                        <p></p>
-
+<div class="home">
+    <div class="home_container">
+        <div class="home_background" style="background-image:url(/images/cart.jpg)"></div>
+        <div class="home_content_container">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="home_content">
+                            <div class="breadcrumbs">
+                                <ul>
+                                    <li><a href="@Url.Action("Index","Home")">Anasayfa</a></li>
+                                    <li><a href="@Url.Action("Index","Cart")">Alışverişlerim</a></li>
+                                    <li>Ödeme</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div>
-
-                    <div>
-                        <!-- Address -->
-                        <label for="checkout_address">Gönderen Adı Soyadı</label>
-                        <input type="text" id="checkout_address" name="name" class="checkout_input" required="required">
-                    </div>
-                    <div>
-                        <!-- Email -->
-                        <label for="checkout_email">Gönderen Tc No</label>
-                        <input type="text" id="checkout_email" name="idNumner" class="checkout_input" required="required">
-                    </div>
-                    <div>
-                        <!-- Phone no -->
-                        <label for="checkout_phone">Gönderen Banka Adı</label>
-                        <input type="text" id="checkout_phone" name="bankName" class="checkout_input" required="required">
-                    </div>
-                    <div>
-                        <!-- Email -->
-                        <label for="checkout_email">Gönderen Hesap No</label>
-                        <input type="text" id="checkout_email" name="bankIban" class="checkout_input" required="required">
-                    </div>
-
-
-                </div>
-                <button type="submit" class="btn btn-success">Alışverişi Tamamla</button>
-            }
-
-
+            </div>
         </div>
     </div>
 </div>
+
+@using (Html.BeginForm("ByBankTransfer", "Checkout", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    <div class="checkout">
+        <div class="container">
+            <div class="row">
+
+
+
+                <div class="col-lg-8">
+                    <div class="order ">
+
+
+                        <div class="section_title">Ödeme Bilgileri</div>
+                        <div class="section_subtitle">Banka Havale/EFT İle Ödeme Yapmak İçin Gerekenler</div>
+
+
+                        <div class="checkout_form_container">
+                            <div class="row">
+                                <label for="checkout_name">1. Aşağıda Bilgileri Verilmiş olan Banka Hesabına Gerekli Ücretin Yatırılması.</label><br>
+                                <label for="checkout_name">2. Para Yatırma İşleminde verilen Dekontun Alınması.</label><br>
+                                <label for="checkout_name">3. Dekont Üzerinde Yazan Bilgilerden Yararlanarak Aşağıda İstenen Bilgilerin Doldurulması.</label><br>
+                                <label for="checkout_name">4. "Alışveri Tamamla" Butonuna basılarak Alışverişin Tamamlanması.</label><br>
+                            </div>
+                        </div>
+                        <div class="checkout_form_container">
+                            <label for="checkout_name">Garanti Bankası Beşiktaş Şubesi </label><br>
+                            <label for="checkout_name">Şube Kodu : 123 </label><br>
+                            <label for="checkout_name">Hesap No : 6297120 </label><br>
+                            <label for="checkout_name">IBAN : TR34 1234 1234 1234 1234 1234 12 </label><br>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+
+
+                <div class="col-lg-8">
+                    <div class="order ">
+
+
+                        <div>
+                            <!-- Address -->
+                            <label for="checkout_address">Gönderen Adı Soyadı</label>
+                            <input type="text" id="checkout_address" name="name" class="checkout_input" required="required">
+                        </div>
+                        <div>
+                            <!-- Email -->
+                            <label for="checkout_email">Gönderen Tc No</label>
+                            <input type="text" id="checkout_email" name="idNumner" class="checkout_input" required="required">
+                        </div>
+                        <div>
+                            <!-- Phone no -->
+                            <label for="checkout_phone">Gönderen Banka Adı</label>
+                            <input type="text" id="checkout_phone" name="bankName" class="checkout_input" required="required">
+                        </div>
+                        <div>
+                            <!-- Email -->
+                            <label for="checkout_email">Gönderen Hesap No</label>
+                            <input type="text" id="checkout_email" name="bankIban" class="checkout_input" required="required">
+                        </div>
+                        <br>
+                        <button type="submit" class="btn btn-success">Alışverişi Tamamla</button>
+                    </div>
+                </div>
+               
+
+
+            </div>
+        </div>
+    </div>
+
+}
 

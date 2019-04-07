@@ -16,8 +16,7 @@
                         <div class="home_content">
                             <div class="breadcrumbs">
                                 <ul>
-                                    <li><a href="index.html">Anasayfa</a></li>
-                                    <li><a href="@Url.Action("Cart","Cart")">Alışverişlerim</a></li>
+                                    <li><a href="@Url.Action("Index","Home")">Anasayfa</a></li>                                   
                                     <li>Ödeme</li>
                                 </ul>
                             </div>
@@ -32,21 +31,24 @@
 <!-- Checkout -->
 @using (Html.BeginForm("Index", "Checkout", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-   
+
     <div class="checkout">
         <div class="container">
             <div class="row">
 
-                <!-- Billing Info -->
-                <div class="col-lg-6">
-                    <div class="billing checkout_section">
+
+
+
+
+                <div class="col">
+                    <div class="order checkout_section">
+
+
                         <div class="section_title">Address</div>
                         <div class="section_subtitle">Adres Bilgileri</div>
+
+
                         <div class="checkout_form_container">
-
-                            @*<form action="#" id="checkout_form" class="checkout_form">*@
-
-
 
                             <div class="row">
                                 <div class="col-xl-6">
@@ -60,6 +62,7 @@
                                     <input type="text" id="checkout_last_name" name="lastName" class="checkout_input" required="required">
                                 </div>
                             </div>
+
                             <div>
                                 <!-- Country -->
                                 <div class="form-group">
@@ -69,7 +72,6 @@
                                         @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
-
                                 <div>
                                     <!-- City / Town -->
                                     <div class="form-group">
@@ -105,104 +107,80 @@
                                     <label for="checkout_email">E-posta</label>
                                     <input type="text" id="checkout_email" name="email" class="checkout_input" required="required">
                                 </div>
-                                <div class="checkout_extra">
-                                    @*<div>
-                                            <input type="checkbox" id="checkbox_terms" name="regular_checkbox" class="regular_checkbox" checked="checked">
-                                            <label for="checkbox_terms"><img src="images/check.png" alt=""></label>
-                                            <span class="checkbox_title">Ön Bilgilendirme Koşullarını Okudum ve Onaylıyorum</span>
-                                        </div>*@
-                                    @*<button type="submit" class="btn btn-success">Alışverişi Tamamla</button>*@
-                                </div>
                             </div>
 
-                            @*</form>*@
                         </div>
+
+
                     </div>
                 </div>
 
-                <!-- Order Info -->
 
-                <div class="col-lg-12">
+
+                <div class="col">
                     <div class="order checkout_section">
+
+
                         <div class="section_title">Siparişler</div>
                         <div class="section_subtitle">Sipariş Detayları</div>
 
-                        <!-- Order details -->
+
                         <div class="order_list_container">
                             <div class="order_list_bar d-flex flex-row align-items-center justify-content-start">
                                 <div class="order_list_title">Ürünler</div>
-                                <div class="order_list_value ml-auto"></div>
+                                <div class="order_list_value ml-auto">Fiyat</div>
                             </div>
                             @foreach (var item in ViewBag.CurrentOrders)
                             {
-
-
                                 <ul class="order_list">
                                     <li class="d-flex flex-row align-items-center justify-content-start">
-                                        <div class="order_list_title">@item.Piece  Adet  @item.ProductName  Aracı</div>
-                                        <div class="order_list_value ml-auto">@item.Price  TL</div>
-                                    </li>
+                                        <div class="order_list_title">@item.Piece Adet @item.ProductName</div>
+                                        @{
 
+                                            decimal total = @item.Piece * @item.Price;
+
+                                        }
+                                        <div class="order_list_value ml-auto">@total TL</div>
+                                    </li>
                                     <li class="d-flex flex-row align-items-center justify-content-start">
-                                        <div class="order_list_title"></div>
-                                        <div class="order_list_value ml-auto"></div>
+                                        <div class="order_list_title">Genel Toplam</div>
+                                        <div class="order_list_value ml-auto"> TL</div>
                                     </li>
                                 </ul>
                             }
-                            <ul class="order_list">
-                                @*<li class="d-flex flex-row align-items-center justify-content-start">
-                                        <div class="order_list_title">@item.piece  Adet  @item.Orders  Aracı</div>
-                                        <div class="order_list_value ml-auto">@item.TotalPrice</div>
-                                    </li>*@
-
-                                <li class="d-flex flex-row align-items-center justify-content-start">
-                                    <div class="order_list_title">Toplam</div>
-                                    <div class="order_list_value ml-auto"></div>
-                                </li>
-                            </ul>
                         </div>
 
-                        <!-- Payment Options -->
-                        <div class="payment">
-                                <div class="payment_options" >
-                                    <label class="payment_option clearfix">
-                                        Kapıda Ödeme
-                                        <input type="radio" name="atDelivery" >
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="payment_option clearfix" >
-                                        Banka Havalesi
-                                        <input type="radio" name="byBankTransfer" >
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    @*<label class="payment_option clearfix">
-                                        Credit card
-                                        <input type="radio" name="radio">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="payment_option clearfix">
-                                        Direct bank transfer
-                                        <input type="radio" checked="checked" name="radio">
-                                        <span class="checkmark"></span>
-                                    </label>*@
-                                </div>
-                            </div>
 
-                        <!-- Order Text -->
-                        @*<div class="form-group">
-                                <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="Create" class="btn btn-default" />
-                                </div>
-                            </div>*@
+                        <div class="payment">
+                            <div class="payment_options">
+                                <label class="payment_option clearfix">
+                                    Kapıda Ödeme
+                                    <input type="radio" name="atDelivery">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="payment_option clearfix">
+                                    Banka Havalesi
+                                    <input type="radio" name="byBankTransfer">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                        </div>
+
                         <div class="order_text"></div>
-                        @*<div class="button order_button" type="submit"><a href="@Url.Action("Index","Home")">Alışverişi Tamamla</a></div>*@
-                        <button type="submit" class="btn btn-success">Alışverişi Tamamla</button>
+                        <button type="submit" class="btn btn-success">İleri</button>
+
                     </div>
                 </div>
+
+
+
+
             </div>
         </div>
     </div>
 }
+
+
 
 @section scripts {
     @Scripts.Render("~/bundles/jqueryval")

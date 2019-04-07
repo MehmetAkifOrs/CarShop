@@ -72,7 +72,11 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.OrderProducts)
+            @foreach (var item in Model.OrderProducts)
+            {
+                @item.ProductName
+            }
+
         </dd>
 
         <dt>

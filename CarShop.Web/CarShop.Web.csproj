@@ -246,7 +246,6 @@
     <Content Include="images\product_9.jpg" />
     <Content Include="images\search.svg" />
     <Content Include="images\shopping.svg" />
-    <Content Include="index.html" />
     <Content Include="js\cart.js" />
     <Content Include="js\categories.js" />
     <Content Include="js\checkout.js" />

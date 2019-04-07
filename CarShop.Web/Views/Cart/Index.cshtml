@@ -65,7 +65,7 @@
                                     <div><img src="@(ViewBag.AssetsUrl)@item.CartProductPhoto" alt=""></div>
                                 </div>
                                 <div class="cart_item_name_container">
-                                    <div class="cart_item_name"><a href="#">@item.ProductName</a></div>
+                                    <div class="cart_item_name"><a @*href="@Url.Action("Index","Product", new { id = item.Id })"*@>@item.ProductName</a></div>
                                 </div>
                             </div>
                             <!-- Price -->
