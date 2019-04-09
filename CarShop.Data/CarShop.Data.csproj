@@ -70,9 +70,13 @@
     <Compile Include="Builders\ProductBuilder.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="IUniteOfWork.cs" />
-    <Compile Include="Migrations\201904021948578_InitialCreate.cs" />
-    <Compile Include="Migrations\201904021948578_InitialCreate.Designer.cs">
-      <DependentUpon>201904021948578_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201904081113184_Initial.cs" />
+    <Compile Include="Migrations\201904081113184_Initial.Designer.cs">
+      <DependentUpon>201904081113184_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904081122351_PhotoCancel.cs" />
+    <Compile Include="Migrations\201904081122351_PhotoCancel.Designer.cs">
+      <DependentUpon>201904081122351_PhotoCancel.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -90,8 +94,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201904021948578_InitialCreate.resx">
-      <DependentUpon>201904021948578_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201904081113184_Initial.resx">
+      <DependentUpon>201904081113184_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904081122351_PhotoCancel.resx">
+      <DependentUpon>201904081122351_PhotoCancel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

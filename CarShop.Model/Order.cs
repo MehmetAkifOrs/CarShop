@@ -42,9 +42,9 @@ namespace CarShop.Model
         [Display(Name = "Telefon")]
         [Phone]
         [MaxLength(100)]
-       // [Required(ErrorMessage = "Bu Alan Zorunludur !")]
-       // [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$",
-                  // ErrorMessage = "Lütfen uygun formatta giriş yapınız")]
+       [Required(ErrorMessage = "Bu Alan Zorunludur !")]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$",
+                   ErrorMessage = "Lütfen uygun formatta giriş yapınız")]
         public String Phone { get; set; }
         [Display(Name = "E-posta")]
         [EmailAddress]

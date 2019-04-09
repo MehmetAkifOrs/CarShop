@@ -9,7 +9,7 @@ namespace CarShop.Model
 {
     public class OrderProducts:BaseEntity
     {
-        [Display(Name = "Ürün Adı")]
+        [Display(Name = "Ürün Adı")]      
         public string  ProductName { get; set; }
         [Display(Name = "Adet")]
         public int Quantity { get; set; }

@@ -59,7 +59,13 @@ namespace CarShop.Web.Controllers
         public ActionResult Index()
         {
             var location = new Location();
+            decimal totalPrice = 0;
 
+            foreach (var item in cartService.GetAll())
+            {
+                totalPrice += item.Price * item.Piece;
+            }
+            ViewBag.TotalPrice = totalPrice;
             ViewBag.CurrentOrders = cartService.GetAll();
 
            
@@ -79,7 +85,12 @@ namespace CarShop.Web.Controllers
         public ActionResult Index(Location location, string firstName, string lastName, string adress, string phone, string email, string byBankTransfer, string atDelivery)
         {
 
+            decimal totalPrice = 0;
 
+            foreach (var item in cartService.GetAll())
+            {
+                totalPrice += item.Price * item.Piece;
+            }
             var order = new Order();
             order.Id = Guid.NewGuid();
            
@@ -93,17 +104,23 @@ namespace CarShop.Web.Controllers
             order.Email = email;
             order.Phone = phone;
             order.Address = adress;
+            order.TotalPrice = totalPrice;
             orderService.Insert(order);
+
             foreach (var item in cartService.GetAll())
             {
                 var orderProduct = new OrderProducts();
                 orderProduct.ProductName = item.ProductName;
                 orderProduct.Priece = item.Price;
                 orderProduct.Quantity = item.Piece;
+                orderProduct.TotalPrice = item.Piece * item.Price;               
                 orderProduct.OrderId = order.Id;
                 orderProductsService.Insert(orderProduct);
+               
             }
+
            
+
             foreach (var item in orderProductsService.GetAll().Where(p => p.OrderId == null))
             {
                 item.OrderId = order.Id;
