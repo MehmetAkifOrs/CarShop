@@ -3,7 +3,7 @@ namespace CarShop.Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class Initial : DbMigration
     {
         public override void Up()
         {
@@ -48,7 +48,7 @@ namespace CarShop.Data.Migrations
                         Id = c.Guid(nullable: false),
                         Name = c.String(nullable: false, maxLength: 100),
                         Description = c.String(),
-                        Photo = c.String(),
+                        Photo = c.String(nullable: false),
                         Stock = c.Int(nullable: false),
                         Price = c.Decimal(nullable: false, precision: 18, scale: 2),
                         CategoryId = c.Guid(),
@@ -133,7 +133,7 @@ namespace CarShop.Data.Migrations
                         CityName = c.String(maxLength: 100),
                         DistrictName = c.String(maxLength: 100),
                         Address = c.String(nullable: false, maxLength: 1000),
-                        Phone = c.String(maxLength: 100),
+                        Phone = c.String(nullable: false, maxLength: 100),
                         Email = c.String(),
                         TotalPrice = c.Decimal(precision: 18, scale: 2),
                         SenderName = c.String(),
