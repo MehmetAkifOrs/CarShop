@@ -60,6 +60,13 @@ namespace CarShop.Web.Controllers
         {
             var location = new Location();
 
+            decimal totalPrice = 0;
+            foreach (var total in cartService.GetAll())
+            {
+                totalPrice += total.Piece * total.Price;
+            }
+
+            ViewBag.Total = totalPrice;
             ViewBag.CurrentOrders = cartService.GetAll();
 
            
@@ -82,7 +89,13 @@ namespace CarShop.Web.Controllers
 
             var order = new Order();
             order.Id = Guid.NewGuid();
-           
+
+            decimal totalPrice = 0;
+            foreach (var total in cartService.GetAll())
+            {
+                totalPrice += total.Piece * total.Price;
+            }
+
             //orderService.Insert(order);
 
             order.CountryName = countryService.GetAll().Where(c => c.Id == location.CountryId).FirstOrDefault().Name;
@@ -93,6 +106,7 @@ namespace CarShop.Web.Controllers
             order.Email = email;
             order.Phone = phone;
             order.Address = adress;
+            order.TotalPrice = totalPrice;
             orderService.Insert(order);
             foreach (var item in cartService.GetAll())
             {
@@ -143,13 +157,22 @@ namespace CarShop.Web.Controllers
             currentOrder.BankIban = bankIban;
             orderService.Update(currentOrder);
 
-
-
             return RedirectToAction("CompleteShop");
         }
 
         public ActionResult CompleteShop()
         {
+
+            
+            
+
+            foreach (var stock in cartService.GetAll())
+            {
+                var products = productService.GetAll().Where(p => p.Id == stock.ProductId);
+                products.FirstOrDefault().Stock = products.FirstOrDefault().Stock - stock.Piece;
+                productService.Update(products.FirstOrDefault());
+            }
+
             foreach (var item in cartService.GetAll())
             {
                 cartService.Delete(item);
