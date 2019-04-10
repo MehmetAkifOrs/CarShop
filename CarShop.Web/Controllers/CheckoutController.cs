@@ -83,7 +83,7 @@ namespace CarShop.Web.Controllers
             return View(location);
         }
         [HttpPost]
-        public ActionResult Index(Location location, string firstName, string lastName, string adress, string phone, string email, string byBankTransfer, string atDelivery)
+        public ActionResult Index(Location location, string firstName, string lastName, string adress, string phone, string email, string radio)
         {
 
 
@@ -128,7 +128,7 @@ namespace CarShop.Web.Controllers
                                  
             
 
-            if(byBankTransfer == "on")
+            if(radio == "byBankTransfer")
             {
                 return RedirectToAction("ByBankTransfer",orderId);
             }

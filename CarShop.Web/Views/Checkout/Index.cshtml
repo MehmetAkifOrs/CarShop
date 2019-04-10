@@ -157,36 +157,38 @@
                         @Html.Label(" ")
                         @Html.Label(" ")
                         @Html.Label(" ")
-                        @Html.RadioButton("byBankTransfer", "on")<br>
+                        @Html.RadioButton("radio", "byBankTransfer",true)<br>
                         @Html.Label("Kapıda Ödeme")
                         @Html.Label(" ")
                         @Html.Label(" ")
                         @Html.Label(" ")
-                        @Html.RadioButton("atDelivery", "on")
+                        @Html.RadioButton("radio", "atDelivery")
+
+
 
                         @*<form>
-            <input type="radio" name="atDelivery" value="on">Kapıda Ödeme<br>
-            <input type="radio" name="byBankTransfer" value="on">Banka Havalesi<br>
-        </form>*@
+                                <input type="radio" name="atDelivery" value="on">Kapıda Ödeme<br>
+                                <input type="radio" name="byBankTransfer" value="on">Banka Havalesi<br>
+                            </form>*@
 
 
 
                         @*<div class="payment_options">
 
 
-            <div class="payment_options">
-                <label class="payment_option clearfix">
-                    Kapıda Ödeme
-                    <input type="radio" name="atDelivery">
-                    <span class="checkmark"></span>
-                </label>
-                <label class="payment_option clearfix">
-                    Banka Havalesi
-                    <input type="radio" name="byBankTransfer">
-                    <span class="checkmark"></span>
-                </label>
-            </div>
-        </div>*@
+                                <div class="payment_options">
+                                    <label class="payment_option clearfix">
+                                        Kapıda Ödeme
+                                        <input type="radio" name="atDelivery">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <label class="payment_option clearfix">
+                                        Banka Havalesi
+                                        <input type="radio" name="byBankTransfer">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                            </div>*@
 
                         <div class="order_text"></div>
                         <button type="submit" class="btn btn-success">İleri</button>
