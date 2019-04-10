@@ -16,7 +16,7 @@
                         <div class="home_content">
                             <div class="breadcrumbs">
                                 <ul>
-                                    <li><a href="@Url.Action("Index","Home")">Anasayfa</a></li>                                   
+                                    <li><a href="@Url.Action("Index","Home")">Anasayfa</a></li>
                                     <li>Ödeme</li>
                                 </ul>
                             </div>
@@ -144,27 +144,49 @@
                                     </li>
                                     <li class="d-flex flex-row align-items-center justify-content-start">
                                         <div class="order_list_title">Genel Toplam</div>
-                                        <div class="order_list_value ml-auto">@ViewBag.TotalPrice TL</div>
+                                        <div class="order_list_value ml-auto">@ViewBag.Total TL</div>
                                     </li>
                                 </ul>
                             }
                         </div>
 
+                        <br>
+                        <h3 style="color:black">Ödeme Şekli</h3>
 
-                        <div class="payment">
-                            <div class="payment_options">
-                                <label class="payment_option clearfix">
-                                    Kapıda Ödeme
-                                    <input type="radio" name="atDelivery">
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="payment_option clearfix">
-                                    Banka Havalesi
-                                    <input type="radio" name="byBankTransfer">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                        </div>
+                        @Html.Label("Banka Havalesi")
+                        @Html.Label(" ")
+                        @Html.Label(" ")
+                        @Html.Label(" ")
+                        @Html.RadioButton("byBankTransfer", "on")<br>
+                        @Html.Label("Kapıda Ödeme")
+                        @Html.Label(" ")
+                        @Html.Label(" ")
+                        @Html.Label(" ")
+                        @Html.RadioButton("atDelivery", "on")
+
+                        @*<form>
+            <input type="radio" name="atDelivery" value="on">Kapıda Ödeme<br>
+            <input type="radio" name="byBankTransfer" value="on">Banka Havalesi<br>
+        </form>*@
+
+
+
+                        @*<div class="payment_options">
+
+
+            <div class="payment_options">
+                <label class="payment_option clearfix">
+                    Kapıda Ödeme
+                    <input type="radio" name="atDelivery">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="payment_option clearfix">
+                    Banka Havalesi
+                    <input type="radio" name="byBankTransfer">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+        </div>*@
 
                         <div class="order_text"></div>
                         <button type="submit" class="btn btn-success">İleri</button>
