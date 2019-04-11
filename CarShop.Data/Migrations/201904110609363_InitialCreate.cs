@@ -3,7 +3,7 @@ namespace CarShop.Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class InitialCreate : DbMigration
     {
         public override void Up()
         {
@@ -48,7 +48,7 @@ namespace CarShop.Data.Migrations
                         Id = c.Guid(nullable: false),
                         Name = c.String(nullable: false, maxLength: 100),
                         Description = c.String(),
-                        Photo = c.String(nullable: false),
+                        Photo = c.String(),
                         Stock = c.Int(nullable: false),
                         Price = c.Decimal(nullable: false, precision: 18, scale: 2),
                         CategoryId = c.Guid(),
@@ -210,6 +210,22 @@ namespace CarShop.Data.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
+                "dbo.FeedBacks",
+                c => new
+                    {
+                        Id = c.Guid(nullable: false),
+                        FullName = c.String(nullable: false, maxLength: 100),
+                        Email = c.String(nullable: false),
+                        Subject = c.String(),
+                        Message = c.String(),
+                        CreatedBy = c.String(),
+                        CreatedAt = c.DateTime(),
+                        UpdatedBy = c.String(),
+                        UpdatedAt = c.DateTime(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
                 "dbo.Locations",
                 c => new
                     {
@@ -358,6 +374,7 @@ namespace CarShop.Data.Migrations
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.MainPages");
             DropTable("dbo.Locations");
+            DropTable("dbo.FeedBacks");
             DropTable("dbo.ContactPages");
             DropTable("dbo.Districts");
             DropTable("dbo.OrderProducts");

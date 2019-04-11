@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace CarShop.Admin.Controllers
 {
-    public class ContactPageController : Controller
+    public class ContactPageController : ControllerBase
     {
         private readonly IContactPageService contactpageService;
 

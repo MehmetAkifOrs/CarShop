@@ -24,6 +24,7 @@ namespace CarShop.Data
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<About> Abouts { get; set; }
         public virtual DbSet<MainPage> MainPages { get; set; }
+        public virtual DbSet<FeedBack> FeedBacks { get; set; }
         public virtual DbSet<ContactPage> ContactPages { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Country> Countries { get; set; }
@@ -49,7 +50,7 @@ namespace CarShop.Data
             new CartBuilder(modelBuilder.Entity<Cart>());
             new LocationBuilder(modelBuilder.Entity<Location>());
             new OrderProductsBuilder(modelBuilder.Entity<OrderProducts>());
-
+            new FeedBackBuilder(modelBuilder.Entity<FeedBack>());
         }
     }
 }

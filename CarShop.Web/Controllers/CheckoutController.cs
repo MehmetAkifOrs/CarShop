@@ -161,11 +161,8 @@ namespace CarShop.Web.Controllers
         }
 
         public ActionResult CompleteShop()
-        {
-
+        {         
             
-            
-
             foreach (var stock in cartService.GetAll())
             {
                 var products = productService.GetAll().Where(p => p.Id == stock.ProductId);

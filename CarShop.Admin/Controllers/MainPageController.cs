@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace CarShop.Admin.Controllers
 {
-    public class MainPageController : Controller
+    public class MainPageController : ControllerBase
     {
         private readonly IMainPageService mainpageService;
 

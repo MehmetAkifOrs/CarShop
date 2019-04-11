@@ -28,44 +28,10 @@ namespace CarShop.Web.Controllers
         public ActionResult Index()
         {
             var cartProducts = cartService.GetAll();
-            //var cart = new Cart();
-            //var product = productService.Find(product);
-            //cart.Piece = piece;
-            //cart.ProductName = product.Name;
-            //cart.Price = product.Price;
-            //cart.CartProductPhoto = product.Photos.FirstOrDefault().Name;
-            //cartService.Insert(cart);
-            //var carts = cartService.GetAll();
-            //var carts = cartService.GetAll();
+            
             return View(cartProducts);
-        }
-
-        //[HttpPost]
-        //public ActionResult Index(Product product, int piece)
-        //{
-        //    var cart = new Cart();
-
-        //    //var product = productService.Find(product);
-        //    cart.Piece = piece;
-        //    cart.ProductName = product.Name;
-        //    cart.Price = product.Price;
-        //    cart.CartProductPhoto = product.Photos.FirstOrDefault().Name;
-        //    cartService.Insert(cart);
-        //    var carts = cartService.GetAll();
-        //    //var carts = cartService.GetAll();
-        //    return View(carts);
-
-        //var order = new Order();
-        ////var product = productService.Find(cart.Id);
-        //order.Orders = product.Name;
-        //order.piece = piece;
-        //order.TotalPrice = product.Price * piece;
-        //orderService.Insert(order);
-        //return RedirectToAction("Index", "Checkout", order);
-    //}
-
-
-
+        }      
+        
         public ActionResult Cart()
         {
             var carts = cartService.GetAll();
