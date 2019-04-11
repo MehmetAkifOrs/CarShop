@@ -14,7 +14,7 @@ namespace CarShop.Model
         [Required(ErrorMessage = "Bu Alan Zorunludur !")]
         public string FullName { get; set; }
         [Display(Name = "E-posta")]
-        [EmailAddress]
+        
         [Required(ErrorMessage = "Bu Alan Zorunludur !")]
         public string Email { get; set; }
         [Display(Name = "Konu")]

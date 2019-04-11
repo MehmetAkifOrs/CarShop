@@ -40,14 +40,13 @@ namespace CarShop.Model
         [Required(ErrorMessage = "Bu Alan Zorunludur !")]
         public String Address { get; set; }
         [Display(Name = "Telefon")]
-        [Phone]
+        
         [MaxLength(100)]
        [Required(ErrorMessage = "Bu Alan Zorunludur !")]
-        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$",
-                   ErrorMessage = "Lütfen uygun formatta giriş yapınız")]
+        
         public String Phone { get; set; }
         [Display(Name = "E-posta")]
-        [EmailAddress]
+        
         public String Email { get; set; }
 
         [Display(Name = "Toplam Tutar")]

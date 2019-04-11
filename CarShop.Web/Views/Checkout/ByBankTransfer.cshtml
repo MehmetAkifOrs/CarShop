@@ -79,7 +79,7 @@
                         <div>
                             <!-- Email -->
                             <label for="checkout_email">Gönderen Tc No</label>
-                            <input type="text" id="checkout_email" name="idNumner" class="checkout_input" required="required">
+                            <input type="tel" id="checkout_email" name="idNumner" class="checkout_input" pattern="[0-9]{11}$" required="required">
                         </div>
                         <div>
                             <!-- Phone no -->
@@ -89,7 +89,8 @@
                         <div>
                             <!-- Email -->
                             <label for="checkout_email">Gönderen Hesap No</label>
-                            <input type="text" id="checkout_email" name="bankIban" class="checkout_input" required="required">
+                           
+                            <input type="tel" id="checkout_email" name="bankIban" class="checkout_input" placeholder="xxxx xxxx xxxx xxxx" pattern="[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}" required="required">
                         </div>
                         <br>
                         <button type="submit" class="btn btn-success">Alışverişi Tamamla</button>

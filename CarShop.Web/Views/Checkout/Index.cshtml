@@ -68,7 +68,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.CountryId, htmlAttributes: new { @class = "control-label col-md-2" })
                                     <div class="col-md-10">
-                                        @Html.DropDownList("CountryId", null, "Ülke seçiniz", htmlAttributes: new { @class = "form-control" })
+                                        @Html.DropDownList("CountryId", null, "Ülke seçiniz", htmlAttributes: new { @class = "form-control", required = "required" })
                                         @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
@@ -77,7 +77,7 @@
                                     <div class="form-group">
                                         @Html.LabelFor(model => model.CityId, htmlAttributes: new { @class = "control-label col-md-2" })
                                         <div class="col-md-10">
-                                            @Html.DropDownList("CityId", null, "Şehir seçiniz", htmlAttributes: new { @class = "form-control" })
+                                            @Html.DropDownList("CityId", null, "Şehir seçiniz", htmlAttributes: new { @class = "form-control", required = "required" })
                                             @Html.ValidationMessageFor(model => model.CityId, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
@@ -87,7 +87,7 @@
                                     <div class="form-group">
                                         @Html.LabelFor(model => model.DistrictId, htmlAttributes: new { @class = "control-label col-md-2" })
                                         <div class="col-md-10">
-                                            @Html.DropDownList("DistrictId", null, "İlçe seçiniz", htmlAttributes: new { @class = "form-control" })
+                                            @Html.DropDownList("DistrictId", null, "İlçe seçiniz", htmlAttributes: new { @class = "form-control", required = "required" })
                                             @Html.ValidationMessageFor(model => model.DistrictId, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
@@ -100,12 +100,12 @@
                                 <div>
                                     <!-- Phone no -->
                                     <label for="checkout_phone">Telefon</label>
-                                    <input type="text" id="checkout_phone" name="phone" class="checkout_input" required="required">
+                                    <input type="tel" id="checkout_phone" name="phone" class="checkout_input" placeholder="5xx xxx xxxx" pattern="^5(0[5-7]|[3-5]\d) ?\d{3} ?\d{4}$" required="required">
                                 </div>
                                 <div>
                                     <!-- Email -->
                                     <label for="checkout_email">E-posta</label>
-                                    <input type="text" id="checkout_email" name="email" class="checkout_input" required="required">
+                                    <input type="email" id="checkout_email" name="email" class="checkout_input" required="required">
                                 </div>
                             </div>
 
