@@ -130,6 +130,7 @@
                                 <div class="order_list_title">Ürünler</div>
                                 <div class="order_list_value ml-auto">Fiyat</div>
                             </div>
+
                             @foreach (var item in ViewBag.CurrentOrders)
                             {
                                 <ul class="order_list">
@@ -141,23 +142,30 @@
 
                                         }
                                         <div class="order_list_value ml-auto">@total TL</div>
-                                    </li>
-                                    <li class="d-flex flex-row align-items-center justify-content-start">
-                                        <div class="order_list_title">Genel Toplam</div>
-                                        <div class="order_list_value ml-auto">@ViewBag.Total TL</div>
+                                        <br>
+                                        <br>
                                     </li>
                                 </ul>
                             }
+                            <br>
+                            <br>
+
+                            <div class="d-flex flex-row align-items-center justify-content-start">
+                                <div class="order_list_title">Genel Toplam</div>
+                                <div class="order_list_value ml-auto">@ViewBag.Total TL</div>
+                            </div>
                         </div>
 
                         <br>
-                        <h3 style="color:black">Ödeme Şekli</h3>
-
+                        <br>
+                        <div class="section_title">Ödeme Şekli</div>
+                        <br>
+                        
                         @Html.Label("Banka Havalesi")
                         @Html.Label(" ")
                         @Html.Label(" ")
                         @Html.Label(" ")
-                        @Html.RadioButton("radio", "byBankTransfer",true)<br>
+                        @Html.RadioButton("radio", "byBankTransfer", true)<br>
                         @Html.Label("Kapıda Ödeme")
                         @Html.Label(" ")
                         @Html.Label(" ")
@@ -167,28 +175,28 @@
 
 
                         @*<form>
-                                <input type="radio" name="atDelivery" value="on">Kapıda Ödeme<br>
-                                <input type="radio" name="byBankTransfer" value="on">Banka Havalesi<br>
-                            </form>*@
+            <input type="radio" name="atDelivery" value="on">Kapıda Ödeme<br>
+            <input type="radio" name="byBankTransfer" value="on">Banka Havalesi<br>
+        </form>*@
 
 
 
                         @*<div class="payment_options">
 
 
-                                <div class="payment_options">
-                                    <label class="payment_option clearfix">
-                                        Kapıda Ödeme
-                                        <input type="radio" name="atDelivery">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="payment_option clearfix">
-                                        Banka Havalesi
-                                        <input type="radio" name="byBankTransfer">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </div>
-                            </div>*@
+            <div class="payment_options">
+                <label class="payment_option clearfix">
+                    Kapıda Ödeme
+                    <input type="radio" name="atDelivery">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="payment_option clearfix">
+                    Banka Havalesi
+                    <input type="radio" name="byBankTransfer">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+        </div>*@
 
                         <div class="order_text"></div>
                         <button type="submit" class="btn btn-success">İleri</button>
